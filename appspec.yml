@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/chagok
+    overwrite: yes
+permissions:
+  - object: /home/ubuntu
+    pattern: '**'
+    owner: root
+    group: root
+    mode: 755
+hooks:
+  AfterInstall:
+    # location은 프로젝트의 root경로를 기준
+		# 파일을 올린 후 진행해야하는 작업을 적은 deploy.sh 파일 경로를 적어준다.
+    - location: scripts/after-deploy.sh
+      timeout: 180
+      runas: root
