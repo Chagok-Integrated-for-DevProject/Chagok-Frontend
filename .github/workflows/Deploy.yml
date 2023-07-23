@@ -44,7 +44,7 @@ jobs:
 
       # Make zip file 단계에서 압축된 빌드 파일을 S3 버킷에 업로드하는 단계이다.
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./chagok.zip s3://$S3_BUCKET_NAME/.next/chagok.zip
+        run: aws s3 cp --region ap-northeast-2 ./chagok.zip s3://$S3_BUCKET_NAME/chagok.zip
 
       # S3에 업로드 된 빌드 파일을 이용해 CodeDeploy가 정의된 동작을 하도록 트리거
       - name: Code Deploy
