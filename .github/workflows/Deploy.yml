@@ -33,7 +33,7 @@ jobs:
         run: npm run build
 
       - name: Make zip file
-        run: zip -qq -r ./chagok.zip .
+        run: zip -qq -r ./chagok.zip . -x "node_modules/*"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
