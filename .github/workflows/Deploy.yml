@@ -31,11 +31,8 @@ jobs:
       - name: Build next app
         run: npm run build
 
-      # S3에 올리기 전 빌드파일을 압축해준다.
-      # $GITHUB_SHA라는 값은 Github에서 기본적으로 제공하는 환경변수다.
-      # $GITHUB_SHA는 해당 워크플로우를 트리거한 커밋의 고유값이 할당되어있다.
       - name: Make zip file
-        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
+        run: zip -r chagok.zip ./appspec.yml ./scripts
         shell: bash
 
       - name: Configure AWS credentials
