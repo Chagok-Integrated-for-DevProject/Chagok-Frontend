@@ -1,5 +1,4 @@
-#!/bin/bash
- echo "> FE Deploy"
+echo "app start ;)"
 
 cd /home/ubuntu/chagok
 npm install

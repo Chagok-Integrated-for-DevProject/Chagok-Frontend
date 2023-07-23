@@ -12,6 +12,10 @@ permissions:
     mode: 755
 hooks:
   AfterInstall:
-    - location: scripts/after-deploy.sh
-      timeout: 300
+    - location: scripts/after-install.sh
+      timeout: 30
+      runas: root
+  ApplicationStart:
+    - location: scripts/app-start.sh 
+      timeout: 600
       runas: root
