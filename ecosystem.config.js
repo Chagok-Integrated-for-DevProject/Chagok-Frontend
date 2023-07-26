@@ -6,7 +6,7 @@ module.exports = {
       args: "run start",
       instances: 2,
       autorestart: true,
-      watch: false,
+      watch: true,
       env: {
         PORT: 3000,
         NODE_ENV: "development",
