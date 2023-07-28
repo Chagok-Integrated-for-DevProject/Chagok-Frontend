@@ -38,18 +38,21 @@
 
 ## :memo: 커밋 컨벤션
 
-| Git Imoji | Tag Name | Description                                           |
-| --------- | -------- | ----------------------------------------------------- |
-|           | Feat     | 새로운 기능 추가                                      |
-|           | Fix      | 버그수정                                              |
-|           | Style    | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
-|           | Design   | CSS 등 사용자 UI 변경 및 설계                         |
-|           | Refactor | 코드 리팩토링                                         |
-|           | Docs     | 문서 수정                                             |
-|           | Chore    | 빌드 업무, 패키지 매니저, 패키지 관지라 구성 등 수정  |
-|           | Test     | 테스트 코드, 리팩토링 테스트 코드 추가                |
-|           | Rename   | 파일 혹은 몰더명 수정하거나 옮기는 작업만 한 경우     |
-|           | Remove   | 파일을 삭제하는 작업만 한 경우                        |
+| Git Imoji          | Tag Name | Description                                           |
+| ------------------ | -------- | ----------------------------------------------------- |
+| :tada:             | Tada     | 프로젝트 시작                                         |
+| :sparkles:         | Feat     | 새로운 기능 추가                                      |
+| :bug:              | Fix      | 버그수정                                              |
+| :art:              | Style    | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
+| :lipstick:         | Design   | CSS 등 사용자 UI 변경 및 설계                         |
+| :recycle:          | Refactor | 코드 리팩토링                                         |
+| :memo:             | Docs     | 문서 수정                                             |
+| :package:          | Chore    | 빌드 업무, 패키지 매니저, 패키지 관지라 구성 등 수정  |
+| :rotating_light:   | Lint     | eslintrc 수정 및 린트 에러 수정                       |
+| :rocket:           | Deploy   | 빌드 및 배포 작업                                     |
+| :white_check_mark: | Test     | 테스트 코드, 리팩토링 테스트 코드 추가                |
+| :truck:            | Rename   | 파일 혹은 몰더명 수정하거나 옮기는 작업만 한 경우     |
+| :fire:             | Remove   | 파일을 삭제하는 작업만 한 경우                        |
 
 <br><br>
 
@@ -81,22 +84,18 @@
 
 ### :art: Emotion (styles)
 
-- css Object or styled-components
-- breakpoints
-- palette
-- 파일 분리 방식
+- styled-components 방식
+- [componentName].styles.ts 파일로 분리
 
 ### :closed_lock_with_key: React-Query
 
 - 버전: v4
-- query key 관리 방식
-- [레퍼런스](https://tkdodo.eu/blog/effective-react-query-keys)
+- query key 관리 방식: useQuery가 호출되는 위치에서 각자 관리
 
 ### :label: Type 관리
 
-- interface
-- type
-- type 선언 위치
+- 전역적으로 사용될 타입들: `lib/types` 폴더 안에 정의
+- `interface`의 경우 `I`, `type`의 경우 `T`를 이름의 첫글자로 한다.
 
 ### :safety_vest: Error 처리
 
@@ -106,6 +105,33 @@
 <br><br>
 
 ## :building_construction: 폴더 구조
+
+```
+src
+├─components
+│  ├─common
+│  │  └─layout
+│  │      ├─body
+│  │      ├─footer
+│  │      └─header
+│  ├─contest
+│  ├─project
+│  └─userInfo
+├─lib
+│  ├─apis
+│  ├─constants
+│  ├─hooks
+│  ├─types
+│  └─utils
+├─pages
+│  ├─api
+│  ├─contests
+│  │  └─[id]
+│  ├─projects
+│  │  └─[id]
+│  └─userInfo
+└─styles
+```
 
 <br><br>
 
