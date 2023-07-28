@@ -1,5 +1,5 @@
-interface ISample {
+export interface ISample {
   sample: "sample";
 }
 
-type TSample = "sample";
+export type TSample = "sample";
