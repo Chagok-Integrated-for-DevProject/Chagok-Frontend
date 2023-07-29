@@ -1,6 +1,10 @@
-import { type FC, type PropsWithChildren } from "react";
+import type { FC } from "react";
 
-const Body: FC<PropsWithChildren> = ({ children }) => {
+type BodyProps = {
+  children: React.ReactNode;
+};
+
+const Body: FC<BodyProps> = ({ children }) => {
   return <div>{children}</div>;
 };
 
