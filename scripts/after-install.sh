@@ -2,5 +2,5 @@
 
  cd /home/ubuntu/chagok
  sudo rm -r node_modules
- npm install
- npm run build
+ sudo npm install
+ sudo npx pm2 reload all
