@@ -1,5 +1,11 @@
 import { css } from "@emotion/react";
 
+export const palette = {
+  black: "#000",
+  white: "#FFF",
+  red100: "#FF6B00", // 임시
+};
+
 export const globalStyles = css`
   html,
   body,
@@ -129,6 +135,7 @@ export const globalStyles = css`
   a,
   a:visited {
     text-decoration: none;
+    color: ${palette.black};
   }
   img {
     vertical-align: bottom;
@@ -145,5 +152,3 @@ export const breakPoints = {
   lg: "(max-width: 1200px)",
   lx: "(max-width: 1440px)",
 };
-
-export const palette = {};
