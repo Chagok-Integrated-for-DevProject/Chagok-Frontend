@@ -8,6 +8,7 @@ module.exports = {
       exec_mode: "cluster",
       autorestart: true,
       watch: true, // 파일 변경 감지
+      ignore_watch: ["node_modules"],
       env: {
         PORT: 3000,
         NODE_ENV: "development",
