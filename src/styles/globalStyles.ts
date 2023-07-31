@@ -1,9 +1,20 @@
 import { css } from "@emotion/react";
+import { Noto_Sans_KR } from "next/font/google";
+
+const NotoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
 
 export const palette = {
   black: "#000",
+  gray300: "#AAA",
   white: "#FFF",
-  red100: "#FF6B00", // 임시
+  orange400: "#FF6B00", // 임시, Main Color
+  oragne500: "#FF3D00",
+  orange600: "#FF3636",
+  red300: "#FB4D4D",
+  blue200: "#338CF6",
 };
 
 export const globalStyles = css`
@@ -111,6 +122,7 @@ export const globalStyles = css`
     display: block;
   }
   body {
+    font-family: ${NotoSansKr.style.fontFamily};
     line-height: 1;
   }
   ol,
