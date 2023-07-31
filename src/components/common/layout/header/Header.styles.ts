@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
 import { palette } from "styles/globalStyles";
 
-export const HeaderWrapper = styled.header`
+export const HeaderOuterWrapper = styled.header`
+  width: 100%;
+  background-color: ${palette.orange400};
+`;
+
+export const HeaderInnerWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5%;
@@ -10,8 +15,6 @@ export const HeaderWrapper = styled.header`
   max-width: 1280px;
   padding: 2.175rem 2.5rem;
   margin: 0 auto;
-
-  background-color: ${palette.red100}; // palette 정해지면 수정할 것 (임시)
 
   font-size: 1rem;
 `;
@@ -24,19 +27,20 @@ export const Logo = styled.div`
 `;
 
 export const Navigation = styled.nav`
+  height: 3.125rem;
+
   ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
 
-  span {
-    margin: 1rem;
-    color: ${palette.white};
+    height: 100%;
   }
 
   img {
     height: 1rem !important;
+    vertical-align: middle;
+    margin: 0 1rem;
   }
 `;
 
