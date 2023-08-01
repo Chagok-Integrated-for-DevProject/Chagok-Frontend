@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 import type { FC } from "react";
 import { palette } from "styles/globalStyles";
 
-type NavLinkProps = {
+interface NavLinkProps {
   href: string;
   children: React.ReactNode;
-};
+}
 
 const ActiveLink = styled(Link)`
   display: inline-block;
