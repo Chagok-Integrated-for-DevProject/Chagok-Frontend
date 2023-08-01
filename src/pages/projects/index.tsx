@@ -1,4 +1,4 @@
-import ProjectList from "components/project";
+import ProjectList from "components/projects";
 import type { NextPage } from "next";
 
 const ProjectPage: NextPage = () => {
