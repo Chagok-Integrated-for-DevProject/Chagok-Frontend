@@ -23,7 +23,7 @@ const Header = () => {
               <Image src={dot} alt="middle dot" />
             </li>
             <li>
-              <NavLink href="/contests">해커톤</NavLink>
+              <NavLink href="/hackathons">해커톤</NavLink>
               <Image src={dot} alt="middle dot" />
             </li>
             <li>

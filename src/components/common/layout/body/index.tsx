@@ -2,9 +2,9 @@ import type { FC } from "react";
 
 import { Main } from "./Body.styles";
 
-type BodyProps = {
+interface BodyProps {
   children: React.ReactNode;
-};
+}
 
 const Body: FC<BodyProps> = ({ children }) => {
   return <Main>{children}</Main>;
