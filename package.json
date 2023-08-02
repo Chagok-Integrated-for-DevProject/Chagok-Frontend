@@ -10,8 +10,8 @@
     "lint:fix": "next lint --fix --dir \"./src\"",
     "format": "prettier --cache --write \"./src/**/*.{ts,tsx,js,jsx}\"",
     "prepare": "husky install",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch --coverage"
+    "test": "jest --coverage --transformIgnorePatterns \"node_modules/(?!swiper)/\"",
+    "test:watch": "jest --watch --coverage --transformIgnorePatterns \"node_modules/(?!swiper)/\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
