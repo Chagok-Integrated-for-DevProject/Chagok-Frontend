@@ -13,7 +13,7 @@ export const CardLink = styled(Link)`
 
 export const ClassificationTagWrapper = styled.div``;
 
-export const ClassificationTag = styled.button`
+export const ClassificationTag = styled.span`
   padding: 0.5rem 1.7rem;
   border: 0;
   border-radius: 1rem;
