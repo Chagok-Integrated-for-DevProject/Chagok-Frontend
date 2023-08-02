@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import arrow from "/public/showMore.svg";
 
+import HottestHackathons from "./Hottest";
+import LatestHackathons from "./Latest";
+
 const Hackathons = () => {
   return (
     <>
@@ -16,6 +19,8 @@ const Hackathons = () => {
             <Image src={arrow} alt="show more" />
           </ShowMore>
         </div>
+        <LatestHackathons />
+        <HottestHackathons />
       </Section>
       <Hr />
     </>

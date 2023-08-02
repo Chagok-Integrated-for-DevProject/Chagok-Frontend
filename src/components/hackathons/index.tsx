@@ -1,5 +1,16 @@
+import Hr from "components/common/Hr";
+
+import List from "./list";
+import Recommendation from "./recommendation";
+
 const HackathonList = () => {
-  return <div>해커톤/공모전 목록 페이지</div>;
+  return (
+    <>
+      <Recommendation />
+      <Hr />
+      <List />
+    </>
+  );
 };
 
 export default HackathonList;
