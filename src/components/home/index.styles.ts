@@ -29,7 +29,7 @@ export const P = styled.p`
 export const ShowMore = styled(Link)`
   position: absolute;
   top: 4rem;
-  right: 0;
+  right: 1.5rem;
 
   font-size: 1.25rem;
   line-height: 1.875rem;

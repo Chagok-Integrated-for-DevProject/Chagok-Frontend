@@ -7,7 +7,7 @@ export const CardLink = styled(Link)`
   display: block;
 
   width: 420px;
-  padding: 2.2rem;
+  padding: 2.5rem 2.2rem;
   border-radius: 0.8rem;
 `;
 
@@ -47,6 +47,8 @@ export const Description = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  margin-bottom: 1.5rem;
 `;
 
 export const SkillTagWrapper = styled.div`
@@ -64,7 +66,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  padding-top: 0.5rem;
+  margin: 0.5rem 0 0;
 
   img {
     margin-left: auto;
@@ -93,4 +95,10 @@ export const UserNickname = styled.span`
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5rem;
+`;
+
+export const Hr = styled.hr`
+  width: 100%;
+  border: 1px solid #c2c2c2;
+  margin: 1rem 0;
 `;

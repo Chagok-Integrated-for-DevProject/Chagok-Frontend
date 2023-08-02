@@ -9,6 +9,7 @@ import {
   ClassificationTag,
   ClassificationTagWrapper,
   Description,
+  Hr,
   InfoWrapper,
   PostsInfo,
   PostsInfoWrapper,
@@ -30,6 +31,7 @@ const ProjectCard = () => {
         안녕하세요! 프로젝트 돛단배에 탑승하실 분을 찾습니다. 망망대해에 작은
         돛단배를 띄우고자 하는 웹 서비스 프로젝트입니다!
       </Description>
+      <Hr />
       <SkillTagWrapper>
         <Image src={react} alt="skills" />
         <Image src={js} alt="skills" />
