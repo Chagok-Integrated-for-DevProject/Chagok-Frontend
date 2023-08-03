@@ -1,6 +1,6 @@
 import type { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import ProjectCard from "components/common/card/projects";
-import HorizontalCarousel from "components/home/carousel/horizontal";
+import ProjectCarousel from "components/home/projects/Carousel";
 
 import { H3 } from "./index.styles";
 
@@ -14,7 +14,7 @@ const HottestProjects = () => {
   return (
     <div id="hottestProject">
       <H3>인기순 Top3</H3>
-      <HorizontalCarousel slides={slides} slidesPerView={2.75} />
+      <ProjectCarousel slides={slides} />
     </div>
   );
 };
