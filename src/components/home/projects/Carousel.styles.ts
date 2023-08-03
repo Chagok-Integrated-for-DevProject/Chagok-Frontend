@@ -2,9 +2,11 @@ import styled from "@emotion/styled";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export const CustomSwiper = styled(Swiper)`
-  padding: 1.875rem 0.6rem;
+  width: calc(100% + 1rem);
+
+  padding: 1.875rem 2rem;
   border-radius: 1rem;
-  margin: 0 0 3rem -0.6rem;
+  margin: 0 0 3rem -2rem;
 `;
 
 export const CustomSwiperSlide = styled(SwiperSlide)`
@@ -12,7 +14,7 @@ export const CustomSwiperSlide = styled(SwiperSlide)`
   display: block;
 
   width: 420px !important;
-  padding: 2.5rem 2.2rem;
+  padding: 2.375rem;
   border-radius: 0.8rem;
 
   box-shadow: 1px 1px 3.125rem -1.5rem;
