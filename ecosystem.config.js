@@ -1,14 +1,12 @@
 module.exports = {
   apps: [
     {
-      name: "project",
-      script: "npm",
+      name: "chagok-fe",
+      script: "node_modules/next/dist/bin/next", // npm
       args: "run start",
-      instances: 2, // 클러스터 모드에서 생성할 pm2 인스턴스 개수
+      instances: 0, // 2
       exec_mode: "cluster",
       autorestart: true,
-      watch: true, // 파일 변경 감지
-      ignore_watch: ["node_modules"],
       env: {
         PORT: 3000,
         NODE_ENV: "development",
