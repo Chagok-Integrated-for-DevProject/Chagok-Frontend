@@ -24,6 +24,7 @@
     "swiper": "^9.4.1"
   },
   "devDependencies": {
+    "@emotion/jest": "^11.11.0",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",

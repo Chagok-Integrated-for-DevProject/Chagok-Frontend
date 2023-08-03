@@ -1,15 +1,5 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
 import { palette } from "styles/globalStyles";
-
-export const CardLink = styled(Link)`
-  position: relative;
-  display: block;
-
-  width: 420px;
-  padding: 2.5rem 2.2rem;
-  border-radius: 0.8rem;
-`;
 
 export const ClassificationTagWrapper = styled.div``;
 

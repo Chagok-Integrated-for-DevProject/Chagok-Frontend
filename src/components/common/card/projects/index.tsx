@@ -1,11 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import profileImg from "/public/mocks/user_profile.svg";
 import js from "/public/skills/logos_javascript.svg";
 import react from "/public/skills/logos_react.svg";
 
 import {
-  CardLink,
   ClassificationTag,
   ClassificationTagWrapper,
   Description,
@@ -21,7 +21,7 @@ import {
 
 const ProjectCard = () => {
   return (
-    <CardLink href="/projects/1">
+    <Link href="/projects/1">
       <ClassificationTagWrapper>
         <ClassificationTag>Hola</ClassificationTag>
         <ClassificationTag>프로젝트</ClassificationTag>
@@ -46,7 +46,7 @@ const ProjectCard = () => {
           <UserNickname>razventi</UserNickname>
         </UserInfoWrapper>
       </InfoWrapper>
-    </CardLink>
+    </Link>
   );
 };
 

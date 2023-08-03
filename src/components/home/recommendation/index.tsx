@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import arrow from "/public/showMore.svg";
 
+import RecommendationCarousel from "./Carousel";
+
 const Recommendation = () => {
   return (
     <>
@@ -16,6 +18,7 @@ const Recommendation = () => {
             <Image src={arrow} alt="show more" />
           </ShowMore>
         </div>
+        <RecommendationCarousel />
       </Section>
       <Hr />
     </>
