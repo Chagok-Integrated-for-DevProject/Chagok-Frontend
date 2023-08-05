@@ -113,6 +113,7 @@ export const resetStyles = css`
   body {
     font-family: ${NotoSansKr.style.fontFamily};
     line-height: 1;
+    background-color: #f8f8f8;
   }
   ol,
   ul {
