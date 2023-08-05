@@ -4,7 +4,7 @@ import "swiper/css/navigation";
 import styled from "@emotion/styled";
 import HackathonPageCard from "components/common/card/hackathons/HackathonPageCard";
 import { H2, H3, Section } from "components/hackathons/index.styles";
-import { palette } from "styles/palette";
+// import { palette } from "styles/palette";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -45,20 +45,29 @@ const CardWrapper = styled(Swiper)`
   }
 
   .swiper-pagination-bullet {
-    width: 0.625rem;
-    height: 0.625rem;
-
-    margin: 0 0.875rem !important;
-  }
-  /* TODO: 좀 더 자연스러운 애니메이션 생각해보기
-    목표 : 양쪽으로 넓어지는 애니메이션
-
-    1. scaleX 를 사용하면 border-radius 적용이 까다롭다.
-    2. animation으로 width를 조정하면 레이아웃이 계속 바뀐다.
-  */
-  .swiper-pagination-bullet-active {
+    position: relative;
     width: 1.875rem;
-    border-radius: 1.875rem;
-    background-color: ${palette.bgMainOrange};
+
+    background-color: transparent;
+
+    ::after {
+      content: "";
+      display: block;
+      width: 0.625rem;
+      height: 0.625rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #888;
+      border-radius: 1.875rem;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    ::after {
+      width: 1.875rem;
+      background-color: #000;
+    }
   }
 `;
