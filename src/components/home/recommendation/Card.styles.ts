@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { palette } from "styles/globalStyles";
+import { palette } from "styles/palette";
 
 export const CardStyles = css`
   display: block;
@@ -9,7 +9,7 @@ export const CardStyles = css`
   padding: 2.5rem 2.2rem;
   border-radius: 0.8rem;
 
-  background-color: #fff;
+  background-color: ${palette.white};
 
   transition: 0.2s;
 
@@ -35,7 +35,7 @@ export const CardStyles = css`
     font-weight: 700;
     line-height: 1.125rem;
 
-    background-color: #ff6b00;
+    background-color: ${palette.bgMainOrange};
     color: ${palette.white};
 
     transition: 0.2s;
@@ -52,7 +52,7 @@ export const CardStyles = css`
   }
 
   &:hover {
-    background-color: #ff6b00;
+    background-color: ${palette.bgMainOrange};
 
     .title {
       font-size: 1.315625rem;
@@ -67,14 +67,16 @@ export const CardStyles = css`
       font-weight: 700;
 
       background-color: ${palette.white};
-      color: #ff6b00;
+      color: ${palette.fontMainOrange};
     }
 
     .detailBtn {
-      border: 1px solid #ff6b00;
+      border: 1px solid ${palette.bdMainOrange};
       background-color: ${palette.white};
-      color: #ff6b00;
+      color: ${palette.fontMainOrange};
       font-weight: 700;
+
+      cursor: pointer;
     }
   }
 `;

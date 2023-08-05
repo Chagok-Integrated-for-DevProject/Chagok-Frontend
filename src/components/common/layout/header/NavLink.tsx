@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { FC } from "react";
-import { palette } from "styles/globalStyles";
+import { palette } from "styles/palette";
 
 interface NavLinkProps {
   href: string;
@@ -19,7 +19,7 @@ const ActiveLink = styled(Link)`
   text-align: center;
   vertical-align: middle;
 
-  background-color: ${palette.orange400};
+  background-color: ${palette.bgMainOrange};
   color: ${palette.white};
 
   border-radius: 1.5625rem;
@@ -32,7 +32,7 @@ const ActiveLink = styled(Link)`
 
 const active = css`
   background-color: ${palette.white};
-  color: ${palette.orange400};
+  color: ${palette.bgMainOrange};
   font-weight: 700;
 `;
 
