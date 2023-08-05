@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
+import TopScrollBtn from "components/common/button/topScroll";
 import HackathonPageCard from "components/common/card/hackathons/HackathonPageCard";
-import TopScrollBtn from "components/common/topScrollbtn";
 import { H2, H3, Section } from "components/hackathons/index.styles";
 
 const List = () => {

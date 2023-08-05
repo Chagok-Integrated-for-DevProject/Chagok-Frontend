@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import ScrabButton from "components/common/button/ScrabButton";
+import ScrabButton from "components/common/button/scrab";
 import Image from "next/image";
 import Link from "next/link";
 import type { MouseEvent } from "react";
