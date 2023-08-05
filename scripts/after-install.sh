@@ -2,4 +2,4 @@
 
  cd /home/ubuntu/chagok
  sudo npm run build
- sudo pm2 reload chagok-fe
+ sudo pm2 restart chagok-fe
