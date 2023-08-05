@@ -1,4 +1,5 @@
-import TopScrollBtn from "components/common/topScrollbtn";
+import TopScrollBtn from "components/common/button/topScroll";
+import Hr from "components/common/hr";
 import Hackathons from "components/home/hackathons";
 import MainBanner from "components/home/mainBanner";
 import Projects from "components/home/projects";
@@ -10,7 +11,9 @@ const Home: NextPage = () => {
     <>
       <MainBanner />
       <Recommendation />
+      <Hr />
       <Hackathons />
+      <Hr />
       <Projects />
       <TopScrollBtn />
     </>
