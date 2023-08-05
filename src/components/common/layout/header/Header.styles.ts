@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { palette } from "styles/globalStyles";
+import { palette } from "styles/palette";
 
 export const HeaderOuterWrapper = styled.header`
   width: 100%;
-  background-color: ${palette.orange400};
+  background-color: ${palette.bgMainOrange};
 `;
 
 export const HeaderInnerWrapper = styled.div`
