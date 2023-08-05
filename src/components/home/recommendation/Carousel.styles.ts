@@ -3,7 +3,7 @@ import { palette } from "styles/palette";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export const CustomSwiper = styled(Swiper)`
-  width: calc(100% + 3.3rem);
+  width: calc(100% + 3.1rem);
 
   padding: 3.75rem 1rem;
   border-radius: 1rem;
