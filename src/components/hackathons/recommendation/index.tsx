@@ -1,5 +1,5 @@
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import styled from "@emotion/styled";
 import HackathonPageCard from "components/common/card/hackathons/HackathonPageCard";
