@@ -1,4 +1,4 @@
-import Hr from "components/common/Hr";
+import Hr from "components/common/hr";
 import List from "components/hackathons/list";
 import Recommendation from "components/hackathons/recommendation";
 
