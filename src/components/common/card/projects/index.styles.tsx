@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { palette } from "styles/globalStyles";
+import { palette } from "styles/palette";
 
 export const ClassificationTagWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ export const ClassificationTag = styled.span`
   font-weight: 700;
   line-height: 1.125rem;
 
-  background-color: #ff5100;
+  background-color: ${palette.bgMainOrange};
   color: ${palette.white};
 `;
 
@@ -73,7 +73,7 @@ export const PostsInfo = styled.span`
   font-size: 1rem;
   line-height: 1.5rem;
 
-  color: #717171;
+  color: ${palette.fontGray300};
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -89,6 +89,6 @@ export const UserNickname = styled.span`
 
 export const Hr = styled.hr`
   width: 100%;
-  border: 1px solid #c2c2c2;
+  border: 1px solid ${palette.bdGray200};
   margin: 1rem 0;
 `;

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { palette } from "styles/palette";
 
 /** common for HomePage */
 
@@ -36,10 +37,12 @@ export const ShowMore = styled(Link)`
 
   span {
     margin-right: 1rem;
+    color: ${palette.fontGray300};
   }
 
   img {
     height: 1.875rem;
     vertical-align: top;
+    color: ${palette.fontGray300} !important;
   }
 `;
