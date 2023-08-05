@@ -7,14 +7,14 @@ import {
 import Layout from "components/common/layout";
 import type { AppProps } from "next/app";
 import { useState } from "react";
-import { globalStyles } from "styles/globalStyles";
+import { resetStyles } from "styles/resetStyles";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Global styles={globalStyles} />
+        <Global styles={resetStyles} />
         <Layout>
           <Component {...pageProps} />
         </Layout>

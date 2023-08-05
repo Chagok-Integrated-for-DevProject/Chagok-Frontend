@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
+import { palette } from "styles/palette";
 
 const StyledHr = styled.div`
-  border-top: 7px solid #f2f2f2;
+  border-top: 7px solid ${palette.bdGray400};
   margin-block: 1rem;
 `;
 

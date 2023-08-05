@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { palette } from "styles/globalStyles";
+import { palette } from "styles/palette";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export const CustomSwiper = styled(Swiper)`
@@ -16,9 +16,9 @@ export const CustomSwiper = styled(Swiper)`
   }
 
   .swiper-pagination-bullet {
-    background-color: #aaa;
+    background-color: ${palette.bgGray200};
     margin: 0 10px !important;
-    transition: 0.3s;
+    transition: 0.2s;
   }
 
   .swiper-pagination-bullet-active {
@@ -38,13 +38,10 @@ export const CustomSwiperSlide = styled(SwiperSlide)`
   box-shadow: 1px 1px 3.125rem -1.5rem;
   border-radius: 1rem;
 
-  margin: 0 0.625rem;
+  margin: 0 10px;
   transition: 0.2s;
 
   &:hover {
-    width: 400px !important;
-    height: 294px;
-
-    margin: -7px 0;
+    transform: scale(1.1);
   }
 `;

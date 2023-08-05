@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { palette } from "styles/palette";
 
 export const CircleBtn = styled.button`
   display: block;
@@ -6,7 +7,7 @@ export const CircleBtn = styled.button`
   width: 4.5rem;
   height: 4.5rem;
 
-  background-color: #ff6b00;
+  background-color: ${palette.bgMainOrange};
   border: 0;
   border-radius: 100%;
 
