@@ -6,18 +6,7 @@ const NotoSansKr = Noto_Sans_KR({
   weight: ["100", "300", "400", "500", "700", "900"],
 });
 
-export const palette = {
-  black: "#000",
-  gray300: "#AAA",
-  white: "#FFF",
-  orange400: "#FF6B00", // 임시, Main Color
-  oragne500: "#FF3D00",
-  orange600: "#FF3636",
-  red300: "#FB4D4D",
-  blue200: "#338CF6",
-};
-
-export const globalStyles = css`
+export const resetStyles = css`
   html,
   body,
   div,
@@ -147,7 +136,7 @@ export const globalStyles = css`
   a,
   a:visited {
     text-decoration: none;
-    color: ${palette.black};
+    color: #000;
   }
   img {
     vertical-align: bottom;
@@ -156,11 +145,3 @@ export const globalStyles = css`
     background-color: transparent;
   }
 `;
-
-export const breakPoints = {
-  xs: "(max-width: 480px)",
-  sm: "(max-width:768px)",
-  md: "(max-width: 1024px)",
-  lg: "(max-width: 1200px)",
-  lx: "(max-width: 1440px)",
-};
