@@ -18,7 +18,7 @@ describe("Recommendation Card Rendering Test", () => {
     expect(cardLink).toHaveStyle({ backgroundColor: "#ff6b00" });
 
     await user.unhover(cardLink);
-    expect(cardLink).toHaveStyleRule("background-color", "#fff");
+    expect(cardLink).toHaveStyleRule("background-color", "#FFF");
   });
 
   it("스크랩 버튼을 누르면 스크랩 요청 성공시, 스크랩 색이 변한다", () => {});
