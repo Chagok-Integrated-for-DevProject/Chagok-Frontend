@@ -1,5 +1,7 @@
-const HackathonDetail = () => {
-  return <div>해커톤/공모전 상세 페이지</div>;
+import HackathonDetail from "components/hackathons/detail";
+
+const HackathonDetailPage = () => {
+  return <HackathonDetail />;
 };
 
-export default HackathonDetail;
+export default HackathonDetailPage;
