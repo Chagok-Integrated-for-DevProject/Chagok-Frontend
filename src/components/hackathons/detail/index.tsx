@@ -1,5 +1,19 @@
+import Hr from "components/common/hr";
+
+import Comment from "./comment";
+import Original from "./original/indes";
+import Summary from "./summary";
+
 const HackathonDetail = () => {
-  return <div>해커톤 상세</div>;
+  return (
+    <>
+      <Summary />
+      <Hr />
+      <Original />
+      <Hr />
+      <Comment />
+    </>
+  );
 };
 
 export default HackathonDetail;
