@@ -1,5 +1,6 @@
 import php from "/public/skills/akar-icons_php-fill.svg";
 import unity from "/public/skills/bxl_unity.svg";
+import c from "/public/skills/devicon_c.svg";
 import git from "/public/skills/devicon_git.svg";
 import kotlin from "/public/skills/devicon_kotlin.svg";
 import mongoDB from "/public/skills/devicon_mongodb.svg";
@@ -29,13 +30,19 @@ import zeplin from "/public/skills/logos_zeplin.svg";
 import express from "/public/skills/simple-icons_express.svg";
 import django from "/public/skills/vscode-icons_file-type-django.svg";
 import docker from "/public/skills/vscode-icons_file-type-docker2.svg";
-// C언어 누락
 
 /**
  * id => 서버에 전달할 값(임시)
  * skill => 프론트에서 ui로 쓸 값
  * img => svg
  */
+
+export type TSkills = {
+  id: string;
+  skill: string;
+  img: SVGGraphicsElement;
+};
+
 export const SKILLS = [
   { id: "js", skill: "JavaScript", img: js },
   { id: "ts", skill: "TypeScript", img: ts },
@@ -44,7 +51,7 @@ export const SKILLS = [
   { id: "svelte", skill: "Svelte", img: svelte },
   { id: "next", skill: "Nextjs", img: next },
   { id: "nodejs", skill: "Nodejs", img: node },
-  { id: "java", skill: "java", img: java },
+  { id: "java", skill: "Java", img: java },
   { id: "spring", skill: "Spring", img: spring },
   { id: "go", skill: "Go", img: go },
   { id: "nestjs", skill: "Nestjs", img: nestjs },
@@ -95,6 +102,6 @@ export const SKILLS = [
   {
     id: "c",
     skill: "C",
-    img: jest,
+    img: c,
   },
 ];

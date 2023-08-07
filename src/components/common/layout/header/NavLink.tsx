@@ -7,6 +7,7 @@ import { palette } from "styles/palette";
 
 interface NavLinkProps {
   href: string;
+  query?: { purpose: string };
   children: React.ReactNode;
 }
 
@@ -36,12 +37,15 @@ const active = css`
   font-weight: 700;
 `;
 
-const NavLink: FC<NavLinkProps> = ({ href, children }) => {
+const NavLink: FC<NavLinkProps> = ({ href, query, children }) => {
   const router = useRouter();
-  const isActive = router.asPath === href;
+  const isActive = router.pathname === href;
 
   return (
-    <ActiveLink href={href} css={isActive && active}>
+    <ActiveLink
+      href={query ? { pathname: href, query } : href}
+      css={isActive && active}
+    >
       <span>{children}</span>
     </ActiveLink>
   );
