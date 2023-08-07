@@ -27,7 +27,9 @@ const Header = () => {
               <Image src={dot} alt="middle dot" />
             </li>
             <li>
-              <NavLink href="/projects">스터디 / 프로젝트</NavLink>
+              <NavLink href="/projects" query={{ purpose: "study" }}>
+                스터디 / 프로젝트
+              </NavLink>
             </li>
           </ul>
         </Navigation>
