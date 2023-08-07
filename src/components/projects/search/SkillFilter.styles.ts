@@ -31,7 +31,7 @@ export const Skill = styled.span`
   display: inline-block;
 
   background-color: ${palette.white};
-  padding: 0.375rem 1.7rem;
+  padding: 0.375rem 1.12rem;
 
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 
@@ -39,7 +39,7 @@ export const Skill = styled.span`
   line-height: 1.3125rem;
   font-weight: 700;
   border-radius: 2rem;
-  margin: 0.3rem 0.55rem 2rem 0;
+  margin: 0.3rem 0.625rem 2rem 0;
 `;
 
 export const ThreeDots = styled.span`
@@ -73,7 +73,8 @@ export const SelectedSkillList = styled.div`
   flex-grow: 1;
   max-width: 76%;
   max-height: 76px;
-  overflow: hidden;
+
+  white-space: nowrap;
 
   padding: 1rem 0.2rem;
 `;
