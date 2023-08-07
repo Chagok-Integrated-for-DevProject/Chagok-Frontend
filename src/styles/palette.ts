@@ -4,6 +4,7 @@ export const palette = {
   bgWhite: "#F8F8F8",
   bgRed: "#FF3D00",
   bgBlue: "#0090F9",
+  bgGray300: "#EBEBEB",
   bgGray200: "#AAAAAA",
   bgGray100: "#757575",
   bgMainOrange: "#FF6B00",

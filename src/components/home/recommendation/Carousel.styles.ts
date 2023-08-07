@@ -29,8 +29,8 @@ export const CustomSwiper = styled(Swiper)`
 `;
 
 export const CustomSwiperSlide = styled(SwiperSlide)`
-  width: 380px !important;
-  height: 280px;
+  width: 23.75rem !important;
+  height: 17.5rem;
   box-sizing: border-box;
 
   border-radius: 0.8rem;
