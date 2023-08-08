@@ -64,7 +64,7 @@ const SkillFilter: FC<SkillFilterProps> = ({
   };
 
   return (
-    <SkillFilterWrapper>
+    <SkillFilterWrapper isOpen={selectorOpen}>
       <SelectedSkillListWrapper onClick={handleSelectorOpen}>
         <SelectedSkillList>
           {selectedSkills.length ? (

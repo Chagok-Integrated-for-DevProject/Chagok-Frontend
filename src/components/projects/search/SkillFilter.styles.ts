@@ -1,13 +1,19 @@
 import styled from "@emotion/styled";
 import { palette } from "styles/palette";
 
-export const SkillFilterWrapper = styled.div`
+type TIsOpen = {
+  isOpen: boolean;
+};
+
+export const SkillFilterWrapper = styled("div", {
+  shouldForwardProp: (prop) => prop !== "isOpen",
+})<TIsOpen>`
   position: relative;
-  width: 34rem;
+  flex-grow: 1;
   margin-left: auto;
 
   background-color: ${palette.bgGray300};
-  border-radius: 0.625rem;
+  border-radius: 0.625rem ${({ isOpen }) => isOpen && "0.625rem 0 0"};
 `;
 
 export const SelectedSkillListWrapper = styled.div`
@@ -15,8 +21,7 @@ export const SelectedSkillListWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  max-height: 76px;
-
+  max-height: 60px;
   padding: 1.25rem 1.75rem;
   cursor: pointer;
 `;
@@ -86,13 +91,9 @@ export const Hr = styled.hr`
   margin: 0 0 1.1875rem;
 `;
 
-type TArrow = {
-  isOpen: boolean;
-};
-
 export const Arrow = styled("div", {
   shouldForwardProp: (prop) => prop !== "isOpen",
-})<TArrow>`
+})<TIsOpen>`
   transform: rotate(${({ isOpen }) => (isOpen ? "180deg" : "0")});
   margin-left: auto;
 `;
@@ -107,6 +108,4 @@ export const SKillOptionsWrapper = styled.div`
   padding-left: 1.5625rem;
 
   border-radius: 0 0 0.625rem 0.625rem;
-
-  margin-top: -7px;
 `;
