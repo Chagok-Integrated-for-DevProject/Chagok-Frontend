@@ -145,4 +145,8 @@ export const resetStyles = css`
   button {
     background-color: transparent;
   }
+  input {
+    box-sizing: border-box;
+    outline: none;
+  }
 `;
