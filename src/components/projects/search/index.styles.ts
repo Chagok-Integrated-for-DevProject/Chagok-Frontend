@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const SearchForm = styled.form`
-  padding: 6rem 2.5rem;
+  padding: 6rem 2.5rem 1.25rem;
 `;
 
 export const SkillFilterAndSearchInputWrapper = styled.div`
@@ -10,6 +10,7 @@ export const SkillFilterAndSearchInputWrapper = styled.div`
   gap: 1.8125rem;
 
   width: 100%;
+  margin: 2.875rem 0;
 `;
 
 export const H2 = styled.h2`

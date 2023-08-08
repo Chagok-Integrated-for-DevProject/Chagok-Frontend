@@ -1,5 +1,6 @@
+import { useInputFocusEvent } from "lib/hooks/useInputHooks";
 import Image from "next/image";
-import { type FC, useState } from "react";
+import { type FC } from "react";
 
 import searchImg from "/public/search_icon.svg";
 
@@ -16,15 +17,7 @@ interface SearchInputProps {
 }
 
 const SearchInput: FC<SearchInputProps> = ({ handleKeyword, keyword }) => {
-  const [inputFocus, setInputFocus] = useState(false);
-
-  const handleFocusEvent = () => {
-    setInputFocus(true);
-  };
-
-  const handleBlurEvent = () => {
-    setInputFocus(false);
-  };
+  const [inputFocus, handleFocusEvent, handleBlurEvent] = useInputFocusEvent();
 
   return (
     <SearchInputWrapper>
