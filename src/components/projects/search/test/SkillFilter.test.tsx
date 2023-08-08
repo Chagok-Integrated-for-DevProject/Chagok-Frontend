@@ -9,7 +9,7 @@ const handleSelectedSkills = jest.fn().mockImplementation((skill: string) => {
   }
   selectedSkills.push(skill);
 });
-const selectedSkills: string[] = [];
+let selectedSkills: string[] = [];
 
 describe("SkillFilter 기능 테스트", () => {
   it("default: selector가 닫혀있고, `원하는 태그를 선택해보세요`가 렌더링 된다.", () => {
@@ -64,7 +64,26 @@ describe("SkillFilter 기능 테스트", () => {
 
     expect(handleSelectedSkills).toHaveBeenCalledTimes(4);
   });
-  it("selectedSkills의 길이가 3이상이면 말줄임표와 선택된 스킬 갯수가 렌더링 된다.", () => {
+  it("selectedSkills의 길이가 2이면 말줄임표와 선택된 스킬 갯수가 렌더링 되지 않는다.", () => {
+    selectedSkills = ["react", "node"];
+
+    render(
+      <SkillFilter
+        handleSelectedSkills={handleSelectedSkills}
+        selectedSkills={selectedSkills}
+      />,
+    );
+
+    const threedots = screen.queryByText("...");
+    expect(threedots).not.toBeInTheDocument();
+
+    expect(selectedSkills.length).toBe(2);
+    const skillCnt = screen.queryByText("2");
+    expect(skillCnt).not.toBeInTheDocument();
+  });
+  it("selectedSkills의 길이가 3이면 말줄임표와 선택된 스킬 갯수 3이 렌더링 된다.", () => {
+    selectedSkills.push("jest");
+
     render(
       <SkillFilter
         handleSelectedSkills={handleSelectedSkills}
@@ -75,6 +94,23 @@ describe("SkillFilter 기능 테스트", () => {
     const threedots = screen.getByText("...");
     expect(threedots).toBeInTheDocument();
 
+    const skillCnt = screen.getByText("3");
+    expect(skillCnt).toBeInTheDocument();
+  });
+  it("selectedSkills의 길이가 4이면 말줄임표와 선택된 스킬 갯수 4가 렌더링 된다.", () => {
+    selectedSkills.push("angular");
+
+    render(
+      <SkillFilter
+        handleSelectedSkills={handleSelectedSkills}
+        selectedSkills={selectedSkills}
+      />,
+    );
+
+    const threedots = screen.getByText("...");
+    expect(threedots).toBeInTheDocument();
+
+    expect(selectedSkills.length).toBe(4);
     const skillCnt = screen.getByText("4");
     expect(skillCnt).toBeInTheDocument();
   });
