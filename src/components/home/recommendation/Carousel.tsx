@@ -14,10 +14,15 @@ const RecommendationCarousel = () => {
     RecommendationCard,
     RecommendationCard,
     RecommendationCard,
+    RecommendationCard,
   ];
 
   return (
-    <CustomSwiper slidesPerView={3} pagination={true} modules={[Pagination]}>
+    <CustomSwiper
+      slidesPerView={3}
+      pagination={{ clickable: true }}
+      modules={[Pagination]}
+    >
       {slides.map((e, i) => (
         <CustomSwiperSlide key={i}>
           <RecommendationCard />
