@@ -30,7 +30,9 @@ export const CheckLabel = styled("label", {
   display: inline-block;
   width: 1.25rem;
   height: 1.25rem;
-  border: 1px solid ${palette.black};
+  border: 1px solid
+    ${({ isChecked }) =>
+      isChecked ? `${palette.bgMainOrange}` : `${palette.black}`};
   border-radius: 100%;
 
   cursor: pointer;

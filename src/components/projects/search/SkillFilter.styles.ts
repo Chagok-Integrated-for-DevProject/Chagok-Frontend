@@ -81,7 +81,7 @@ export const SkillCnt = styled.span`
 
 export const SelectedSkillList = styled.div`
   flex-grow: 1;
-  max-width: 396px;
+  max-width: 386px;
   max-height: 76px;
 
   overflow: hidden;
@@ -90,7 +90,7 @@ export const SelectedSkillList = styled.div`
 `;
 
 export const Hr = styled.hr`
-  width: calc(100% - 4.3rem);
+  width: calc(100% - 5rem);
   height: 0.5px;
   background-color: ${palette.bdGray300};
   margin: 0 0 1.1875rem;
