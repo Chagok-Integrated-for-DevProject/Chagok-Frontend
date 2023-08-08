@@ -37,7 +37,7 @@ const SkillFilter: FC<SkillFilterProps> = ({
   const SelectedSkills = () => {
     return (
       <>
-        {selectedSkills.slice(0, 3).map((e) => (
+        {selectedSkills.map((e) => (
           <Skill key={e}>{e}</Skill>
         ))}
       </>

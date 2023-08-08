@@ -21,6 +21,7 @@ export const SelectedSkillListWrapper = styled.div`
   align-items: center;
 
   width: 100%;
+
   max-height: 60px;
   padding: 1.25rem 1.75rem;
   cursor: pointer;
@@ -33,10 +34,12 @@ export const Placeholder = styled.span`
 `;
 
 export const Skill = styled.span`
+  position: relative;
+  z-index: 1;
   display: inline-block;
 
   background-color: ${palette.white};
-  padding: 0.375rem 1.12rem;
+  padding: 0.375rem 0.65rem;
 
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 
@@ -44,7 +47,7 @@ export const Skill = styled.span`
   line-height: 1.3125rem;
   font-weight: 700;
   border-radius: 2rem;
-  margin: 0.3rem 0.625rem 2rem 0;
+  margin: 0.3rem 0.57rem 2rem 0;
 `;
 
 export const ThreeDots = styled.span`
@@ -57,6 +60,8 @@ export const ThreeDots = styled.span`
 `;
 
 export const SkillCnt = styled.span`
+  position: relative;
+  z-index: 1;
   display: inline-block;
   min-width: 2.0625rem;
   height: 2.0625rem;
@@ -71,15 +76,15 @@ export const SkillCnt = styled.span`
   font-weight: 700;
   border-radius: 100%;
 
-  margin-left: auto;
+  margin-left: 13px;
 `;
 
 export const SelectedSkillList = styled.div`
   flex-grow: 1;
-  max-width: 76%;
+  max-width: 396px;
   max-height: 76px;
 
-  white-space: nowrap;
+  overflow: hidden;
 
   padding: 1rem 0.2rem;
 `;
