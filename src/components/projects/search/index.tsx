@@ -1,3 +1,4 @@
+import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import { useState } from "react";
 
 import { SearchForm } from "./index.styles";
@@ -8,6 +9,7 @@ import SkillFilter from "./SkillFilter";
 
 const SearchFilter = () => {
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [keyword, handleKeyword] = useInputChangeEvent();
 
   const handleSelectedSkills = (skill: string) => {
     if (selectedSkills.includes(skill)) {
@@ -31,7 +33,7 @@ const SearchFilter = () => {
           handleSelectedSkills={handleSelectedSkills}
           selectedSkills={selectedSkills}
         />
-        <SearchInput />
+        <SearchInput handleKeyword={handleKeyword} keyword={keyword} />
       </SkillFilterAndSearchInputWrapper>
     </SearchForm>
   );
