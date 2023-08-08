@@ -16,8 +16,8 @@ export const CustomSwiperSlide = styled(SwiperSlide)`
   width: 420px !important;
   padding: 2.375rem;
   border-radius: 0.8rem;
+  box-shadow: 0px 1px 3.125rem 0px #0000001a;
 
-  box-shadow: 1px 1px 3.125rem -1.5rem;
   border-radius: 1rem;
   margin: 0.2rem 0.1rem 0.875rem;
 `;
