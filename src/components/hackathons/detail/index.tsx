@@ -1,7 +1,7 @@
 import Hr from "components/common/hr";
 
 import Comment from "./comment";
-import Original from "./original/indes";
+import Original from "./original";
 import Summary from "./summary";
 
 const HackathonDetail = () => {
