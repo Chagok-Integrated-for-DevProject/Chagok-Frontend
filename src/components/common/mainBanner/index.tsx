@@ -1,5 +1,28 @@
+import "swiper/css";
+import "swiper/css/pagination";
+
+import {
+  FirstCard,
+  SecondCard,
+  ThirdCard,
+} from "components/common/card/mainBanner";
+
+import { CustomSwiper, CustomSwiperSlide } from "./index.styles";
+
 const MainBanner = () => {
-  return <div>MainBanner</div>;
+  return (
+    <CustomSwiper>
+      <CustomSwiperSlide>
+        <FirstCard />
+      </CustomSwiperSlide>
+      <CustomSwiperSlide>
+        <SecondCard />
+      </CustomSwiperSlide>
+      <CustomSwiperSlide>
+        <ThirdCard />
+      </CustomSwiperSlide>
+    </CustomSwiper>
+  );
 };
 
 export default MainBanner;
