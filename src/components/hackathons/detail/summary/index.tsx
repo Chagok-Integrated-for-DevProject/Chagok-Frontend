@@ -44,18 +44,18 @@ const Summary = () => {
             </S.CompetitionField>
             <S.Source>
               <S.Label>출처</S.Label>
-              <S.Content>{""}</S.Content>
+              <S.ResourceLink href="https://www.contestkorea.com/">
+                https://www.contestkorea.com
+              </S.ResourceLink>
             </S.Source>
           </S.Summary>
           <S.CautionAndApply>
+            {/* FIXME: footer로 옮겨질 예정 */}
             <S.Caution>
               <mark>학습 및 포트폴리오 목적으로 만든 사이트</mark>로{" "}
               <mark>단순 정보 전달</mark>을<br /> 목적으로 합니다.{" "}
               <mark>해당 대회 주최 기관과는 무관</mark>합니다.
             </S.Caution>
-            <S.Apply>
-              <S.ApplyButton>지원하기</S.ApplyButton>
-            </S.Apply>
           </S.CautionAndApply>
         </S.Information>
       </S.Body>

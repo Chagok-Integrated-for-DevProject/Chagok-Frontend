@@ -94,6 +94,14 @@ export const Content = styled.span`
   color: ${palette.black};
 `;
 
+export const ResourceLink = styled.a`
+  color: ${palette.black};
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 export const Organizer = styled.div``;
 export const ReceptionPeriod = styled.div``;
 export const CompetitionField = styled.div``;
@@ -112,19 +120,4 @@ export const Caution = styled.p`
   }
 
   margin-bottom: 3rem;
-`;
-
-export const Apply = styled.div``;
-
-export const ApplyButton = styled.button`
-  width: 11.0625rem;
-  height: 2.8125rem;
-  border: 1px solid ${palette.bdMainOrange};
-  color: ${palette.white};
-
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.875rem;
-  border-radius: 1.875rem;
-  background: ${palette.bgMainOrange};
 `;
