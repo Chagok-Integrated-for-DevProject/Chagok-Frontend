@@ -1,11 +1,10 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 import fisrtBanner from "/public/banner/banner.png";
 import blur from "/public/banner/blur/banner.png";
 
 import { LoginBtn } from "./First.styles";
-import { CardWrapper, Em, H2, TextWrapper } from "./index.styles";
+import { CardWrapper, CustomImg, Em, H2, TextWrapper } from "./index.styles";
 
 export const FirstCard = () => {
   const router = useRouter();
@@ -15,8 +14,8 @@ export const FirstCard = () => {
   };
 
   return (
-    <CardWrapper>
-      <TextWrapper>
+    <CardWrapper className="cardwrapper">
+      <TextWrapper className="textwrapper">
         <H2>
           <Em>차곡</Em>에 로그인하고
           <br />
@@ -28,11 +27,12 @@ export const FirstCard = () => {
           로그인 하기
         </LoginBtn>
       </TextWrapper>
-      <Image
+      <CustomImg
         src={fisrtBanner}
         alt="첫번째 이미지"
-        fill={true}
         blurDataURL={`${blur}`}
+        width={890}
+        height={418}
       />
     </CardWrapper>
   );
