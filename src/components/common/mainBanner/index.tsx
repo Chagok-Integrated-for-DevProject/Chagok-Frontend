@@ -32,8 +32,8 @@ const MainBanner = () => {
         pagination={{
           clickable: true,
         }}
-        loop
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        // loop
+        // autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Navigation, Pagination, Autoplay]}
       >
         <PrevBtn className="prev">
