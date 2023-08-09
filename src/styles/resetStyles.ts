@@ -144,6 +144,7 @@ export const resetStyles = css`
   }
   button {
     background-color: transparent;
+    cursor: pointer;
   }
   input {
     box-sizing: border-box;
