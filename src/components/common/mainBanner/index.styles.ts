@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const MainBannerWrawpper = styled.div`
   position: relative;
   width: 100%;
+
+  background-color: ${palette.bgWhite};
 `;
 
 export const CustomSwiper = styled(Swiper)`
@@ -33,11 +35,7 @@ export const CustomSwiper = styled(Swiper)`
   }
 
   @media ${breakPoints.sm} {
-    height: 15rem;
-  }
-
-  @media ${breakPoints.xs} {
-    height: 12em;
+    height: 18rem;
   }
 `;
 
@@ -51,6 +49,14 @@ export const PrevBtn = styled.div`
   margin: -17rem 7% 0 auto;
 
   cursor: pointer;
+
+  @media ${breakPoints.md} {
+    margin-top: -15rem;
+  }
+
+  @media ${breakPoints.sm} {
+    margin-top: -13rem;
+  }
 `;
 
 export const NextBtn = styled.div`
@@ -61,4 +67,16 @@ export const NextBtn = styled.div`
   margin: 5.9rem 7% 0 auto;
 
   cursor: pointer;
+
+  @media ${breakPoints.md} {
+    height: 22rem;
+  }
+
+  @media ${breakPoints.sm} {
+    height: 18rem;
+  }
+
+  @media ${breakPoints.xs} {
+    height: 14em;
+  }
 `;
