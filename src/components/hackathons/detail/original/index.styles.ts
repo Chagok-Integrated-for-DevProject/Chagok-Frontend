@@ -1,3 +1,4 @@
+import isPropValid from "@emotion/is-prop-valid";
 import styled from "@emotion/styled";
 import Image from "next/image";
 
@@ -29,7 +30,10 @@ export const Summary = styled.summary`
   }
 `;
 
-export const Arrow = styled(Image)`
+export const Arrow = styled(Image, {
+  // Customizing prop forwarding
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "isOpen",
+})`
   transform: rotate(
     ${({ isOpen }: IArrowStyle) => (isOpen ? "180deg" : "0deg")}
   );
