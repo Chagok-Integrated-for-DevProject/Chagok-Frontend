@@ -2,7 +2,7 @@ import { useInputFocusEvent } from "lib/hooks/useInputHooks";
 import Image from "next/image";
 import { type FC } from "react";
 
-import searchImg from "/public/search_icon.svg";
+import searchImg from "/public/utils/search_icon.svg";
 
 import {
   Input,
