@@ -1,6 +1,5 @@
-import Image from "next/image";
-
-import topArrow from "/public/top_arrow.svg";
+import ArrowSVG from "components/common/arrow";
+import { palette } from "styles/palette";
 
 import { CircleBtn } from "./index.styles";
 
@@ -11,7 +10,7 @@ const TopScrollBtn = () => {
 
   return (
     <CircleBtn type="button" onClick={goToScrllTop}>
-      <Image src={topArrow} alt="top arrow" />
+      <ArrowSVG width={50} color={`${palette.white}`} />
     </CircleBtn>
   );
 };

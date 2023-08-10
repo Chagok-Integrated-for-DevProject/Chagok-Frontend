@@ -1,7 +1,6 @@
+import ArrowSVG from "components/common/arrow";
 import { H2, P, Section, ShowMore } from "components/home/index.styles";
-import Image from "next/image";
-
-import arrow from "/public/showMore.svg";
+import { palette } from "styles/palette";
 
 const Hackathons = () => {
   return (
@@ -11,7 +10,7 @@ const Hackathons = () => {
         <P>따끈따끈한 해커톤에 대한 정보를 확인해보세요!</P>
         <ShowMore href="projects">
           <span>더 보기</span>
-          <Image src={arrow} alt="show more" />
+          <ArrowSVG width={35} color={`${palette.fontGray300}`} />
         </ShowMore>
       </div>
     </Section>

@@ -1,9 +1,8 @@
+import ArrowSVG from "components/common/arrow";
 import { SKILLS } from "lib/constants/skills";
-import Image from "next/image";
 import type { FC } from "react";
 import { useState } from "react";
-
-import bottomArrow from "/public/bottom_arrow.svg";
+import { palette } from "styles/palette";
 
 import SkillButton from "./SkillButton";
 import {
@@ -80,7 +79,7 @@ const SkillFilter: FC<SkillFilterProps> = ({
           </>
         )}
         <Arrow isOpen={selectorOpen}>
-          <Image src={bottomArrow} alt="show skill options" />
+          <ArrowSVG width={40} color={`${palette.fontGray100}`} />
         </Arrow>
       </SelectedSkillListWrapper>
       {selectorOpen && (
