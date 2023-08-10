@@ -14,4 +14,8 @@ export const CircleBtn = styled.button`
   margin: 0 2rem 0 auto;
 
   cursor: pointer;
+
+  svg {
+    transform: rotate(180deg);
+  }
 `;
