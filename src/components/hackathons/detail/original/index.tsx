@@ -1,7 +1,7 @@
 import { sanitize } from "isomorphic-dompurify";
 import { useState } from "react";
 
-import bottomArrowSVG from "/public/bottom_arrow.svg";
+import bottomArrowSVG from "/public/utils/arrow.svg";
 
 import * as S from "./index.styles";
 
@@ -19,7 +19,7 @@ const Original = () => {
           {isOpen ? "원문 접기" : "자세히 보기"}
         </span>
         <S.Arrow
-          isOpen={isOpen || false}
+          isOpen={isOpen}
           src={bottomArrowSVG}
           alt={isOpen ? "접기 화살표" : "펼치기 화살표"}
         />
