@@ -46,16 +46,20 @@ export const PrevBtn = styled.div`
   z-index: 2;
   width: 1.5625rem;
   height: 1rem;
-  margin: -17rem 7% 0 auto;
+  margin: -18rem calc(7% + 0.56rem) 0 auto;
 
   cursor: pointer;
 
+  svg {
+    transform: rotate(180deg);
+  }
+
   @media ${breakPoints.md} {
-    margin-top: -15rem;
+    margin-top: -16rem;
   }
 
   @media ${breakPoints.sm} {
-    margin-top: -13rem;
+    margin-top: -14rem;
   }
 `;
 
@@ -64,7 +68,7 @@ export const NextBtn = styled.div`
   z-index: 2;
   width: 1.5625rem;
   height: 1rem;
-  margin: 5.9rem 7% 0 auto;
+  margin: 6.3rem calc(7% + 0.56rem) 0 auto;
 
   cursor: pointer;
 

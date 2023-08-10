@@ -32,6 +32,9 @@ export const ShowMore = styled(Link)`
   top: 4rem;
   right: 1.5rem;
 
+  display: flex;
+  align-items: center;
+
   font-size: 1.25rem;
   line-height: 1.875rem;
 
@@ -40,9 +43,7 @@ export const ShowMore = styled(Link)`
     color: ${palette.fontGray300};
   }
 
-  img {
-    height: 1.875rem;
-    vertical-align: top;
-    color: ${palette.fontGray300} !important;
+  svg {
+    transform: rotate(270deg);
   }
 `;

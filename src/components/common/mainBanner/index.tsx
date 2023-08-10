@@ -1,16 +1,14 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
+import ArrowSVG from "components/common/arrow";
 import {
   FirstCard,
   SecondCard,
   ThirdCard,
 } from "components/common/card/mainBanner";
-import Image from "next/image";
+import { palette } from "styles/palette";
 import { Autoplay, Navigation, Pagination } from "swiper";
-
-import next from "/public/banner/arrow/next.svg";
-import prev from "/public/banner/arrow/prev.svg";
 
 import {
   CustomSwiper,
@@ -32,12 +30,12 @@ const MainBanner = () => {
         pagination={{
           clickable: true,
         }}
-        // loop
-        // autoplay={{ delay: 3000, disableOnInteraction: false }}
+        loop
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Navigation, Pagination, Autoplay]}
       >
         <PrevBtn className="prev">
-          <Image src={prev} alt="prev arrow" />
+          <ArrowSVG width={45} color={`${palette.black}`} />
         </PrevBtn>
         <CustomSwiperSlide>
           <FirstCard />
@@ -49,7 +47,7 @@ const MainBanner = () => {
           <ThirdCard />
         </CustomSwiperSlide>
         <NextBtn className="next">
-          <Image src={next} alt="next arrow" />
+          <ArrowSVG width={45} color={`${palette.black}`} />
         </NextBtn>
       </CustomSwiper>
     </MainBannerWrawpper>
