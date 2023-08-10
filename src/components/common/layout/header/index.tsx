@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import dot from "/public/dot.svg";
 import logo from "/public/logo.svg";
+import dot from "/public/utils/dot.svg";
 
 import {
   HeaderInnerWrapper,
