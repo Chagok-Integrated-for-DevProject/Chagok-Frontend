@@ -10,11 +10,16 @@ const Original = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <S.Details>
-      <S.Summary onClick={() => setIsOpen((prev) => !prev)}>
-        <span>{isOpen ? "원문 접기" : "자세히 보기"}</span>
+    <S.Details data-testid="hackathon-details">
+      <S.Summary
+        data-testid="hackathon-summary"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span data-testid="summary-label">
+          {isOpen ? "원문 접기" : "자세히 보기"}
+        </span>
         <S.Arrow
-          isOpen={isOpen}
+          isOpen={isOpen || false}
           src={bottomArrowSVG}
           alt={isOpen ? "접기 화살표" : "펼치기 화살표"}
         />
