@@ -62,6 +62,5 @@ export const H2 = styled.h2`
 `;
 
 export const Em = styled.em`
-  color: ${palette.black};
-  // ${palette.fontMainOrange};
+  color: ${palette.fontMainOrange};
 `;
