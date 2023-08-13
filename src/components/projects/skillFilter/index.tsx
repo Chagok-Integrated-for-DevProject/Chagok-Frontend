@@ -1,10 +1,10 @@
 import ArrowSVG from "components/common/arrow";
+import SkillButton from "components/projects/skillButton";
 import { SKILLS } from "lib/constants/skills";
 import type { FC } from "react";
 import { useState } from "react";
 import { palette } from "styles/palette";
 
-import SkillButton from "./SkillButton";
 import {
   Arrow,
   Hr,
@@ -16,7 +16,7 @@ import {
   SkillFilterWrapper,
   SKillOptionsWrapper,
   ThreeDots,
-} from "./SkillFilter.styles";
+} from "./index.styles";
 
 interface SkillFilterProps {
   handleSelectedSkills: (skill: string) => void;
