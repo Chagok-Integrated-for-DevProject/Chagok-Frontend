@@ -9,6 +9,10 @@ import type { AppProps } from "next/app";
 import { useState } from "react";
 import { resetStyles } from "styles/resetStyles";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  import("../lib/mocks");
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (
