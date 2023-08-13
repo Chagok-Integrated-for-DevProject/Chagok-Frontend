@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import { FilterBtn } from "./PurposeFilter.styles";
+import { FilterBtn } from "./index.styles";
 
 const PurposeFilter = () => {
   const router = useRouter();

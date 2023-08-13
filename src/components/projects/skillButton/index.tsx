@@ -5,7 +5,7 @@ import {
   CheckLabel,
   SkillName,
   SkillWrapper,
-} from "./SkillButton.styles";
+} from "./index.styles";
 
 interface SkillButtonProps {
   isChecked: boolean;

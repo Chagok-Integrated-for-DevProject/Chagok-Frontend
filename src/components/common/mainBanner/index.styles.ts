@@ -8,6 +8,7 @@ export const MainBannerWrawpper = styled.div`
   width: 100%;
 
   background-color: ${palette.bgWhite};
+  border: 0.5px solid ${palette.bdMainOrange};
 `;
 
 export const CustomSwiper = styled(Swiper)`

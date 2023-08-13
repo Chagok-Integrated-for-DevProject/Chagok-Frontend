@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { useInputChangeEvent, useInputFocusEvent } from "./useInputHooks";
+import { useInputChangeEvent, useInputFocusEvent } from ".";
 
 test("useInputChangeEvent: keyword가 올바르게 업데이트 되는지 테스트", async () => {
   const user = userEvent.setup();

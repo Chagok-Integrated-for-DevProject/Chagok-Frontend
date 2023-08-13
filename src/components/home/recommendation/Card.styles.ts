@@ -42,7 +42,7 @@ export const CardStyles = css`
   }
 
   .detailBtn {
-    border-color: ${palette.black};
+    border: 2px solid ${palette.black};
     border-radius: 3rem;
 
     font-weight: 400;
