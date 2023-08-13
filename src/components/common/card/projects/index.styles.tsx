@@ -4,6 +4,8 @@ import { palette } from "styles/palette";
 export const ClassificationTagWrapper = styled.div``;
 
 export const ClassificationTag = styled.span`
+  display: inline-block;
+
   padding: 0.5rem 1.7rem;
   border: 0;
   border-radius: 1rem;
@@ -11,7 +13,7 @@ export const ClassificationTag = styled.span`
 
   font-size: 0.75rem;
   font-weight: 700;
-  line-height: 1.125rem;
+  line-height: 150%;
 
   background-color: ${palette.bgMainOrange};
   color: ${palette.white};
@@ -22,7 +24,7 @@ export const Title = styled.h2`
   font-size: 1.25rem;
   line-height: 1.875rem;
 
-  padding: 1rem 0;
+  padding: 1.25rem 0;
 
   word-break: keep-all;
 `;
@@ -56,7 +58,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin: 0.5rem 0 0;
+  margin: 1rem 0 0;
 
   img {
     margin-left: auto;
