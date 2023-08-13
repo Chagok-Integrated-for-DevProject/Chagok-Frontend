@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SearchInput from "components/projects/search/SearchInput";
+import SearchInput from "components/projects/searchInput";
 
 const handleKeyword = jest
   .fn()
