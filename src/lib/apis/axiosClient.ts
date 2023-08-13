@@ -1,3 +1,5 @@
 import axios from "axios";
 
-export const AxiosClient = axios.create({ baseURL: "http://sample.com" });
+export const AxiosClient = axios.create({
+  baseURL: "https://api.chagok.site",
+});
