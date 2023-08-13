@@ -1,7 +1,7 @@
 import { matchers } from "@emotion/jest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import PurposeFilter from "components/projects/search/PurposeFilter";
+import PurposeFilter from "components/projects/purposeFilter";
 import { useRouter } from "next/router";
 
 expect.extend(matchers);

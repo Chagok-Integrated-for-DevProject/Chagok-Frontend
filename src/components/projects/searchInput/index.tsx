@@ -4,12 +4,7 @@ import { type FC } from "react";
 
 import searchImg from "/public/utils/search_icon.svg";
 
-import {
-  Input,
-  Label,
-  Placeholder,
-  SearchInputWrapper,
-} from "./SearchInput.styles";
+import { Input, Label, Placeholder, SearchInputWrapper } from "./index.styles";
 
 interface SearchInputProps {
   handleKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void;
