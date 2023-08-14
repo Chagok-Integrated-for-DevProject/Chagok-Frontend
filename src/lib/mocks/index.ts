@@ -8,4 +8,6 @@ async function initMocks() {
   }
 }
 
-export default initMocks;
+initMocks();
+
+export {};
