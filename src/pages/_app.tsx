@@ -6,13 +6,12 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Layout from "components/common/layout";
-import initMocks from "lib/mocks";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import { resetStyles } from "styles/resetStyles";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  initMocks();
+  import("../lib/mocks");
 }
 
 export default function App({ Component, pageProps }: AppProps) {
