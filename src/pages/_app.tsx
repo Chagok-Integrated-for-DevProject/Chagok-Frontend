@@ -4,6 +4,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Layout from "components/common/layout";
 import type { AppProps } from "next/app";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </Hydrate>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
