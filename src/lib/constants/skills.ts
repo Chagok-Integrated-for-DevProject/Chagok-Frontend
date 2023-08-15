@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 import php from "/public/skills/akar-icons_php-fill.svg";
 import unity from "/public/skills/bxl_unity.svg";
 import c from "/public/skills/devicon_c.svg";
@@ -40,10 +42,10 @@ import docker from "/public/skills/vscode-icons_file-type-docker2.svg";
 export type TSkills = {
   id: string;
   skill: string;
-  img: SVGGraphicsElement;
+  img: StaticImageData;
 };
 
-export const SKILLS = [
+export const SKILLS: TSkills[] = [
   { id: "js", skill: "JavaScript", img: js },
   { id: "ts", skill: "TypeScript", img: ts },
   { id: "react", skill: "React", img: react },
