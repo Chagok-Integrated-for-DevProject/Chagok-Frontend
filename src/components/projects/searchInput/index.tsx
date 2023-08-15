@@ -6,12 +6,12 @@ import searchImg from "/public/utils/search_icon.svg";
 
 import { Input, Label, Placeholder, SearchInputWrapper } from "./index.styles";
 
-interface SearchInputProps {
+interface ISearchInputProps {
   handleKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   keyword: string;
 }
 
-const SearchInput: FC<SearchInputProps> = ({ handleKeyword, keyword }) => {
+const SearchInput: FC<ISearchInputProps> = ({ handleKeyword, keyword }) => {
   const [inputFocus, handleFocusEvent, handleBlurEvent] = useInputFocusEvent();
 
   return (
