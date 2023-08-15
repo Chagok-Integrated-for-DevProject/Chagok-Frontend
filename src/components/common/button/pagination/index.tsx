@@ -14,7 +14,7 @@ import {
   PrevDblArrowBtn,
 } from "./index.styles";
 
-interface PaginationButtonsProps {
+interface IPaginationButtonsProps {
   totalPages: number;
   currentPage: number;
   handleClickPageNumber: (targetPage: number) => void;
@@ -24,7 +24,7 @@ interface PaginationButtonsProps {
   handleClickNextDblArrow: () => void;
 }
 
-const PaginationButtons: FC<PaginationButtonsProps> = ({
+const PaginationButtons: FC<IPaginationButtonsProps> = ({
   totalPages,
   currentPage,
   handleClickPageNumber,
