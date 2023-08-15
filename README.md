@@ -24,15 +24,27 @@
 
 ### Language
 
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
+
 ### Framework
+
+<img src="https://img.shields.io/badge/Next.js-232323?style=for-the-badge&logo=Next.js&logoColor=white">
 
 ### State Management
 
+<img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white">
+
 ### Style
+
+<img src="https://img.shields.io/badge/Emotion-5B0BB5?style=for-the-badge&logoColor=white">
 
 ### Testing
 
+<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white"><img src="https://img.shields.io/badge/React Testing Library-E33332?style=for-the-badge&logo=Testing Library&logoColor=white"><img src="https://img.shields.io/badge/Mock Service Worker-FABD14?style=for-the-badge&logoColor=white">
+
 ### CI/CD
+
+<img src="https://img.shields.io/badge/AWS EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"><img src="https://img.shields.io/badge/AWS S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"><img src="https://img.shields.io/badge/AWS CodeDeploy-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"><img src="https://img.shields.io/badge/Github Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"><img src="https://img.shields.io/badge/PM2-2B037A?style=for-the-badge&logo=PM2&logoColor=white">
 
 <br><br>
 
