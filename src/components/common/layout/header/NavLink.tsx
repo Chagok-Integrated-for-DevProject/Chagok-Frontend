@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import type { FC } from "react";
 import { palette } from "styles/palette";
 
-interface NavLinkProps {
+interface INavLinkProps {
   href: string;
   query?: { purpose: string };
   children: React.ReactNode;
@@ -37,7 +37,7 @@ const active = css`
   font-weight: 700;
 `;
 
-const NavLink: FC<NavLinkProps> = ({ href, query, children }) => {
+const NavLink: FC<INavLinkProps> = ({ href, query, children }) => {
   const router = useRouter();
   const isActive = router.pathname === href;
 

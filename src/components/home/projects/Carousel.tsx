@@ -5,11 +5,11 @@ import type { FC } from "react";
 
 import { CustomSwiper, CustomSwiperSlide } from "./Carousel.styles";
 
-interface ProjectCarouselProps {
+interface IProjectCarouselProps {
   slides: (() => EmotionJSX.Element)[];
 }
 
-const ProjectCarousel: FC<ProjectCarouselProps> = ({ slides }) => {
+const ProjectCarousel: FC<IProjectCarouselProps> = ({ slides }) => {
   return (
     <CustomSwiper spaceBetween={20} slidesPerView={2.75}>
       {slides.map((e, i) => (
