@@ -7,13 +7,13 @@ import {
   SkillWrapper,
 } from "./index.styles";
 
-interface SkillButtonProps {
+interface ISkillButtonProps {
   isChecked: boolean;
   skillName: string;
   handleSelectedSkills: (skill: string) => void;
 }
 
-const SkillButton: FC<SkillButtonProps> = ({
+const SkillButton: FC<ISkillButtonProps> = ({
   isChecked,
   skillName,
   handleSelectedSkills,

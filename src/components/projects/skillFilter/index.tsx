@@ -18,12 +18,12 @@ import {
   ThreeDots,
 } from "./index.styles";
 
-interface SkillFilterProps {
+interface ISkillFilterProps {
   handleSelectedSkills: (skill: string) => void;
   selectedSkills: string[];
 }
 
-const SkillFilter: FC<SkillFilterProps> = ({
+const SkillFilter: FC<ISkillFilterProps> = ({
   handleSelectedSkills,
   selectedSkills,
 }) => {

@@ -1,12 +1,12 @@
 import type { FC } from "react";
 
-interface ArrowProps {
+interface IArrowProps {
   width: number;
 
   color: string;
 }
 
-const ArrowSVG: FC<ArrowProps> = ({ width, color }) => {
+const ArrowSVG: FC<IArrowProps> = ({ width, color }) => {
   return (
     <svg
       width={`${width}`}
