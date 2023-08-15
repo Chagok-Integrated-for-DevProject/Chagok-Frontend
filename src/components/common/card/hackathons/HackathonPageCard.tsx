@@ -106,6 +106,7 @@ const Title = styled.span`
   line-height: 2.25rem;
 `;
 const Organizer = styled.span`
+  font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6875rem;
 `;
@@ -114,5 +115,7 @@ const Hr = styled.div`
   margin-block: 1.7rem;
 `;
 const AdditionalInfo = styled.span`
+  font-weight: 400;
+  font-size: 1.125rem;
   line-height: 1.5rem;
 `;
