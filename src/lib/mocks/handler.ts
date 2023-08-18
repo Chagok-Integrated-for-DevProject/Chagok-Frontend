@@ -1,6 +1,8 @@
+import { BASE_URL } from "lib/apis/axiosClient";
 import { rest } from "msw";
 
 import contests from "./data/contests.json";
+import project from "./data/projectDetail.json";
 
 export const handlers = [
   rest.get("https://api.chagok.site/hackathons", (req, res, ctx) => {
@@ -8,7 +10,7 @@ export const handlers = [
 
     return res(ctx.json(contests));
   }),
-  rest.get("https://sample.com", (req, res, ctx) => {
-    return res(ctx.json({ firstName: "John" }));
+  rest.get(`${BASE_URL}/projects/*`, (req, res, ctx) => {
+    return res(ctx.json(project));
   }),
 ];
