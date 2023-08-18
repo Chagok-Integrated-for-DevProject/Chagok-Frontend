@@ -39,7 +39,8 @@ const active = css`
 
 const NavLink: FC<INavLinkProps> = ({ href, query, children }) => {
   const router = useRouter();
-  const isActive = router.pathname === href;
+  const isActive =
+    router.pathname === href || router.pathname === `${href}/[id]`;
 
   return (
     <ActiveLink

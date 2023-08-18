@@ -1,10 +1,14 @@
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import { CardStyles } from "./Card.styles";
 
 const RecommendationCard = () => {
+  const searchParams = useSearchParams();
+  const purpose = searchParams.get("purpose") || "study";
+
   return (
-    <Link href="/projects/1" css={CardStyles}>
+    <Link href={`/projects/1?purpose=${purpose}`} css={CardStyles}>
       <div className="classificationWrapper">
         <span className="classificationTag">Hola</span>
         <span className="classificationTag">사이드 프로젝트</span>
