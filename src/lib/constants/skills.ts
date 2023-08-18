@@ -39,13 +39,13 @@ import docker from "/public/skills/vscode-icons_file-type-docker2.svg";
  * img => svg
  */
 
-export type TSkills = {
+export type TSkill = {
   id: string;
   skill: string;
   img: StaticImageData;
 };
 
-export const SKILLS: TSkills[] = [
+export const SKILLS: TSkill[] = [
   { id: "js", skill: "JavaScript", img: js },
   { id: "ts", skill: "TypeScript", img: ts },
   { id: "react", skill: "React", img: react },

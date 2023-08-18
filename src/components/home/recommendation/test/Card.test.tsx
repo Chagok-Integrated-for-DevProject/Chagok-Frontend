@@ -5,6 +5,16 @@ import RecommendationCard from "components/home/recommendation/Card";
 
 expect.extend(matchers);
 
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn().mockImplementation(() => ({
+    get: jest.fn().mockReturnValue("study"),
+  })),
+}));
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Recommendation Card Rendering Test", () => {
   it("mouseOverEvent 발생 시, CardLink의 Style이 변한다.", async () => {
     const user = userEvent.setup();

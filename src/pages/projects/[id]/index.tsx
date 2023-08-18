@@ -1,5 +1,7 @@
-const ProjectDetail = () => {
-  return <div>프로젝트/스터디 상세 페이지</div>;
+import ProjectDetail from "components/projectDetail";
+
+const ProjectDetailPage = () => {
+  return <ProjectDetail />;
 };
 
-export default ProjectDetail;
+export default ProjectDetailPage;
