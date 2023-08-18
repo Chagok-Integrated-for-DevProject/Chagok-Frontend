@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import profileImg from "/public/mocks/user_profile.svg";
 import js from "/public/skills/logos_javascript.svg";
@@ -20,8 +21,11 @@ import {
 } from "./index.styles";
 
 const ProjectCard = () => {
+  const searchParams = useSearchParams();
+  const purpose = searchParams.get("purpose") || "study";
+
   return (
-    <Link href="/projects/1">
+    <Link href={`/projects/1?purpose=${purpose}`}>
       <ClassificationTagWrapper>
         <ClassificationTag>Hola</ClassificationTag>
         <ClassificationTag>프로젝트</ClassificationTag>
