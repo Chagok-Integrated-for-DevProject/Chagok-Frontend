@@ -40,6 +40,8 @@ export const NameController = styled.div`
   justify-content: space-between;
   align-items: baseline;
 
+  padding-bottom: 5rem;
+
   @media ${breakPoints.sm} {
     flex-direction: column;
   }
