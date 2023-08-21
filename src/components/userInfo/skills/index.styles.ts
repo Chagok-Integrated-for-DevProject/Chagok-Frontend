@@ -20,7 +20,7 @@ export const SelectBox = styled.form<ISelectBoxStyle>`
   flex-wrap: wrap;
   gap: 1rem;
 
-  margin-bottom: 5rem;
+  padding-bottom: 6rem;
 
   ${({ isEdit }) =>
     isEdit &&
