@@ -1,4 +1,4 @@
-# 차곡(Chagok) - [배포 링크](http:15.165.168.62)
+# 차곡(Chagok) - [배포 링크](https://chagok.site/)
 
 사이드 프로젝트, 해커톤 등을 여러 사이트에서 크롤링하여 한 번에 보고 팀빌딩까지 할 수 있도록 해주는 웹 사이트.
 <br><br>
@@ -87,7 +87,6 @@
 ### :card_file_box: Nextjs Router
 
 - Pages Router
-- [Pages Router 선택 이유 - 블로그](https://velog.io/@tt8784/App-Router-vs-Page-Router-Next.js)
 
 ### :hammer: Code Formatting
 
