@@ -1,4 +1,4 @@
-interface IPalette {
+type TPalette = {
   black: "#000";
   white: "#FFF";
   bgWhite: "#F8F8F8";
@@ -27,9 +27,9 @@ interface IPalette {
   hola: "#FFCD00";
   inflearn: "#00C471";
   okky: "#0090F9";
-}
+};
 
-export const palette: IPalette = {
+export const palette: TPalette = {
   black: "#000",
   white: "#FFF",
   bgWhite: "#F8F8F8",
