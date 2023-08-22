@@ -1,4 +1,5 @@
 import Modal from "components/common/modal";
+import Signup from "components/signup";
 import useModal from "lib/hooks/useModal";
 import Image from "next/image";
 
@@ -43,7 +44,7 @@ const Header = () => {
         </HeaderInnerWrapper>
       </HeaderOuterWrapper>
       <Modal isOpen={isModalOpen} onCloseModal={closeModal}>
-        <></>
+        <Signup onCloseModal={closeModal} />
       </Modal>
     </>
   );
