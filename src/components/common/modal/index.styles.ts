@@ -5,8 +5,8 @@ export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +18,7 @@ export const ModalWrapper = styled.div`
 export const Box = styled.div`
   position: relative;
   max-width: 42rem;
+  max-height: 80vh;
   width: 100%;
   padding: 1.5rem;
   margin: 0 1rem;
