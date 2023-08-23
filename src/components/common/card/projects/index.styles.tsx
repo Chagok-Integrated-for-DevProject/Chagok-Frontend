@@ -3,7 +3,9 @@ import { palette } from "styles/palette";
 
 export const ClassificationTagWrapper = styled.div``;
 
-export const ClassificationTag = styled.span`
+export const ClassificationTag = styled("span", {
+  shouldForwardProp: (props) => props !== "bgColor",
+})<{ bgColor?: string }>`
   display: inline-block;
 
   padding: 0.5rem 1.7rem;
@@ -15,18 +17,26 @@ export const ClassificationTag = styled.span`
   font-weight: 700;
   line-height: 150%;
 
-  background-color: ${palette.bgMainOrange};
+  background-color: ${({ bgColor }) => bgColor};
+
   color: ${palette.white};
 `;
 
 export const Title = styled.h2`
+  height: 3.75rem;
+
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.875rem;
 
-  padding: 1.25rem 0;
+  margin: 1.25rem 0;
 
   word-break: keep-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `;
 
 export const Description = styled.p`
@@ -41,13 +51,20 @@ export const Description = styled.p`
   text-overflow: ellipsis;
 
   margin-bottom: 1.5rem;
+
+  img {
+    max-width: 100px;
+  }
 `;
 
 export const SkillTagWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
+  height: 2.3125rem;
 
-  padding: 0.5rem 0;
+  margin: 1.4375rem 0;
+  overflow: hidden;
 
   img {
     border-radius: 0.45rem;

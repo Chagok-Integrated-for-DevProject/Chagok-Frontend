@@ -117,6 +117,7 @@
 
 - 렌더링 관련 에러 처리: [Nextjs Error Boundary - 공식문서](https://nextjs.org/docs/pages/building-your-application/configuring/error-handling)
 - 비동기 api 에러 처리: queryClient의 onError props에 toast연결.
+- 서버사이드 에러: 500, 404 커스텀
 
 <br><br>
 

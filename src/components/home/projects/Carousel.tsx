@@ -1,19 +1,22 @@
 import "swiper/css";
 
-import type { EmotionJSX } from "@emotion/react/types/jsx-namespace";
+import ProjectCard from "components/common/card/projects";
+import type { TPostPreview } from "lib/types/post";
 import type { FC } from "react";
 
 import { CustomSwiper, CustomSwiperSlide } from "./Carousel.styles";
 
 interface IProjectCarouselProps {
-  slides: (() => EmotionJSX.Element)[];
+  contents: TPostPreview[];
 }
 
-const ProjectCarousel: FC<IProjectCarouselProps> = ({ slides }) => {
+const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
   return (
     <CustomSwiper spaceBetween={20} slidesPerView={2.75}>
-      {slides.map((e, i) => (
-        <CustomSwiperSlide key={i}>{e}</CustomSwiperSlide>
+      {contents.map((e, i) => (
+        <CustomSwiperSlide key={i}>
+          <ProjectCard contents={e} />
+        </CustomSwiperSlide>
       ))}
     </CustomSwiper>
   );
