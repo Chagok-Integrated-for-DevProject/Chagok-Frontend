@@ -1,10 +1,13 @@
+import { sanitize } from "isomorphic-dompurify";
+import { POST_TAGS } from "lib/constants/postTag";
+import type { TPostPreview } from "lib/types/post";
+import { convertToSkillSVG } from "lib/utils/convertToSkillSVG";
+import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import type { FC } from "react";
 
 import profileImg from "/public/mocks/user_profile.svg";
-import js from "/public/skills/logos_javascript.svg";
-import react from "/public/skills/logos_react.svg";
 
 import {
   ClassificationTag,
@@ -20,25 +23,41 @@ import {
   UserNickname,
 } from "./index.styles";
 
-const ProjectCard = () => {
-  const searchParams = useSearchParams();
-  const purpose = searchParams.get("purpose") || "study";
+interface IProjectCardProps {
+  contents: TPostPreview;
+}
+
+const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
+  const siteNameBgColor = POST_TAGS.find((e) => e.tagName === contents.siteType)
+    ?.color;
+  const purposeBgColor = POST_TAGS.find((e) => e.tagName === contents.postType)
+    ?.color;
+  const purposeParam = contents.postType === "PROJECT" ? "project" : "study";
+  const purposeText = contents.postType === "PROJECT" ? "프로젝트" : "스터디";
+  const skillSVGList = convertToSkillSVG(contents.skills);
 
   return (
-    <Link href={`/projects/1?purpose=${purpose}`}>
+    <Link href={`/projects/${contents.id}?purpose=${purposeParam}`}>
       <ClassificationTagWrapper>
-        <ClassificationTag>Hola</ClassificationTag>
-        <ClassificationTag>프로젝트</ClassificationTag>
+        <ClassificationTag bgColor={siteNameBgColor}>
+          {contents.siteType}
+        </ClassificationTag>
+        <ClassificationTag bgColor={purposeBgColor}>
+          {purposeText}
+        </ClassificationTag>
       </ClassificationTagWrapper>
-      <Title>사이드 프로젝트 돛단배에서 팀원을 구합니다.</Title>
-      <Description>
-        안녕하세요! 프로젝트 돛단배에 탑승하실 분을 찾습니다. 망망대해에 작은
-        돛단배를 띄우고자 하는 웹 서비스 프로젝트입니다!
-      </Description>
+      <Title>{contents.title}</Title>
+      <Description
+        dangerouslySetInnerHTML={{
+          __html: sanitize(removeCRLF(contents.preview)),
+        }}
+      />
       <Hr />
       <SkillTagWrapper>
-        <Image src={react} alt="skills" />
-        <Image src={js} alt="skills" />
+        {skillSVGList.length > 0 &&
+          skillSVGList
+            .slice(0, 7)
+            .map((e, i) => <Image key={i} src={e} alt="skill img" />)}
       </SkillTagWrapper>
       <InfoWrapper>
         <PostsInfoWrapper>

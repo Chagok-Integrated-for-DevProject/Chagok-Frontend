@@ -1,17 +1,17 @@
 import { palette } from "styles/palette";
 
-type TPOST_TAG = {
+export type TPOST_TAG = {
   tagName: string;
   color: string;
 };
 
 export const POST_TAGS: TPOST_TAG[] = [
   {
-    tagName: "홀라",
+    tagName: "HOLA",
     color: `${palette.hola}`,
   },
   {
-    tagName: "인프런",
+    tagName: "INFLEARN",
     color: `${palette.inflearn}`,
   },
   {
@@ -19,11 +19,11 @@ export const POST_TAGS: TPOST_TAG[] = [
     color: `${palette.okky}`,
   },
   {
-    tagName: "사이드 프로젝트",
+    tagName: "PROJECT",
     color: `${palette.bgMainOrange}`,
   },
   {
-    tagName: "스터디",
+    tagName: "STUDY",
     color: `${palette.bgMainOrange}`,
   },
 ];
