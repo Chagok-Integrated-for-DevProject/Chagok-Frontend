@@ -2,7 +2,7 @@ import type { TPaginationDates } from "lib/types/post";
 
 import { AxiosClient } from "./axiosClient";
 
-export const getStudiesInfo = async (
+export const getProjectsInfo = async (
   pageNumber: number,
   pageSize: number,
   sort: "hotCount" | "id",
@@ -10,8 +10,8 @@ export const getStudiesInfo = async (
 ): Promise<TPaginationDates> => {
   const studyID = id ? `/${id}` : "";
   try {
-    const response = await AxiosClient.get(
-      `studies${studyID}?number=${pageNumber}&size=${pageSize}&sort=${sort}`,
+    const response = await AxiosClient(
+      `projects${studyID}?number=${pageNumber}&size=${pageSize}&sort=${sort}`,
     );
     return response.data;
   } catch (error) {

@@ -1,6 +1,7 @@
 import { sanitize } from "isomorphic-dompurify";
 import type { TSkill } from "lib/constants/skills";
 import { SKILLS } from "lib/constants/skills";
+import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import type { FC } from "react";
 
@@ -32,7 +33,7 @@ const Body: FC<IBodyProps> = ({ skills, content }) => {
     }
   });
 
-  const replacedContent = sanitize(content.replace(/\\n|\"/g, "\n"));
+  const replacedContent = sanitize(removeCRLF(content));
 
   return (
     <BodyWrapper>
