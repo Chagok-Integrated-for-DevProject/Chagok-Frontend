@@ -11,5 +11,5 @@ global.TextDecoder = TextDecoder;
 
 jest.mock("swiper/css", jest.fn());
 afterEach(() => {
-  jest.restoreAllMocks();
+  jest.clearAllMocks();
 });
