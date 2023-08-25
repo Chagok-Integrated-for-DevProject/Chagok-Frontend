@@ -15,12 +15,24 @@ const Social = ({ onNext }: { onNext: () => void }) => {
     },
   });
 
+  const kakaoLogin = () => {
+    const redirectUri =
+      process.env.NODE_ENV === "production"
+        ? "https://chagok.site/auth/kakao"
+        : "http://localhost:3000/auth/kakao";
+
+    window.Kakao.Auth.authorize({
+      redirectUri: `${redirectUri}`,
+    });
+  };
+
   const onSelectGoogle = () => {
     googleLogin();
   };
 
   // TODO: 카카오 로그인
   const onSelectKakao = () => {
+    kakaoLogin();
     onNext();
   };
 
