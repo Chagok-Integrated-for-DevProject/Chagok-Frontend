@@ -1,4 +1,5 @@
 import { Global } from "@emotion/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import {
   Hydrate,
   QueryClient,
@@ -30,11 +31,13 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Global styles={resetStyles} />
-        <Layout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
-        </Layout>
+        <ErrorBoundary>
+          <GoogleOAuthProvider clientId="217895273558-dab38q8mu6cod8fv0t6p7hotlgg67fj3.apps.googleusercontent.com">
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </GoogleOAuthProvider>
+        </ErrorBoundary>
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

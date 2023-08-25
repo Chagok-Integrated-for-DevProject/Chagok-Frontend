@@ -1,3 +1,4 @@
+import { useGoogleLogin } from "@react-oauth/google";
 import LogoSVG from "components/common/logo";
 import { H1 } from "components/signup/index.styles";
 import Image from "next/image";
@@ -6,13 +7,23 @@ import { palette } from "styles/palette";
 import * as S from "./index.styles";
 
 const Social = ({ onNext }: { onNext: () => void }) => {
-  // TODO: 소셜 로그인 연결
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      if (tokenResponse) {
+        onNext();
+      }
+    },
+  });
+
   const onSelectGoogle = () => {
-    onNext();
+    googleLogin();
   };
+
+  // TODO: 카카오 로그인
   const onSelectKakao = () => {
     onNext();
   };
+
   return (
     <S.SocialWrapper>
       <S.Title>
