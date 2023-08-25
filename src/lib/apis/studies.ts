@@ -7,11 +7,15 @@ export const getStudiesInfo = async (
   pageSize: number,
   sort: "hotCount" | "id",
   id?: number,
+  searchKeyword?: string,
 ): Promise<TPaginationDates> => {
-  const studyID = id ? `/${id}` : "";
+  const idParam = id ? `/${id}` : "";
+  const searchKeywordParam = searchKeyword
+    ? `&searchTerm=${searchKeyword}`
+    : "";
   try {
     const response = await AxiosClient.get(
-      `studies${studyID}?number=${pageNumber}&size=${pageSize}&sort=${sort}`,
+      `studies${idParam}?page=${pageNumber}&size=${pageSize}&sort=${sort}${searchKeywordParam}`,
     );
     return response.data;
   } catch (error) {

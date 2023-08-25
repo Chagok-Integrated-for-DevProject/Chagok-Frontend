@@ -1,29 +1,28 @@
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
+import type { FC } from "react";
 
 import { FilterBtn } from "./index.styles";
 
-const PurposeFilter = () => {
-  const router = useRouter();
+interface IPurposeFilterProps {
+  handlePurpose: (purpose: string) => void;
+}
 
-  const handlePurpose = (purpose: string) => {
-    router.push({
-      pathname: "/projects",
-      query: { purpose: `${purpose}` },
-    });
-  };
+const PurposeFilter: FC<IPurposeFilterProps> = ({ handlePurpose }) => {
+  const searchParams = useSearchParams();
+  const purpose = searchParams.get("purpose");
 
   return (
     <div>
       <FilterBtn
-        type="submit"
-        isCurrentQuery={router.query.purpose === "study"}
+        type="button"
+        isCurrentQuery={purpose === "study"}
         onClick={() => handlePurpose("study")}
       >
         스터디
       </FilterBtn>
       <FilterBtn
-        isCurrentQuery={router.query.purpose === "project"}
-        type="submit"
+        isCurrentQuery={purpose === "project"}
+        type="button"
         onClick={() => handlePurpose("project")}
       >
         프로젝트
