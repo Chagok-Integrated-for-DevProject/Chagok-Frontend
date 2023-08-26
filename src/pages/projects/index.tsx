@@ -12,10 +12,10 @@ export async function getServerSideProps() {
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["projects", 0, 12, "id"], () =>
-    getProjectsInfo(0, 12, "id"),
+    getProjectsInfo(0, 12, "id", []),
   );
   await queryClient.prefetchQuery(["studies", 0, 12, "id"], () =>
-    getStudiesInfo(0, 12, "id"),
+    getStudiesInfo(0, 12, "id", []),
   );
 
   return {

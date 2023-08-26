@@ -1,5 +1,6 @@
 import Hr from "components/common/hr";
 import Loading from "components/common/loading";
+import { useDebounce } from "lib/hooks/useDebounce";
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import { useRouter } from "next/router";
 import { Suspense, useState } from "react";
@@ -17,6 +18,7 @@ const SearchProjects = () => {
   const router = useRouter();
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [keyword, handleKeyword] = useInputChangeEvent();
+  const [debounceKeyword] = useDebounce(keyword, 500);
 
   const handlePurpose = (purpose: string) => {
     router.push({
@@ -51,7 +53,10 @@ const SearchProjects = () => {
       </SkillFilterAndSearchInputWrapper>
       <Hr />
       <Suspense fallback={<Loading />}>
-        <ProjectList searchKeyword={keyword} selectedSkills={selectedSkills} />
+        <ProjectList
+          searchKeyword={debounceKeyword}
+          selectedSkills={selectedSkills}
+        />
       </Suspense>
     </SearchForm>
   );

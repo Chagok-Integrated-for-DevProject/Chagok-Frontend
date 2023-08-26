@@ -11,8 +11,8 @@ const HottestProjects = () => {
   const [mount] = useComponentMount();
   const contents: TPostPreview[] = [];
 
-  const { data: hottestProject } = useProjectsQuery(0, 3, "hotCount");
-  const { data: hottestStudy } = useStudiesQuery(0, 3, "hotCount");
+  const { data: hottestProject } = useProjectsQuery(0, 3, "hotCount", []);
+  const { data: hottestStudy } = useStudiesQuery(0, 3, "hotCount", []);
 
   if (hottestProject && hottestStudy) {
     contents.push(

@@ -31,6 +31,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
     pageNumber - 1,
     12,
     "id",
+    selectedSkills,
     undefined,
     searchKeyword,
   );
@@ -38,6 +39,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
     pageNumber - 1,
     12,
     "id",
+    selectedSkills,
     undefined,
     searchKeyword,
   );

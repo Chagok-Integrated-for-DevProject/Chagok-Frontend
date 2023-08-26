@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProjectsInfo } from "lib/apis/projects";
+import { converToSkillId } from "lib/utils/converToSkillId";
 
 const useProjectsQuery = (
   pageNumber: number,
   pageSize: number,
   sort: "hotCount" | "id",
+  skillNames: string[],
   id?: number,
   searchKeyword?: string,
 ) => {
-  const queryKey = ["projects", pageNumber, pageSize, sort];
+  let queryKey = ["projects", pageNumber, pageSize, sort];
+  let skillIds: string[] = [];
 
   if (id) {
     queryKey.push(id);
@@ -18,8 +21,13 @@ const useProjectsQuery = (
     queryKey.push(searchKeyword);
   }
 
+  if (skillNames.length) {
+    skillIds = converToSkillId(skillNames);
+    queryKey = [...queryKey, ...skillIds];
+  }
+
   const { data } = useQuery(queryKey, () =>
-    getProjectsInfo(pageNumber, pageSize, sort, id, searchKeyword),
+    getProjectsInfo(pageNumber, pageSize, sort, skillIds, id, searchKeyword),
   );
 
   return { data };
