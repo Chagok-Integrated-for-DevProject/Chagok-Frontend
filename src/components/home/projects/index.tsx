@@ -1,5 +1,7 @@
 import ArrowSVG from "components/common/arrow";
+import Loading from "components/common/loading";
 import { H2, P, Section, ShowMore } from "components/home/index.styles";
+import { Suspense } from "react";
 import { palette } from "styles/palette";
 
 import HottestProjects from "./Hottest";
@@ -16,8 +18,12 @@ const Projects = () => {
           <ArrowSVG width={35} color={`${palette.fontGray300}`} />
         </ShowMore>
       </div>
-      <LatestProjects />
-      <HottestProjects />
+      <Suspense fallback={<Loading />}>
+        <LatestProjects />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <HottestProjects />
+      </Suspense>
     </Section>
   );
 };
