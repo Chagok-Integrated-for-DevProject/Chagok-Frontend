@@ -16,7 +16,7 @@ interface IProjectList {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
-  const searchParams = useSearchParams();
+  const PAGE_SIZE = 12;
 
   const {
     pageNumber,
@@ -29,7 +29,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
 
   const { data: projects } = useProjectsQuery(
     pageNumber - 1,
-    12,
+    PAGE_SIZE,
     "id",
     selectedSkills,
     undefined,
@@ -37,37 +37,73 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   );
   const { data: studies } = useStudiesQuery(
     pageNumber - 1,
-    12,
+    PAGE_SIZE,
     "id",
     selectedSkills,
     undefined,
     searchKeyword,
   );
 
+  const searchParams = useSearchParams();
   const [mount] = useComponentMount();
   const isProject = searchParams.get("purpose") === "project" && projects;
   const isStudies = searchParams.get("purpose") === "study" && studies;
+
+  const PROJECTS_TOTAL_PAGES = isProject
+    ? Math.ceil(projects.content.length / PAGE_SIZE)
+    : null;
+  const STUDIES_TOTAL_PAGES = isStudies
+    ? Math.ceil(studies.content.length / PAGE_SIZE)
+    : null;
 
   return (
     <>
       <ProjectListGrid>
         {mount &&
           isProject &&
+          projects.content.length > 0 &&
           projects.content.map((e) => (
             <GridItem key={e.id}>
               <ProjectCard contents={e} />
             </GridItem>
           ))}
+        {mount && isProject && projects.content.length === 0 && (
+          <h2
+            style={{
+              position: "relative",
+              fontSize: "4rem",
+              whiteSpace: "nowrap",
+            }}
+          >
+            검색 결과가 없습니다{" "}
+          </h2>
+        )}
         {mount &&
           isStudies &&
+          studies.content.length > 0 &&
           studies.content.map((e) => (
             <GridItem key={e.id}>
               <ProjectCard contents={e} />
             </GridItem>
           ))}
+        {mount && isStudies && studies.content.length === 0 && (
+          <h2
+            style={{
+              position: "relative",
+              fontSize: "4rem",
+              whiteSpace: "nowrap",
+            }}
+          >
+            검색 결과가 없습니다{" "}
+          </h2>
+        )}
       </ProjectListGrid>
       <PaginationButtons
-        totalPages={15}
+        totalPages={
+          PROJECTS_TOTAL_PAGES !== null
+            ? (PROJECTS_TOTAL_PAGES as number)
+            : (STUDIES_TOTAL_PAGES as number)
+        }
         currentPage={pageNumber}
         handleClickPageNumber={handleClickPageNumber}
         handleClickPrevArrow={handleClickPrevArrow}

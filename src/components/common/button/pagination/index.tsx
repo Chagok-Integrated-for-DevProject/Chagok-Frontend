@@ -33,6 +33,8 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
   handleClickPrevDblArrow,
   handleClickNextDblArrow,
 }) => {
+  totalPages = totalPages === 0 ? 1 : totalPages;
+
   const pageNumberList = createPageNumberRenderingList(currentPage, totalPages);
   const activePrevArrow = currentPage > 6;
   const activeNextArrow = currentPage < Math.floor(totalPages / 6) * 6 + 1;

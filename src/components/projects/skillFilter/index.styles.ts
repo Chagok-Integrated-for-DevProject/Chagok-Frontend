@@ -9,6 +9,7 @@ export const SkillFilterWrapper = styled("div", {
   shouldForwardProp: (prop) => prop !== "isOpen",
 })<TIsOpen>`
   position: relative;
+  z-index: 1;
   flex-grow: 1;
   margin-left: auto;
 

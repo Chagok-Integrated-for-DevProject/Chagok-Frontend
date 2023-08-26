@@ -1,5 +1,4 @@
 import Hr from "components/common/hr";
-import Loading from "components/common/loading";
 import { useDebounce } from "lib/hooks/useDebounce";
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import { useRouter } from "next/router";
@@ -7,6 +6,7 @@ import { Suspense, useState } from "react";
 
 import { SearchForm } from "./index.styles";
 import { H2, SkillFilterAndSearchInputWrapper } from "./index.styles";
+import Loading from "./Loading";
 import ProjectList from "./projectList";
 import PurposeFilter from "./purposeFilter";
 import SearchInput from "./searchInput";

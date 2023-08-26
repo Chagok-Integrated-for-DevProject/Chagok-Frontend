@@ -40,6 +40,8 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.div`
+  height: 72px;
+
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 400;
