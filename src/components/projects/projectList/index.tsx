@@ -2,12 +2,12 @@ import PaginationButtons from "components/common/button/pagination";
 import ProjectCard from "components/common/card/projects";
 import { useComponentMount } from "lib/hooks/useComponentMount";
 import { useHandlePageNumber } from "lib/hooks/useHandlePageNumber";
-import useProjectsQuery from "lib/hooks/useProjectsQuery";
-import useStudiesQuery from "lib/hooks/useStudiesQuery";
+import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
+import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import { useSearchParams } from "next/navigation";
-import type { FC } from "react";
+import { type FC, useEffect, useState } from "react";
 
-import { GridItem, ProjectListGrid } from "./index.styles";
+import { GridItem, NoResultH1, ProjectListGrid } from "./index.styles";
 
 interface IProjectList {
   searchKeyword: string;
@@ -17,6 +17,7 @@ interface IProjectList {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const PAGE_SIZE = 12;
+  const [totalPageNumber, setTotalPageNumber] = useState(1);
 
   const {
     pageNumber,
@@ -25,7 +26,10 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
     handleClickNextArrow,
     handleClickPrevDblArrow,
     handleClickNextDblArrow,
-  } = useHandlePageNumber(1, 15);
+  } = useHandlePageNumber(1, totalPageNumber, [
+    ...selectedSkills,
+    searchKeyword,
+  ]);
 
   const { data: projects } = useProjectsQuery(
     pageNumber - 1,
@@ -49,12 +53,15 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const isProject = searchParams.get("purpose") === "project" && projects;
   const isStudies = searchParams.get("purpose") === "study" && studies;
 
-  const PROJECTS_TOTAL_PAGES = isProject
-    ? Math.ceil(projects.content.length / PAGE_SIZE)
-    : null;
-  const STUDIES_TOTAL_PAGES = isStudies
-    ? Math.ceil(studies.content.length / PAGE_SIZE)
-    : null;
+  useEffect(() => {
+    if (isProject) {
+      setTotalPageNumber(projects.totalPages);
+    }
+
+    if (isStudies) {
+      setTotalPageNumber(studies.totalPages);
+    }
+  }, [isProject, isStudies, projects?.totalPages, studies?.totalPages]);
 
   return (
     <>
@@ -63,54 +70,36 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
           isProject &&
           projects.content.length > 0 &&
           projects.content.map((e) => (
-            <GridItem key={e.id}>
+            <GridItem key={e.id} data-testid="projectData">
               <ProjectCard contents={e} />
             </GridItem>
           ))}
         {mount && isProject && projects.content.length === 0 && (
-          <h2
-            style={{
-              position: "relative",
-              fontSize: "4rem",
-              whiteSpace: "nowrap",
-            }}
-          >
-            검색 결과가 없습니다{" "}
-          </h2>
+          <NoResultH1>검색 결과가 없습니다</NoResultH1>
         )}
         {mount &&
           isStudies &&
           studies.content.length > 0 &&
           studies.content.map((e) => (
-            <GridItem key={e.id}>
+            <GridItem key={e.id} data-testid="studyData">
               <ProjectCard contents={e} />
             </GridItem>
           ))}
         {mount && isStudies && studies.content.length === 0 && (
-          <h2
-            style={{
-              position: "relative",
-              fontSize: "4rem",
-              whiteSpace: "nowrap",
-            }}
-          >
-            검색 결과가 없습니다{" "}
-          </h2>
+          <NoResultH1>검색 결과가 없습니다</NoResultH1>
         )}
       </ProjectListGrid>
-      <PaginationButtons
-        totalPages={
-          PROJECTS_TOTAL_PAGES !== null
-            ? (PROJECTS_TOTAL_PAGES as number)
-            : (STUDIES_TOTAL_PAGES as number)
-        }
-        currentPage={pageNumber}
-        handleClickPageNumber={handleClickPageNumber}
-        handleClickPrevArrow={handleClickPrevArrow}
-        handleClickNextArrow={handleClickNextArrow}
-        handleClickPrevDblArrow={handleClickPrevDblArrow}
-        handleClickNextDblArrow={handleClickNextDblArrow}
-      />
+      {mount && (
+        <PaginationButtons
+          totalPages={totalPageNumber}
+          currentPage={pageNumber}
+          handleClickPageNumber={handleClickPageNumber}
+          handleClickPrevArrow={handleClickPrevArrow}
+          handleClickNextArrow={handleClickNextArrow}
+          handleClickPrevDblArrow={handleClickPrevDblArrow}
+          handleClickNextDblArrow={handleClickNextDblArrow}
+        />
+      )}
     </>
   );
 };
