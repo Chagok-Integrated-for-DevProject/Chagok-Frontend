@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getStudiesInfo } from "lib/apis/studies";
 import { converToSkillId } from "lib/utils/converToSkillId";
 
-const useStudiesQuery = (
+export const useStudiesQuery = (
   pageNumber: number,
   pageSize: number,
   sort: "hotCount" | "id",
@@ -32,5 +32,3 @@ const useStudiesQuery = (
 
   return { data };
 };
-
-export default useStudiesQuery;

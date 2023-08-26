@@ -1,6 +1,6 @@
 import { useComponentMount } from "lib/hooks/useComponentMount";
-import useProjectsQuery from "lib/hooks/useProjectsQuery";
-import useStudiesQuery from "lib/hooks/useStudiesQuery";
+import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
+import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import type { TPostPreview } from "lib/types/post";
 
 import ProjectCarousel from "./Carousel";

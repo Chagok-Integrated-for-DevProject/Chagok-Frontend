@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProjectsInfo } from "lib/apis/projects";
 import { converToSkillId } from "lib/utils/converToSkillId";
 
-const useProjectsQuery = (
+export const useProjectsQuery = (
   pageNumber: number,
   pageSize: number,
   sort: "hotCount" | "id",
@@ -32,5 +32,3 @@ const useProjectsQuery = (
 
   return { data };
 };
-
-export default useProjectsQuery;
