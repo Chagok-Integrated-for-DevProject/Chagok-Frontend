@@ -1,4 +1,4 @@
-import type { TPaginationDates } from "lib/types/post";
+import type { TPaginationData } from "lib/types/post";
 import { converToSkillIdParams } from "lib/utils/converToSkillIdParams";
 
 import { AxiosClient } from "./axiosClient";
@@ -10,7 +10,7 @@ export const getProjectsInfo = async (
   skillIds: string[],
   id?: number,
   searchKeyword?: string,
-): Promise<TPaginationDates> => {
+): Promise<TPaginationData> => {
   const idParam = id ? `/${id}` : "";
   const searchKeywordParam = searchKeyword
     ? `&searchTerm=${searchKeyword}`
