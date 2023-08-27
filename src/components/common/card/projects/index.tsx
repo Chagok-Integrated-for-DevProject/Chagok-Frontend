@@ -37,7 +37,10 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
   const skillSVGList = convertToSkillSVG(contents.skills);
 
   return (
-    <Link href={`/projects/${contents.id}?purpose=${purposeParam}`}>
+    <Link
+      href={`/projects/${contents.id}?purpose=${purposeParam}`}
+      data-testid="projectCard"
+    >
       <ClassificationTagWrapper>
         <ClassificationTag bgColor={siteNameBgColor}>
           {contents.siteType}
@@ -57,12 +60,14 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
         {skillSVGList.length > 0 &&
           skillSVGList
             .slice(0, 7)
-            .map((e, i) => <Image key={i} src={e} alt="skill img" />)}
+            .map((e, i) => (
+              <Image key={i} src={e} alt={`${contents.skills[i]}`} />
+            ))}
       </SkillTagWrapper>
       <InfoWrapper>
         <PostsInfoWrapper>
-          <PostsInfo>댓글 5개</PostsInfo>
-          <PostsInfo>조회수 55회</PostsInfo>
+          {/**<PostsInfo>댓글 5개</PostsInfo>*/}
+          <PostsInfo>조회수 {contents.viewCount}회</PostsInfo>
         </PostsInfoWrapper>
         <UserInfoWrapper>
           <Image src={profileImg} alt="user Profile" />

@@ -42,14 +42,22 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
   return (
     <PaginationWrapper>
       {activePrevArrow ? (
-        <PrevDblArrowBtn type="button" onClick={handleClickPrevDblArrow}>
+        <PrevDblArrowBtn
+          type="button"
+          onClick={handleClickPrevDblArrow}
+          data-testid="dbl-prev"
+        >
           <DblArrowSVG />
         </PrevDblArrowBtn>
       ) : (
         <Blank aria-hidden="true" />
       )}
       {activePrevArrow ? (
-        <PrevArrowBtn type="button" onClick={handleClickPrevArrow}>
+        <PrevArrowBtn
+          type="button"
+          onClick={handleClickPrevArrow}
+          data-testid="prev"
+        >
           <ArrowSVG width={36} color={`${palette.fontGray100}`} />
         </PrevArrowBtn>
       ) : (
@@ -61,21 +69,28 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
             key={num}
             isCurrentPage={currentPage === num}
             onClick={() => handleClickPageNumber(Number(num))}
-            className={`${currentPage === num ? "activeBtn" : "non-activeBtn"}`}
           >
             {num}
           </PageNumberBtn>
         );
       })}
       {activeNextArrow ? (
-        <NextArrowBtn type="button" onClick={handleClickNextArrow}>
+        <NextArrowBtn
+          type="button"
+          onClick={handleClickNextArrow}
+          data-testid="next"
+        >
           <ArrowSVG width={36} color={`${palette.fontGray100}`} />
         </NextArrowBtn>
       ) : (
         <Blank aria-hidden="true" />
       )}
       {activeNextArrow ? (
-        <NextDblArrowBtn type="button" onClick={handleClickNextDblArrow}>
+        <NextDblArrowBtn
+          type="button"
+          onClick={handleClickNextDblArrow}
+          data-testid="dbl-next"
+        >
           <DblArrowSVG />
         </NextDblArrowBtn>
       ) : (

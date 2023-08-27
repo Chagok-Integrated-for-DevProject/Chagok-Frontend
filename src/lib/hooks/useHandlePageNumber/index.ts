@@ -3,7 +3,7 @@ import {
   getNextPageStartNumber,
   getPrevPageEndNumber,
 } from "lib/utils/pagination";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const useHandlePageNumber = (
@@ -11,7 +11,7 @@ export const useHandlePageNumber = (
   totalPage: number,
   deps?: any[],
 ) => {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [pageNumber, setPageNumber] = useState(initialPage);
 
   const handleClickPageNumber = (targetPage: number) => {
@@ -32,7 +32,7 @@ export const useHandlePageNumber = (
     setPageNumber(totalPage);
   };
 
-  const useEffectDeps = [router.query.purpose, initialPage];
+  const useEffectDeps = [searchParams.get("purpose"), initialPage];
 
   if (deps) {
     useEffectDeps.push(...deps);
