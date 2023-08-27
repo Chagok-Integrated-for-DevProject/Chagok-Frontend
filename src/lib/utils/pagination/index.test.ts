@@ -1,7 +1,7 @@
 import {
   createPageNumberRenderingList,
-  getNextPageStartNumber,
-  getPrevPageEndNumber,
+  getNumberNextBtnClicked,
+  getNumberPrevBtnClicked,
 } from ".";
 
 describe("createPageNumberRenderingList 기능 테스트", () => {
@@ -38,32 +38,32 @@ describe("createPageNumberRenderingList 기능 테스트", () => {
   });
 });
 
-describe("getNextPageStartNumber 기능 테스트", () => {
+describe("getNumberNextBtnClicked 기능 테스트", () => {
   it("현재 페이지 3, 최대 페이지 9인 경우 7로 이동", () => {
-    const nextPageStartNumber = getNextPageStartNumber(3, 9);
+    const nextPageStartNumber = getNumberNextBtnClicked(3, 9);
     expect(nextPageStartNumber).toBe(7);
   });
   it("현재 페이지 6, 최대 페이지 9인 경우 7로 이동", () => {
-    const nextPageStartNumber = getNextPageStartNumber(6, 9);
+    const nextPageStartNumber = getNumberNextBtnClicked(6, 9);
     expect(nextPageStartNumber).toBe(7);
   });
   it("현재 페이지 7, 최대 페이지 9인 경우 9로 이동", () => {
-    const nextPageStartNumber = getNextPageStartNumber(7, 9);
+    const nextPageStartNumber = getNumberNextBtnClicked(7, 9);
     expect(nextPageStartNumber).toBe(9);
   });
 });
 
-describe("getPrevPageEndNumber 기능 테스트", () => {
+describe("getNumberPrevBtnClicked 기능 테스트", () => {
   it("현재 페이지 3이면 1로 이동", () => {
-    const prevPageEndNumber = getPrevPageEndNumber(3);
+    const prevPageEndNumber = getNumberPrevBtnClicked(3);
     expect(prevPageEndNumber).toBe(1);
   });
   it("현재 페이지 6이면 1로 이동", () => {
-    const prevPageEndNumber = getPrevPageEndNumber(6);
+    const prevPageEndNumber = getNumberPrevBtnClicked(6);
     expect(prevPageEndNumber).toBe(1);
   });
   it("현재 페이지 14면 12로 이동", () => {
-    const prevPageEndNumber = getPrevPageEndNumber(14);
+    const prevPageEndNumber = getNumberPrevBtnClicked(14);
     expect(prevPageEndNumber).toBe(12);
   });
 });
