@@ -17,3 +17,9 @@ export const GridItem = styled.div`
   background: ${palette.white};
   box-shadow: 0px 1px 50px 0px rgba(0, 0, 0, 0.1);
 `;
+
+export const NoResultH1 = styled.h1`
+  position: relative;
+  font-size: 4rem;
+  white-space: nowrap;
+`;

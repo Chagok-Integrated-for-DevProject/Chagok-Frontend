@@ -32,7 +32,7 @@ type TSort = {
   unsorted: boolean;
 };
 
-export type TPaginationDates = {
+export type TPaginationData = {
   content: TPostPreview[];
   pageable: {
     sort: TSort;

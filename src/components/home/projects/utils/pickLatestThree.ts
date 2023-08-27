@@ -7,9 +7,9 @@ export const pickLatestThree = (...dataes: TPostPreview[]) => {
       const bDates = new Date(b.createdTime);
 
       if (aDates > bDates) {
-        return 1;
-      } else {
         return -1;
+      } else {
+        return +1;
       }
     })
     .slice(0, 3);

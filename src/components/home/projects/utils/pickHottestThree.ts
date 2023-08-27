@@ -7,9 +7,9 @@ export const pickHottestThree = (...dataes: TPostPreview[]) => {
       const bHotIdx = b.viewCount + b.scrapCount;
 
       if (aHotIdx > bHotIdx) {
-        return 1;
-      } else {
         return -1;
+      } else {
+        return +1;
       }
     })
     .slice(0, 3);

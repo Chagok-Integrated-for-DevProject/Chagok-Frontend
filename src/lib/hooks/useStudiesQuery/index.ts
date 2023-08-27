@@ -1,23 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
 import { getStudiesInfo } from "lib/apis/studies";
+import { converToSkillId } from "lib/utils/converToSkillId";
 
-const useStudiesQuery = (
-  pageSize: number,
+export const useStudiesQuery = (
   pageNumber: number,
+  pageSize: number,
   sort: "hotCount" | "id",
+  skillNames: string[],
   id?: number,
+  searchKeyword?: string,
 ) => {
-  const queryKey = ["studies", pageSize, pageNumber, sort];
+  let queryKey = ["studies", pageNumber, pageSize, sort];
+  let skillIds: string[] = [];
 
   if (id) {
     queryKey.push(id);
   }
 
+  if (searchKeyword !== undefined && searchKeyword !== "") {
+    queryKey.push(searchKeyword);
+  }
+
+  if (skillNames.length) {
+    skillIds = converToSkillId(skillNames);
+    queryKey = [...queryKey, ...skillIds];
+  }
+
   const { data } = useQuery(queryKey, () =>
-    getStudiesInfo(pageSize, pageNumber, sort, id),
+    getStudiesInfo(pageNumber, pageSize, sort, skillIds, id, searchKeyword),
   );
 
   return { data };
 };
-
-export default useStudiesQuery;
