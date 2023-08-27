@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SkillFilter from "components/projects/skillFilter";
+
+import SkillFilter from ".";
 
 const handleSelectedSkills = jest.fn().mockImplementation((skill: string) => {
   if (selectedSkills.includes(skill)) {
