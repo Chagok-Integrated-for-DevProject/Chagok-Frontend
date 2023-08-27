@@ -1,4 +1,5 @@
 export const createPageNumberRenderingList = (
+  // 화면에 렌더링 될 페이지 번호 리스트
   currentPageNum: number,
   maxPageNum: number,
 ): number[] | string[] => {
@@ -19,26 +20,24 @@ export const createPageNumberRenderingList = (
   return pageNumList;
 };
 
-export const getNextPageStartNumber = (
+export const getNumberNextBtnClicked = (
   currentPageNum: number,
   totalPageNum: number,
 ) => {
-  const nextPageStartNumber =
+  const getNextNumber =
     currentPageNum % 6 === 0
       ? currentPageNum + 1
       : currentPageNum - (currentPageNum % 6) + 7;
 
-  return nextPageStartNumber > totalPageNum
-    ? totalPageNum
-    : nextPageStartNumber;
+  return getNextNumber > totalPageNum ? totalPageNum : getNextNumber;
 };
 
-export const getPrevPageEndNumber = (currentPageNum: number) => {
-  let prevPageEndNumber = currentPageNum - (currentPageNum % 6);
+export const getNumberPrevBtnClicked = (currentPageNum: number) => {
+  let getPrevNumber = currentPageNum - (currentPageNum % 6);
 
-  if (prevPageEndNumber === currentPageNum) {
-    prevPageEndNumber -= 6;
+  if (getPrevNumber === currentPageNum) {
+    getPrevNumber -= 6;
   }
 
-  return prevPageEndNumber > 0 ? prevPageEndNumber : 1;
+  return getPrevNumber > 0 ? getPrevNumber : 1;
 };
