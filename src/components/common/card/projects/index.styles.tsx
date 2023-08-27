@@ -39,7 +39,9 @@ export const Title = styled.h2`
   -webkit-line-clamp: 2;
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
+  height: 72px;
+
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 400;
@@ -53,7 +55,7 @@ export const Description = styled.p`
   margin-bottom: 1.5rem;
 
   img {
-    max-width: 100px;
+    display: none;
   }
 `;
 

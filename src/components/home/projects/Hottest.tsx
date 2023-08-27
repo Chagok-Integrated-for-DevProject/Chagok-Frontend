@@ -1,6 +1,6 @@
 import { useComponentMount } from "lib/hooks/useComponentMount";
-import useProjectsQuery from "lib/hooks/useProjectsQuery";
-import useStudiesQuery from "lib/hooks/useStudiesQuery";
+import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
+import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import type { TPostPreview } from "lib/types/post";
 
 import ProjectCarousel from "./Carousel";
@@ -11,8 +11,8 @@ const HottestProjects = () => {
   const [mount] = useComponentMount();
   const contents: TPostPreview[] = [];
 
-  const { data: hottestProject } = useProjectsQuery(0, 3, "hotCount");
-  const { data: hottestStudy } = useStudiesQuery(0, 3, "hotCount");
+  const { data: hottestProject } = useProjectsQuery(0, 3, "hotCount", []);
+  const { data: hottestStudy } = useStudiesQuery(0, 3, "hotCount", []);
 
   if (hottestProject && hottestStudy) {
     contents.push(

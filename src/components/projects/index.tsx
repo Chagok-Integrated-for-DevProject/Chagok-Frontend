@@ -1,28 +1,31 @@
-import PaginationButtons from "components/common/button/pagination";
 import Hr from "components/common/hr";
-import { useHandlePageNumber } from "lib/hooks/useHandlePageNumber";
+import { useDebounce } from "lib/hooks/useDebounce";
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { Suspense, useState } from "react";
 
 import { SearchForm } from "./index.styles";
 import { H2, SkillFilterAndSearchInputWrapper } from "./index.styles";
+import Loading from "./Loading";
 import ProjectList from "./projectList";
 import PurposeFilter from "./purposeFilter";
 import SearchInput from "./searchInput";
 import SkillFilter from "./skillFilter";
 
 const SearchProjects = () => {
+  // TODO: useProjectsQuery, useStudiesQuery에 SelectedSkills 적용
+
+  const router = useRouter();
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [keyword, handleKeyword] = useInputChangeEvent();
+  const [debounceKeyword] = useDebounce(keyword, 500);
 
-  const {
-    pageNumber,
-    handleClickPageNumber,
-    handleClickPrevArrow,
-    handleClickNextArrow,
-    handleClickPrevDblArrow,
-    handleClickNextDblArrow,
-  } = useHandlePageNumber(1, 15);
+  const handlePurpose = (purpose: string) => {
+    router.push({
+      pathname: router.pathname,
+      query: { purpose: `${purpose}` },
+    });
+  };
 
   const handleSelectedSkills = (skill: string) => {
     if (selectedSkills.includes(skill)) {
@@ -39,7 +42,7 @@ const SearchProjects = () => {
 
   return (
     <SearchForm onSubmit={handleSubmit}>
-      <PurposeFilter />
+      <PurposeFilter handlePurpose={handlePurpose} />
       <SkillFilterAndSearchInputWrapper>
         <H2>나의 기술 스택</H2>
         <SkillFilter
@@ -49,16 +52,12 @@ const SearchProjects = () => {
         <SearchInput handleKeyword={handleKeyword} keyword={keyword} />
       </SkillFilterAndSearchInputWrapper>
       <Hr />
-      <ProjectList />
-      <PaginationButtons
-        totalPages={15}
-        currentPage={pageNumber}
-        handleClickPageNumber={handleClickPageNumber}
-        handleClickPrevArrow={handleClickPrevArrow}
-        handleClickNextArrow={handleClickNextArrow}
-        handleClickPrevDblArrow={handleClickPrevDblArrow}
-        handleClickNextDblArrow={handleClickNextDblArrow}
-      />
+      <Suspense fallback={<Loading />}>
+        <ProjectList
+          searchKeyword={debounceKeyword}
+          selectedSkills={selectedSkills}
+        />
+      </Suspense>
     </SearchForm>
   );
 };

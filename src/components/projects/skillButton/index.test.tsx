@@ -1,7 +1,8 @@
 import { matchers } from "@emotion/jest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SkillButton from "components/projects/skillButton";
+
+import SkillButton from ".";
 
 const mockHandleSelectedSkills = jest.fn();
 expect.extend(matchers);
