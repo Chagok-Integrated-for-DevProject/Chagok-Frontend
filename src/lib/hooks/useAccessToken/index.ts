@@ -1,13 +1,30 @@
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import {
-  getAccessTokenWithGoogle,
-  getAccessTokenWithKakao,
+  getChagokJWTWithGoogle,
+  getChagokJWTWithKakao,
+  getKakaoJWT,
 } from "lib/apis/auth";
 
-export const useAccessTokenWithGoogle = (onNext: () => void) => {
+export const useKakaoAccessToken = () => {
   const { mutate, error } = useMutation({
-    mutationFn: (accessToken: string) => getAccessTokenWithGoogle(accessToken),
+    mutationFn: (authCode: string) => getKakaoJWT(authCode),
+    onSuccess: (data) => {
+      console.log(data);
+      // TODO: 성공 시 로직 처리
+    },
+    onError: (error) => {
+      console.log((error as AxiosError).message);
+      // TODO: 실패 시 로직 처리
+    },
+  });
+
+  return { mutate, error };
+};
+
+export const useChagokAccessTokenWithGoogle = (onNext: () => void) => {
+  const { mutate, error } = useMutation({
+    mutationFn: (accessToken: string) => getChagokJWTWithGoogle(accessToken),
     onSuccess: (data) => {
       window.localStorage.setItem("jwt", data.jwtToken);
 
@@ -28,10 +45,10 @@ export const useAccessTokenWithGoogle = (onNext: () => void) => {
   return { mutate, error };
 };
 
-export const useAccessTokenWithKakao = () => {
+export const useChagokAccessTokenWithKakao = () => {
   const { mutate, error } = useMutation({
     mutationFn: (authorizationCode: string) =>
-      getAccessTokenWithKakao(authorizationCode),
+      getChagokJWTWithKakao(authorizationCode),
     onSuccess: (data) => {
       window.localStorage.setItem("jwt", data.jwtToken);
       window.localStorage.setItem("signUpFirst", data.signUp);

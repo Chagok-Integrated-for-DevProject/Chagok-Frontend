@@ -11,7 +11,7 @@ import {
   HeaderOuterWrapper,
   LoginBtn,
   Navigation,
-} from "./Header.styles";
+} from "./index.styles";
 import NavLink from "./NavLink";
 
 const Header = () => {
