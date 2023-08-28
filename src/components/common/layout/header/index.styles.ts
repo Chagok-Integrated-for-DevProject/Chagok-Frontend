@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { palette } from "styles/palette";
 
 export const HeaderOuterWrapper = styled.header`
@@ -53,4 +54,35 @@ export const LoginBtn = styled.button`
   border: 0;
 
   color: ${palette.white};
+`;
+
+export const LogoutUI = styled.div`
+  display: flex;
+  margin-left: auto;
+  gap: 2.0625rem;
+`;
+
+export const LogoutBtn = styled.button`
+  border: 0;
+`;
+
+export const LogoutText = styled.span`
+  color: ${palette.white};
+  font-size: 1rem;
+  line-height: 1.45rem;
+
+  margin: 7px;
+`;
+
+export const MyPageLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  width: 5.0625rem;
+  height: 3.125rem;
+  border-radius: 1.875rem;
+
+  background-color: ${palette.white};
 `;
