@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Global } from "@emotion/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import {
   Hydrate,
   QueryClient,
@@ -8,6 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "components/common/error/ErrorBoundary";
 import Layout from "components/common/layout";
 import type { AppProps } from "next/app";
+import Script from "next/script";
 import { useState } from "react";
 import { resetStyles } from "styles/resetStyles";
 
@@ -15,7 +18,18 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
   import("../lib/mocks");
 }
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function App({ Component, pageProps }: AppProps) {
+  const kakaoInit = () => {
+    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID as string);
+    window.Kakao.isInitialized();
+  };
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -26,15 +40,24 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       }),
   );
+
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Global styles={resetStyles} />
-        <Layout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
-        </Layout>
+        <ErrorBoundary>
+          <GoogleOAuthProvider clientId="217895273558-dab38q8mu6cod8fv0t6p7hotlgg67fj3.apps.googleusercontent.com">
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </GoogleOAuthProvider>
+          <Script
+            src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+            integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"
+            crossOrigin="anonymous"
+            onLoad={kakaoInit}
+          />
+        </ErrorBoundary>
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
