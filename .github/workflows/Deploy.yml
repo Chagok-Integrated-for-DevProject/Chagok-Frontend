@@ -31,6 +31,10 @@ jobs:
       # 프로젝트를 빌드한다.
       - name: Build next app
         run: npm run build
+        env:
+          NEXT_PUBLIC_KAKAO_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_KAKAO_CLIENT_ID }}
+          NEXT_PUBLIC_KAKAO_REST_API_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_REST_API_KEY }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
 
       - name: Make zip file
         run: zip -qq -r ./chagok.zip . -x "node_modules/*"
