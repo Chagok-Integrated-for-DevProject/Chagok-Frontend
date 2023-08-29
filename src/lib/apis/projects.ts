@@ -1,17 +1,15 @@
-import type { TPaginationData } from "lib/types/post";
+import type { TPaginationData, TPostDetail } from "lib/types/post";
 import { converToSkillIdParams } from "lib/utils/converToSkillIdParams";
 
 import { AxiosClient } from "./axiosClient";
 
-export const getProjectsInfo = async (
+export const getProjectList = async (
   pageNumber: number,
   pageSize: number,
   sort: "hotCount" | "id",
   skillIds: string[],
-  id?: number,
   searchKeyword?: string,
 ): Promise<TPaginationData> => {
-  const idParam = id ? `/${id}` : "";
   const searchKeywordParam = searchKeyword
     ? `&searchTerm=${searchKeyword}`
     : "";
@@ -21,9 +19,20 @@ export const getProjectsInfo = async (
     skillIdParams += converToSkillIdParams(skillIds);
   }
   try {
-    const response = await AxiosClient(
-      `projects${idParam}?page=${pageNumber}&size=${pageSize}&sort=${sort}${searchKeywordParam}${skillIdParams}`,
+    const response = await AxiosClient.get(
+      `projects?page=${pageNumber}&size=${pageSize}&sort=${sort}${searchKeywordParam}${skillIdParams}`,
     );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getProjectDetail = async (
+  id: string,
+): Promise<TPostDetail | null> => {
+  try {
+    const response = await AxiosClient.get(`/projects/${id}`);
     return response.data;
   } catch (error) {
     throw error;

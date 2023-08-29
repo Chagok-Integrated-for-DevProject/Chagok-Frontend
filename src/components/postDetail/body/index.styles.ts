@@ -3,10 +3,13 @@ import { palette } from "styles/palette";
 
 export const BodyWrapper = styled.div`
   display: flex;
+  padding-bottom: 5rem;
 `;
 
 export const MainContentWrapper = styled.div`
   flex-grow: 1;
+  flex-basis: 70%;
+  padding: 0 4rem 0 0;
 `;
 
 export const SkillListWrapper = styled.div`
@@ -43,7 +46,12 @@ export const VerticalDivider = styled.div`
   margin: 0 2.0625rem;
 `;
 
-export const ContentWrapper = styled.div``;
+export const ContentWrapper = styled.div`
+  white-space: pre-wrap;
+  img {
+    max-width: 100%;
+  }
+`;
 
 export const Content = styled.div`
   h1 {
@@ -59,5 +67,9 @@ export const Content = styled.div`
     font-weight: 400;
     line-height: 2.3125rem;
     letter-spacing: -0.02em;
+  }
+
+  a {
+    color: ${palette.fontBlue100};
   }
 `;

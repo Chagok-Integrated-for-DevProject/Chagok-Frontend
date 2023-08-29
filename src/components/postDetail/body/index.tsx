@@ -42,8 +42,8 @@ const Body: FC<IBodyProps> = ({ skills, content }) => {
           <H2>사용 스택</H2>
           <VerticalDivider />
           <SkillList>
-            {skillList?.map((e) => (
-              <SkillItem key={e.id}>
+            {skillList.map((e) => (
+              <SkillItem key={e.id} data-testid="skill tag">
                 <Image src={e.img} alt={e.id} />
               </SkillItem>
             ))}
