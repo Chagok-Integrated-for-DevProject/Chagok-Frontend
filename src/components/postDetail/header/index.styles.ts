@@ -21,8 +21,7 @@ type TTagItem = {
 export const TagItem = styled("span", {
   shouldForwardProp: (props) => props !== "bgColor",
 })<TTagItem>`
-  background-color: ${({ bgColor }) =>
-    bgColor ? bgColor : palette.bgSubOrange};
+  background-color: ${({ bgColor }) => bgColor};
   padding: 0.1875rem 1.375rem;
   border-radius: 1.875rem;
   margin-right: 0.625rem;
@@ -63,7 +62,7 @@ export const UserNickName = styled.span`
   text-align: right;
 `;
 
-export const Date = styled.span`
+export const Dates = styled.span`
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.875rem;

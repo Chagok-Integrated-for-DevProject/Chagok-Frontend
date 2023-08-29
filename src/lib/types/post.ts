@@ -21,7 +21,7 @@ export type TPostDetail = {
   createdTime: string;
   scrapCount: number;
   viewCount: number;
-  siteType: "HOLA" | "PROJECT" | "INFLEARN";
+  siteType: "HOLA" | "OKKY" | "INFLEARN";
   id: null | string;
   skills: string[];
 };
