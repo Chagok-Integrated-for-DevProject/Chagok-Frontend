@@ -103,6 +103,12 @@ export const UserInfoWrapper = styled.div`
 `;
 
 export const UserNickname = styled.span`
+  width: 7em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5rem;
