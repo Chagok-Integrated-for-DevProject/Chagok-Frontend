@@ -1,16 +1,17 @@
 import ArrowSVG from "components/common/arrow";
 import ScrabButton from "components/common/button/scrab";
 import { POST_TAGS } from "lib/constants/postTag";
+import type { TPostDetail } from "lib/types/post";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import type { FC } from "react";
 import { palette } from "styles/palette";
 
-import userProfileImg from "/public/mocks/user_profile.svg";
 import backArrow from "/public/utils/back_arrow.svg";
 
 import {
   BtnPosition,
-  Date,
+  Dates,
   GoBackBtn,
   HeaderWrapper,
   OriginLink,
@@ -22,14 +23,19 @@ import {
   ViewCnt,
 } from "./index.styles";
 
-const Header = () => {
+interface IHeaderProps {
+  data: TPostDetail;
+}
+
+const Header: FC<IHeaderProps> = ({ data }) => {
   const router = useRouter();
   const handleGoBackBtn = () => {
     router.back();
   };
 
-  const siteType = POST_TAGS.find((e) => e.tagName === "홀라");
-  const purpose = POST_TAGS.find((e) => e.tagName === "사이드 프로젝트");
+  const siteType = POST_TAGS.find((e) => e.tagName === data.siteType);
+  const purpose = POST_TAGS.find((e) => e.tagName === "PROJECT");
+  const date = new Date(data.createdTime);
 
   return (
     <HeaderWrapper>
@@ -38,21 +44,24 @@ const Header = () => {
       </GoBackBtn>
       <TagList>
         <TagItem bgColor={siteType?.color}>{siteType?.tagName}</TagItem>
-        <TagItem bgColor={purpose?.color}>{purpose?.tagName}</TagItem>
+        <TagItem bgColor={purpose?.color}>프로젝트</TagItem>
       </TagList>
-      <Title>사이드프로젝트 - RoutineConnect ( 디자이너 구인 )</Title>
+      <Title>{data.title}</Title>
       <PostInfoWrapper>
-        <Image
+        {/**보류: <Image
           src={userProfileImg}
           alt="mock user Profile"
           width={40}
           height={40}
-        />
-        <UserNickName>razventi</UserNickName>
-        <Date>2023. 07. 06</Date>
-        <ViewCnt>조회수 55</ViewCnt>
-        <OriginLink href="#">
-          출처: HOLA 원문 바로가기
+          />
+      */}
+        <UserNickName>작성자: {data.nickName}</UserNickName>
+        <Dates>
+          {date.getFullYear()}. {date.getMonth() + 1}. {date.getDate()}
+        </Dates>
+        <ViewCnt>조회수 {data.viewCount}</ViewCnt>
+        <OriginLink href={`${data.sourceUrl}`}>
+          출처: {data.siteType} 원문 바로가기
           <ArrowSVG width={36} color={`${palette.bgGray100}`} />
         </OriginLink>
       </PostInfoWrapper>

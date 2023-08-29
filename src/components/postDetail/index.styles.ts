@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { palette } from "styles/palette";
 
-export const ProjectDetailWrapper = styled.div`
+export const PostDetailWrapper = styled.div`
   padding: 0 2.5rem;
 `;
 
