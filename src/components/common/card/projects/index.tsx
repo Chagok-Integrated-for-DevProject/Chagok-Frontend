@@ -7,8 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
 
-import profileImg from "/public/mocks/user_profile.svg";
-
+// 보류: import profileImg from "/public/mocks/user_profile.svg";
 import {
   ClassificationTag,
   ClassificationTagWrapper,
@@ -66,12 +65,12 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
       </SkillTagWrapper>
       <InfoWrapper>
         <PostsInfoWrapper>
-          {/**<PostsInfo>댓글 5개</PostsInfo>*/}
+          {/**보류: <PostsInfo>댓글 5개</PostsInfo>*/}
           <PostsInfo>조회수 {contents.viewCount}회</PostsInfo>
         </PostsInfoWrapper>
         <UserInfoWrapper>
-          <Image src={profileImg} alt="user Profile" />
-          <UserNickname>razventi</UserNickname>
+          {/**보류: <Image src={profileImg} alt="user Profile" />*/}
+          <UserNickname>작성자: {contents.nickName}</UserNickname>
         </UserInfoWrapper>
       </InfoWrapper>
     </Link>
