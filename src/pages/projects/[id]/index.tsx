@@ -1,7 +1,7 @@
-import ProjectDetail from "components/projectDetail";
+import PostDetail from "components/postDetail";
 
-const ProjectDetailPage = () => {
-  return <ProjectDetail />;
+const PostDetailPage = () => {
+  return <PostDetail />;
 };
 
-export default ProjectDetailPage;
+export default PostDetailPage;

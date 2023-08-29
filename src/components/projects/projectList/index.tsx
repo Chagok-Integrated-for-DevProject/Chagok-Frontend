@@ -29,7 +29,6 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
     PAGE_SIZE,
     "id",
     selectedSkills,
-    undefined,
     searchKeyword,
   );
   const { data: studies } = useStudiesQuery(
@@ -37,7 +36,6 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
     PAGE_SIZE,
     "id",
     selectedSkills,
-    undefined,
     searchKeyword,
   );
 
