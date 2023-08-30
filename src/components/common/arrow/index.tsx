@@ -2,7 +2,6 @@ import type { FC } from "react";
 
 interface IArrowProps {
   width: number;
-
   color: string;
 }
 
