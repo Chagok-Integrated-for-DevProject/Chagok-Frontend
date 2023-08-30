@@ -18,7 +18,7 @@ export const HeaderInnerWrapper = styled.div`
 
   width: 100%;
   max-width: 1280px;
-  padding: 2.175rem 2.5rem;
+  padding: 1rem 2.5rem;
   margin: 0 auto;
 
   font-size: 1rem;
