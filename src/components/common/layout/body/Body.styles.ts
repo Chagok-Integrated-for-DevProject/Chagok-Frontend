@@ -6,6 +6,6 @@ export const Main = styled.main`
   min-height: 90vh;
   box-sizing: border-box;
 
-  padding-top: 7.5rem;
+  padding-top: 5.125rem;
   margin: 0 auto;
 `;
