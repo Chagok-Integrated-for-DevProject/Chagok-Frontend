@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Global } from "@emotion/react";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import {
   Hydrate,
   QueryClient,
@@ -46,11 +45,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Hydrate state={pageProps.dehydratedState}>
         <Global styles={resetStyles} />
         <ErrorBoundary>
-          <GoogleOAuthProvider clientId="217895273558-dab38q8mu6cod8fv0t6p7hotlgg67fj3.apps.googleusercontent.com">
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </GoogleOAuthProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           <Script
             src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
             integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"

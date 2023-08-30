@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { FC } from "react";
 
 import Body from "./body";
@@ -10,11 +11,13 @@ type LayoutProps = {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <GoogleOAuthProvider
+      clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}
+    >
       <Header />
       <Body>{children}</Body>
       <Footer />
-    </>
+    </GoogleOAuthProvider>
   );
 };
 
