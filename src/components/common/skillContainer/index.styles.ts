@@ -10,12 +10,12 @@ interface ISelectBoxStyle {
 export const SelectBox = styled.div<ISelectBoxStyle>`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
   max-height: calc(100vh / 3);
   margin-bottom: 5rem;
-  overflow: scroll;
+  overflow-y: scroll;
   ${({ isEdit }) =>
     isEdit &&
     css`

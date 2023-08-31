@@ -1,43 +1,44 @@
 import styled from "@emotion/styled";
 import ScrabButton from "components/common/button/scrab";
+import type { TContest } from "lib/types/contest";
+import { caculateDDay } from "lib/utils/caculateDDay";
 import Image from "next/image";
 import Link from "next/link";
-import type { MouseEvent } from "react";
+import type { FC, MouseEvent } from "react";
 
-const DummyHackathonItemData = {
-  title: "성동구 청년정책 해커톤",
-  organizer: "킹십리",
-  commentCount: 5,
-  scrabCount: 120,
-  viewCount: 55,
-};
+interface IHackathonPageCardProps {
+  content: TContest | undefined;
+}
 
-const HackathonPageCard = () => {
-  const { title, organizer, commentCount, scrabCount, viewCount } =
-    DummyHackathonItemData;
-
+const HackathonPageCard: FC<IHackathonPageCardProps> = ({ content }) => {
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  if (!content) return <></>;
+
   return (
-    <StyledWrapper href="/hackathons/1">
-      <Image
-        width={380}
-        height={500}
-        src="/mocks/hackathon_poster_big.png"
-        alt="해커톤 포스터 이미지"
-      />
+    <StyledWrapper href={`hackathons/${content.id}`}>
+      <ImageBox background={content.imageUrl}>
+        {content.imageUrl ? (
+          <Image
+            width={380}
+            height={500}
+            src={content.imageUrl}
+            alt="해커톤 포스터 이미지"
+          />
+        ) : (
+          <span>포스터 이미지가 없습니다.</span>
+        )}
+      </ImageBox>
       <ScrabButton onClick={onClickScrabButton} />
       <Description>
         <MainInfoBox>
-          <DDay>D - 15</DDay>
-          <Title>{title}</Title>
-          <Organizer>주최 / 주관 : {organizer}</Organizer>
+          <DDay>{caculateDDay(content.endDate)}</DDay>
+          <Title>{content.title}</Title>
         </MainInfoBox>
         <Hr />
-        <AdditionalInfo>
-          모집글 {commentCount} 스크랩 {scrabCount} 조회수 {viewCount}
-        </AdditionalInfo>
+        <Organizer>주최 / 주관 : {content.host}</Organizer>
       </Description>
     </StyledWrapper>
   );
@@ -53,11 +54,6 @@ const StyledWrapper = styled(Link)`
   max-width: 380px;
   width: 100%;
 
-  /* FIXME: 추후 삭제 */
-  img {
-    transform: scaleX(1.275) scaleY(1.25);
-  }
-
   button {
     z-index: 2;
     position: absolute;
@@ -70,6 +66,24 @@ const StyledWrapper = styled(Link)`
       opacity: 1;
       transform: translateY(0px);
     }
+  }
+`;
+
+const ImageBox = styled.div<{ background: string }>`
+  width: 100%;
+  height: 100%;
+  background: url(${({ background }) => background});
+  background-size: cover;
+  img {
+    object-fit: contain;
+    object-position: center;
+    backdrop-filter: blur(10px);
+  }
+  span {
+    display: block;
+    text-align: center;
+    width: 380px;
+    height: 500px;
   }
 `;
 
@@ -102,8 +116,9 @@ const DDay = styled.span`
   line-height: 2.625rem;
 `;
 const Title = styled.span`
-  font-size: 1.5rem;
-  line-height: 2.25rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6875rem;
 `;
 const Organizer = styled.span`
   font-weight: 400;
@@ -113,9 +128,4 @@ const Organizer = styled.span`
 const Hr = styled.div`
   border-top: 1px solid #fff;
   margin-block: 1.7rem;
-`;
-const AdditionalInfo = styled.span`
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.5rem;
 `;
