@@ -27,14 +27,14 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const { data: projects } = useProjectsQuery(
     pageNumber - 1,
     PAGE_SIZE,
-    "id",
+    "createdTime",
     selectedSkills,
     searchKeyword,
   );
   const { data: studies } = useStudiesQuery(
     pageNumber - 1,
     PAGE_SIZE,
-    "id",
+    "createdTime",
     selectedSkills,
     searchKeyword,
   );
