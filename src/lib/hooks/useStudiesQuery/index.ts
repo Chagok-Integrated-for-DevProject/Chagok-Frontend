@@ -5,7 +5,7 @@ import { converToSkillId } from "lib/utils/converToSkillId";
 export const useStudiesQuery = (
   pageNumber: number,
   pageSize: number,
-  sort: "hotCount" | "id",
+  sort: "hotCount" | "createdTime",
   skillNames: string[],
 
   searchKeyword?: string,
