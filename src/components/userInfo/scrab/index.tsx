@@ -65,7 +65,8 @@ const Scrab = () => {
       </S.Navigation>
       <S.ScrabList>
         {new Array(6).fill(1).map((_, i) => {
-          if (navItem === "hackathon") return <HackathonPageCard key={i} />;
+          if (navItem === "hackathon")
+            return <HackathonPageCard key={i} content={undefined} />;
           if (navItem === "project" || navItem === "study")
             return (
               <S.ProjectStudyWrapper key={i}>
