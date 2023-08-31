@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 
 const Spinner = styled.div`
   position: fixed;
+  z-index: 10;
   top: 50%;
   left: 50%;
 

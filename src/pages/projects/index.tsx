@@ -8,14 +8,14 @@ import type { NextPage } from "next";
 
 export async function getServerSideProps() {
   // hotCount => 인기순
-  // id => 최신순
+  // createdTime => 최신순
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["projects", 0, 12, "id"], () =>
-    getProjectList(0, 12, "id", []),
+    getProjectList(0, 12, "createdTime", []),
   );
   await queryClient.prefetchQuery(["studies", 0, 12, "id"], () =>
-    getStudyList(0, 12, "id", []),
+    getStudyList(0, 12, "createdTime", []),
   );
 
   return {

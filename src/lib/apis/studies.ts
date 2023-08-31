@@ -6,7 +6,7 @@ import { AxiosClient } from "./axiosClient";
 export const getStudyList = async (
   pageNumber: number,
   pageSize: number,
-  sort: "hotCount" | "id",
+  sort: "hotCount" | "createdTime",
   skillIds: string[],
   searchKeyword?: string,
 ): Promise<TPaginationData> => {
