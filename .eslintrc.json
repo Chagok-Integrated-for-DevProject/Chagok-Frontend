@@ -19,7 +19,7 @@
       }
     }
   },
-  "ignorePatterns": ["*.setup.js", "*.config.js"],
+  "ignorePatterns": ["*.setup.js", "*.config.js", "server.js"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
