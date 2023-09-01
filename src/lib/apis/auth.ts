@@ -2,27 +2,14 @@ import axios from "axios";
 
 import { AxiosClient } from "./axiosClient";
 
-export const getChagokJWTWithGoogle = async (accessToken: string) => {
+export const getChagokAccessToken = async (
+  accessToken: string,
+  socialType: "Google" | "Kakao",
+) => {
   try {
-    const response = await AxiosClient.post("/auth", {
+    const response = await AxiosClient.post("/auth/signIn", {
       accessToken: accessToken,
-      socialType: "Google",
-    });
-
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getChagokJWTWithKakao = async (authorizationCode: string) => {
-  const isTest = process.env.NODE_ENV === "production" ? false : true;
-
-  try {
-    const response = await AxiosClient.post("/auth", {
-      authorizationToken: authorizationCode,
-      socialType: "Kakao",
-      test: isTest,
+      socialType: socialType,
     });
 
     return response.data;
@@ -41,14 +28,9 @@ export const getKakaoJWT = async (authCode: string) => {
 
   const redirectUrl =
     process.env.NODE_ENV === "production"
-      ? "https://chagok.site/auth/kakao"
-      : "http://localhost:3000/auth/kakao";
+      ? "https://chagok.site"
+      : "https://localhost:3001";
 
-  console.log(
-    redirectUrl,
-    process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY,
-    authCode,
-  );
   try {
     const response = kakaoAuth.post("", {
       grant_type: "authorization_code",

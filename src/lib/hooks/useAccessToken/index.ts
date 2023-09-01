@@ -1,61 +1,48 @@
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import {
-  getChagokJWTWithGoogle,
-  getChagokJWTWithKakao,
-  getKakaoJWT,
-} from "lib/apis/auth";
+import { getChagokAccessToken, getKakaoJWT } from "lib/apis/auth";
+import type {
+  TChagokAccessTokenMutation,
+  TKakaoAccessTokenResponse,
+  TUseChagokAccessTokenParams,
+} from "lib/types/auth";
 
-export const useKakaoAccessToken = () => {
+type TUseKakaoAccessTokenParams = {
+  onSuccess?: (data?: TKakaoAccessTokenResponse) => void;
+  onFailed?: () => void;
+};
+
+export const useKakaoAccessToken = ({
+  onSuccess,
+  onFailed,
+}: TUseKakaoAccessTokenParams) => {
   const { mutate, error } = useMutation({
     mutationFn: (authCode: string) => getKakaoJWT(authCode),
     onSuccess: (data) => {
-      console.log(data);
-      // TODO: 성공 시 로직 처리
+      onSuccess && onSuccess(data);
     },
     onError: (error) => {
       console.log((error as AxiosError).message);
-      // TODO: 실패 시 로직 처리
+      onFailed && onFailed();
     },
   });
 
   return { mutate, error };
 };
 
-export const useChagokAccessTokenWithGoogle = (onNext: () => void) => {
+export const useChagokAccessToken = ({
+  onSuccess,
+  onFailed,
+}: TUseChagokAccessTokenParams) => {
   const { mutate, error } = useMutation({
-    mutationFn: (accessToken: string) => getChagokJWTWithGoogle(accessToken),
+    mutationFn: ({ accessToken, socialType }: TChagokAccessTokenMutation) =>
+      getChagokAccessToken(accessToken, socialType),
     onSuccess: (data) => {
-      window.localStorage.setItem("jwt", data.jwtToken);
-
-      if (data.signUp) {
-        onNext();
-      }
-
-      if (!data.signUp) {
-        window.location.reload();
-      }
+      onSuccess && onSuccess(data);
     },
     onError: (error) => {
       console.log((error as AxiosError).message);
-      // TODO: 로그인 실패 시 로직 처리
-    },
-  });
-
-  return { mutate, error };
-};
-
-export const useChagokAccessTokenWithKakao = () => {
-  const { mutate, error } = useMutation({
-    mutationFn: (authorizationCode: string) =>
-      getChagokJWTWithKakao(authorizationCode),
-    onSuccess: (data) => {
-      window.localStorage.setItem("jwt", data.jwtToken);
-      window.localStorage.setItem("signUpFirst", data.signUp);
-    },
-    onError: (error) => {
-      console.log((error as AxiosError).message);
-      // TODO: 로그인 실패 시 로직 처리
+      onFailed && onFailed(error as AxiosError);
     },
   });
 
