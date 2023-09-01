@@ -1,5 +1,4 @@
-import Modal from "components/common/modal";
-import Signup from "components/signup";
+import SignupModal from "components/signup";
 import useModal from "lib/hooks/useModal";
 import Image from "next/image";
 
@@ -16,6 +15,7 @@ import NavLink from "./NavLink";
 
 const Header = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
+
   return (
     <>
       <HeaderOuterWrapper>
@@ -43,9 +43,11 @@ const Header = () => {
           </LoginBtn>
         </HeaderInnerWrapper>
       </HeaderOuterWrapper>
-      <Modal isOpen={isModalOpen} onCloseModal={closeModal}>
-        <Signup onCloseModal={closeModal} />
-      </Modal>
+      <SignupModal
+        isModalOpen={isModalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+      />
     </>
   );
 };

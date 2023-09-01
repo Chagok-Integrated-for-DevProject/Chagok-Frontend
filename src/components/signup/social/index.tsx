@@ -1,16 +1,40 @@
 import { useGoogleLogin } from "@react-oauth/google";
+import type { UseMutateFunction } from "@tanstack/react-query";
 import LogoSVG from "components/common/logo";
 import { H1 } from "components/signup/index.styles";
+import type {
+  TChagokAccessTokenMutation,
+  TChagokAccessTokenResponse,
+} from "lib/types/auth";
 import Image from "next/image";
+import { type FC } from "react";
 import { palette } from "styles/palette";
 
 import * as S from "./index.styles";
 
-const Social = ({ onNext }: { onNext: () => void }) => {
+interface ISocialProps {
+  chagokMutateWithGoogle: UseMutateFunction<
+    TChagokAccessTokenResponse,
+    unknown,
+    TChagokAccessTokenMutation,
+    unknown
+  >;
+  saveGoogleToken: (token: string) => void;
+}
+
+const Social: FC<ISocialProps> = ({
+  chagokMutateWithGoogle,
+  saveGoogleToken,
+}) => {
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       if (tokenResponse) {
-        onNext();
+        const { access_token } = tokenResponse;
+        saveGoogleToken(access_token);
+        chagokMutateWithGoogle({
+          accessToken: access_token,
+          socialType: "Google",
+        });
       }
     },
   });
@@ -18,8 +42,8 @@ const Social = ({ onNext }: { onNext: () => void }) => {
   const kakaoLogin = () => {
     const redirectUri =
       process.env.NODE_ENV === "production"
-        ? "https://chagok.site/auth/kakao"
-        : "http://localhost:3000/auth/kakao";
+        ? "https://chagok.site"
+        : "https://localhost:3001";
 
     window.Kakao.Auth.authorize({
       redirectUri: `${redirectUri}`,
@@ -30,10 +54,8 @@ const Social = ({ onNext }: { onNext: () => void }) => {
     googleLogin();
   };
 
-  // TODO: 카카오 로그인
   const onSelectKakao = () => {
     kakaoLogin();
-    onNext();
   };
 
   return (
