@@ -1,26 +1,32 @@
 import ScrabButton from "components/common/button/scrab";
+import type { TContestDetail } from "lib/types/contest";
 import Image from "next/image";
+import type { FC } from "react";
 
 import * as S from "./index.styles";
 
-const Summary = () => {
+interface ISummaryProps {
+  data: Omit<TContestDetail, "content">;
+}
+
+const Summary: FC<ISummaryProps> = ({ data }) => {
   return (
     <S.Wrapper>
       <S.Header>
-        <S.Title>성동구 청년정책 해커톤</S.Title>
+        <S.Title>{data.title}</S.Title>
         <S.ScrabViewBox>
           <S.ScrabCount>
             <ScrabButton />
-            <span>{152}</span>
+            <span>{data.scrapCount}</span>
           </S.ScrabCount>
-          <S.ViewCount>조회수 {250}</S.ViewCount>
+          <S.ViewCount>조회수 {data.viewCount}</S.ViewCount>
         </S.ScrabViewBox>
       </S.Header>
       <S.Hr />
       <S.Body>
-        <S.ImageBox>
+        <S.ImageBox background={data.imageUrl}>
           <Image
-            src="/mocks/hackathon_poster_big.png"
+            src={data.imageUrl}
             width={369}
             height={522}
             alt="해커톤 포스터 이미지"
@@ -30,12 +36,12 @@ const Summary = () => {
           <S.Summary>
             <S.Organizer>
               <S.Label>주체 / 기관</S.Label>
-              <S.Content>{"킹십리"}</S.Content>
+              <S.Content>{data.host}</S.Content>
             </S.Organizer>
             <S.ReceptionPeriod>
               <S.Label>접수 기간</S.Label>
               <S.Content>
-                {"2023년 07월 12일"} ~ {"2023년 07월 26일 00:00"}
+                {data.startDate} ~ {data.endDate}
               </S.Content>
             </S.ReceptionPeriod>
             <S.CompetitionField>
@@ -44,8 +50,8 @@ const Summary = () => {
             </S.CompetitionField>
             <S.Source>
               <S.Label>출처</S.Label>
-              <S.ResourceLink href="https://www.contestkorea.com/">
-                https://www.contestkorea.com
+              <S.ResourceLink href={data.originalUrl} target="_blank">
+                콘테스트 코리아
               </S.ResourceLink>
             </S.Source>
           </S.Summary>

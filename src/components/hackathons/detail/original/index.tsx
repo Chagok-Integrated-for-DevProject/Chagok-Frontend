@@ -1,11 +1,15 @@
+import ArrowSVG from "components/common/arrow";
 import { sanitize } from "isomorphic-dompurify";
+import type { FC } from "react";
 import { useState } from "react";
-
-import bottomArrowSVG from "/public/utils/arrow.svg";
 
 import * as S from "./index.styles";
 
-const Original = () => {
+interface IOriginalProps {
+  data: string;
+}
+
+const Original: FC<IOriginalProps> = ({ data }) => {
   const sanitizer = sanitize;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -18,14 +22,13 @@ const Original = () => {
         <span data-testid="summary-label">
           {isOpen ? "원문 접기" : "자세히 보기"}
         </span>
-        <S.Arrow
-          isOpen={isOpen}
-          src={bottomArrowSVG}
-          alt={isOpen ? "접기 화살표" : "펼치기 화살표"}
-        />
+        <S.Arrow isOpen={isOpen}>
+          <ArrowSVG width={20} color="#525252" />
+        </S.Arrow>
       </S.Summary>
       <S.CrawlingDataBox
-        dangerouslySetInnerHTML={{ __html: sanitizer("<h1>해커톤 원문</h1>") }}
+        className="browser-rendering"
+        dangerouslySetInnerHTML={{ __html: sanitizer(data) }}
       />
     </S.Details>
   );

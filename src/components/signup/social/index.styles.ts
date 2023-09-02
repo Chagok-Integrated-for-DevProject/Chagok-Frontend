@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const SocialWrapper = styled.div``;
 
-export const Title = styled.p`
+export const Title = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
