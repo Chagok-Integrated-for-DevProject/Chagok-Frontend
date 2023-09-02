@@ -1,6 +1,4 @@
-import isPropValid from "@emotion/is-prop-valid";
 import styled from "@emotion/styled";
-import Image from "next/image";
 
 interface IArrowStyle {
   isOpen: boolean;
@@ -30,13 +28,21 @@ export const Summary = styled.summary`
   }
 `;
 
-export const Arrow = styled(Image, {
-  // Customizing prop forwarding
-  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "isOpen",
-})`
+export const Arrow = styled.div`
   transform: rotate(
     ${({ isOpen }: IArrowStyle) => (isOpen ? "180deg" : "0deg")}
   );
 `;
 
-export const CrawlingDataBox = styled.div``;
+export const CrawlingDataBox = styled.div`
+  * {
+    line-height: normal;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-block: 1rem 0.5rem;
+  }
+  p {
+    margin-bottom: 0.5rem;
+  }
+`;
