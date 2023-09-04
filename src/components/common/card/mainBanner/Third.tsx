@@ -8,11 +8,11 @@ export const ThirdCard = () => {
     <CardWrapper>
       <TextWrapper>
         <H2>
-          <Em>차곡</Em>에 로그인하고
+          <Em>차곡</Em>에서
           <br />
-          나에게 맞는 프로젝트를
+          해커톤을 위한
           <br />
-          추천 받아 보세요!
+          팀빌딩을 해보세요!
         </H2>
       </TextWrapper>
       <CustomImg
