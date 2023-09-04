@@ -8,11 +8,10 @@ export const SecondCard = () => {
     <CardWrapper>
       <TextWrapper>
         <H2>
-          <Em>차곡</Em>에 로그인하고
+          <Em>차곡</Em>에서
           <br />
-          나에게 맞는 프로젝트를
-          <br />
-          추천 받아 보세요!
+          프로젝트, 스터디 모집글을
+          <br />한 번에 볼 수 있어요!
         </H2>
       </TextWrapper>
       <CustomImg
