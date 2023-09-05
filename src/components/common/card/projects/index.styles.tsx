@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const ClassificationTagWrapper = styled.div``;
@@ -20,6 +21,11 @@ export const ClassificationTag = styled("span", {
   background-color: ${({ bgColor }) => bgColor};
 
   color: ${palette.white};
+
+  @media ${breakPoints.xs} {
+    padding: 0.5rem 1.2rem;
+    margin-right: 0.8rem;
+  }
 `;
 
 export const Title = styled.h2`
@@ -95,6 +101,10 @@ export const PostsInfo = styled.span`
   line-height: 1.5rem;
 
   color: ${palette.fontGray300};
+
+  @media ${breakPoints.xs} {
+    font-size: 0.9rem;
+  }
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -112,6 +122,11 @@ export const UserNickname = styled.span`
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5rem;
+
+  @media ${breakPoints.xs} {
+    width: 5.8em;
+    font-size: 0.9rem;
+  }
 `;
 
 export const Hr = styled.hr`

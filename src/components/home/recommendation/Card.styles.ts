@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const CardStyles = css`
@@ -13,6 +14,10 @@ export const CardStyles = css`
 
   transition: 0.2s;
 
+  @media ${breakPoints.xs} {
+    padding: 2.3rem 1.6rem;
+  }
+
   .title {
     font-weight: 700;
     font-size: 1.25rem;
@@ -23,6 +28,10 @@ export const CardStyles = css`
     word-break: keep-all;
 
     transition: 0.2s;
+
+    @media ${breakPoints.xs} {
+      font-size: 1.2rem;
+    }
   }
 
   .classificationTag {
@@ -39,6 +48,12 @@ export const CardStyles = css`
     color: ${palette.white};
 
     transition: 0.2s;
+
+    @media ${breakPoints.xs} {
+      font-size: 0.65rem;
+      padding: 0.5rem 1rem;
+      margin-right: 0.6rem;
+    }
   }
 
   .detailBtn {
@@ -49,25 +64,29 @@ export const CardStyles = css`
     font-size: 1.25rem;
 
     padding: 0.5rem 1rem;
+
+    @media ${breakPoints.xs} {
+      font-size: 1rem;
+    }
   }
 
   &:hover {
     background-color: ${palette.bgMainOrange};
 
     .title {
-      font-size: 1.315625rem;
-      line-height: 1.940625rem;
-
       color: ${palette.white};
     }
 
     .classificationTag {
-      font-size: 0.72375rem;
-      line-height: 1.085625rem;
       font-weight: 700;
 
       background-color: ${palette.white};
       color: ${palette.fontMainOrange};
+
+      @media ${breakPoints.xs} {
+        padding: 0.5rem 1rem;
+        margin-right: 0.6rem;
+      }
     }
 
     .detailBtn {

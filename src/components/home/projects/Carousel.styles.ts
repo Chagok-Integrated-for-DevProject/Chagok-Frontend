@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export const CustomSwiper = styled(Swiper)`
@@ -21,4 +22,8 @@ export const CustomSwiperSlide = styled(SwiperSlide)`
 
   border-radius: 1rem;
   margin: 0.2rem 0.1rem 0.875rem;
+
+  @media ${breakPoints.xs} {
+    padding: 1.8rem;
+  }
 `;
