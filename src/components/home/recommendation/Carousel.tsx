@@ -19,9 +19,18 @@ const RecommendationCarousel = () => {
 
   return (
     <CustomSwiper
-      slidesPerView={3}
+      slidesPerView={1}
+      spaceBetween={20}
       pagination={{ clickable: true }}
       modules={[Pagination]}
+      breakpoints={{
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
     >
       {slides.map((e, i) => (
         <CustomSwiperSlide key={i}>

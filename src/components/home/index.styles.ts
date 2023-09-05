@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 /** common for HomePage */
@@ -19,6 +20,18 @@ export const H2 = styled.h2`
   font-weight: 700;
 
   margin: 2rem 0 0.5rem;
+
+  @media ${breakPoints.sm} {
+    font-size: 1.5rem;
+  }
+`;
+
+export const Br = styled.br`
+  display: none;
+
+  @media ${breakPoints.xs} {
+    display: block;
+  }
 `;
 
 export const P = styled.p`
@@ -45,5 +58,18 @@ export const ShowMore = styled(Link)`
 
   svg {
     transform: rotate(270deg);
+  }
+
+  @media ${breakPoints.xs} {
+    span {
+      margin-right: 0rem;
+      font-size: 1rem;
+      color: ${palette.fontGray300};
+    }
+
+    svg {
+      transform: rotate(270deg);
+      width: 1.4rem;
+    }
   }
 `;

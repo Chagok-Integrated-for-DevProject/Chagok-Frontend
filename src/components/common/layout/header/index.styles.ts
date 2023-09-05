@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const HeaderOuterWrapper = styled.header`
@@ -46,6 +47,10 @@ export const Navigation = styled.nav`
     height: 1rem !important;
     vertical-align: middle;
     margin: 0 1rem;
+  }
+
+  @media ${breakPoints.sm} {
+    display: none;
   }
 `;
 

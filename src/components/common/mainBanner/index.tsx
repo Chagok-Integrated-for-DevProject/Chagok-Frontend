@@ -22,13 +22,18 @@ const MainBanner = () => {
   return (
     <MainBannerWrawpper>
       <CustomSwiper
-        direction={"vertical"}
+        direction={"horizontal"}
         navigation={{
           prevEl: ".prev",
           nextEl: ".next",
         }}
         pagination={{
           clickable: true,
+        }}
+        breakpoints={{
+          480: {
+            direction: "vertical",
+          },
         }}
         loop
         autoplay={{ delay: 3000, disableOnInteraction: false }}

@@ -29,13 +29,11 @@ export const CustomSwiper = styled(Swiper)`
 `;
 
 export const CustomSwiperSlide = styled(SwiperSlide)`
-  width: 23.75rem !important;
   height: 17.5rem;
   box-sizing: border-box;
   box-shadow: 0px 1px 50px 0px #0000001a;
   border-radius: 1rem;
 
-  margin: 0 10px;
   transition: 0.2s;
 
   &:hover {

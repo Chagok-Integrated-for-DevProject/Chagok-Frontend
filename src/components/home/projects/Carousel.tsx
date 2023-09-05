@@ -12,7 +12,18 @@ interface IProjectCarouselProps {
 
 const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
   return (
-    <CustomSwiper spaceBetween={20} slidesPerView={2.75}>
+    <CustomSwiper
+      spaceBetween={20}
+      slidesPerView={1}
+      breakpoints={{
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 2.75,
+        },
+      }}
+    >
       {contents.map((e, i) => (
         <CustomSwiperSlide key={i}>
           <ProjectCard contents={e} />

@@ -8,6 +8,7 @@ export const CardWrapper = styled.div`
 
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `;
 
 export const CustomImg = styled(Image)`
@@ -29,8 +30,8 @@ export const CustomImg = styled(Image)`
   }
 
   @media ${breakPoints.xs} {
-    width: 100vw;
-    height: 50vw;
+    width: 110vw;
+    height: 60vw;
   }
 `;
 
@@ -42,6 +43,10 @@ export const TextWrapper = styled.div`
 
   top: 23%;
   left: 7%;
+
+  @media ${breakPoints.md} {
+    top: 8%;
+  }
 `;
 
 export const H2 = styled.h2`
@@ -50,14 +55,18 @@ export const H2 = styled.h2`
   font-size: 2rem;
   line-height: 3rem;
 
-  @media ${breakPoints.sm} {
-    font-size: 1.6rem;
+  @media ${breakPoints.md} {
+    font-size: 1.5rem;
     line-height: 2.4rem;
   }
 
-  @media ${breakPoints.xs} {
-    font-size: 1.4rem;
+  @media ${breakPoints.sm} {
     line-height: 2.2rem;
+  }
+
+  @media ${breakPoints.xs} {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 `;
 

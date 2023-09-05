@@ -36,7 +36,32 @@ export const CustomSwiper = styled(Swiper)`
   }
 
   @media ${breakPoints.sm} {
-    height: 18rem;
+    height: 23rem;
+
+    .swiper-pagination {
+      margin-right: 4%;
+    }
+  }
+
+  @media ${breakPoints.xs} {
+    height: 24rem;
+
+    .swiper-pagination {
+      display: flex;
+      justify-content: center;
+    }
+
+    .swiper-pagination-bullet {
+      display: block;
+      margin: 0 0.7rem 0.5rem !important;
+
+      background-color: ${palette.black};
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: ${palette.bgMainOrange};
+    }
   }
 `;
 
@@ -60,7 +85,7 @@ export const PrevBtn = styled.div`
   }
 
   @media ${breakPoints.sm} {
-    margin-top: -14rem;
+    display: none;
   }
 `;
 
@@ -78,10 +103,6 @@ export const NextBtn = styled.div`
   }
 
   @media ${breakPoints.sm} {
-    height: 18rem;
-  }
-
-  @media ${breakPoints.xs} {
-    height: 14em;
+    display: none;
   }
 `;

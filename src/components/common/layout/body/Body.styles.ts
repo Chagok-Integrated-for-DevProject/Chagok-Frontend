@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 
 export const Main = styled.main`
   width: 100%;
@@ -8,4 +9,8 @@ export const Main = styled.main`
 
   padding-top: 5.125rem;
   margin: 0 auto;
+
+  @media ${breakPoints.sm} {
+    padding-top: 3.8125rem;
+  }
 `;
