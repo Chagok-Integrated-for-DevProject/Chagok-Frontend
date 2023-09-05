@@ -13,8 +13,8 @@ interface IProjectCarouselProps {
 const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
   return (
     <CustomSwiper
-      spaceBetween={20}
-      slidesPerView={1}
+      spaceBetween={30}
+      slidesPerView={0.95}
       breakpoints={{
         768: {
           slidesPerView: 2,

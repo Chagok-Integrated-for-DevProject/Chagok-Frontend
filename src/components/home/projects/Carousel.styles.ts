@@ -8,6 +8,10 @@ export const CustomSwiper = styled(Swiper)`
   padding: 1.875rem 2rem;
   border-radius: 1rem;
   margin: 0 0 3rem -2rem;
+
+  @media ${breakPoints.md} {
+    width: calc(100% + 3.5rem);
+  }
 `;
 
 export const CustomSwiperSlide = styled(SwiperSlide)`
