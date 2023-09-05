@@ -2,7 +2,11 @@ import styled from "@emotion/styled";
 import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
-export const ClassificationTagWrapper = styled.div``;
+export const ClassificationTagWrapper = styled.div`
+  height: 34px;
+  white-space: pre-wrap;
+  overflow: hidden;
+`;
 
 export const ClassificationTag = styled("span", {
   shouldForwardProp: (props) => props !== "bgColor",
@@ -23,8 +27,10 @@ export const ClassificationTag = styled("span", {
   color: ${palette.white};
 
   @media ${breakPoints.xs} {
-    padding: 0.5rem 1.2rem;
-    margin-right: 0.8rem;
+    font-size: 0.65rem;
+    padding: 0.5rem 1rem;
+    margin-right: 0.6rem;
+    margin-bottom: 1rem;
   }
 `;
 
