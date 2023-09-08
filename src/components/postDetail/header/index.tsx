@@ -1,25 +1,29 @@
 import ArrowSVG from "components/common/arrow";
 import ScrabButton from "components/common/button/scrab";
+import FloatingBox from "components/postDetail/floatingBox";
 import { POST_TAGS } from "lib/constants/postTag";
 import type { TPostDetail } from "lib/types/post";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import type { FC } from "react";
+import { type FC, useState } from "react";
 import { palette } from "styles/palette";
 
 import backArrow from "/public/utils/back_arrow.svg";
 
 import {
-  BtnPosition,
+  BtnPostion,
   Dates,
+  DesktopWrapper,
   GoBackBtn,
   HeaderWrapper,
+  MobileWrapper,
   OriginLink,
   PostInfoWrapper,
+  RecommendationBtn,
+  ScrapCnt,
   TagItem,
   TagList,
   Title,
-  UserNickName,
   ViewCnt,
 } from "./index.styles";
 
@@ -37,6 +41,12 @@ const Header: FC<IHeaderProps> = ({ data }) => {
   const purpose = POST_TAGS.find((e) => e.tagName === "PROJECT");
   const date = new Date(data.createdTime);
 
+  const [floatingBox, setFloatingBox] = useState(false);
+
+  const handleFloatingBox = () => {
+    setFloatingBox(!floatingBox);
+  };
+
   return (
     <HeaderWrapper>
       <GoBackBtn type="button" onClick={handleGoBackBtn}>
@@ -47,27 +57,48 @@ const Header: FC<IHeaderProps> = ({ data }) => {
         <TagItem bgColor={purpose?.color}>프로젝트</TagItem>
       </TagList>
       <Title>{data.title}</Title>
+      <DesktopWrapper>
+        <BtnPostion>
+          <ScrabButton />
+        </BtnPostion>
+      </DesktopWrapper>
+      <MobileWrapper>
+        <BtnPostion>
+          <RecommendationBtn
+            type="button"
+            onClick={handleFloatingBox}
+            data-testid="recommend btn"
+          >
+            {floatingBox ? (
+              "Close"
+            ) : (
+              <>
+                추천
+                <br />
+                프로젝트
+              </>
+            )}
+          </RecommendationBtn>
+          <FloatingBox mobileVisible={floatingBox} />
+        </BtnPostion>
+      </MobileWrapper>
       <PostInfoWrapper>
-        {/**보류: <Image
-          src={userProfileImg}
-          alt="mock user Profile"
-          width={40}
-          height={40}
-          />
-      */}
-        <UserNickName>작성자: {data.nickName}</UserNickName>
+        <MobileWrapper>
+          <ScrabButton />
+          <ScrapCnt>{data.scrapCount}</ScrapCnt>
+          <ViewCnt>조회수 {data.viewCount}</ViewCnt>
+        </MobileWrapper>
         <Dates>
           {date.getFullYear()}. {date.getMonth() + 1}. {date.getDate()}
         </Dates>
-        <ViewCnt>조회수 {data.viewCount}</ViewCnt>
+        <DesktopWrapper>
+          <ViewCnt>조회수 {data.viewCount}</ViewCnt>
+        </DesktopWrapper>
         <OriginLink href={`${data.sourceUrl}`}>
           출처: {data.siteType} 원문 바로가기
           <ArrowSVG width={36} color={`${palette.bgGray100}`} />
         </OriginLink>
       </PostInfoWrapper>
-      <BtnPosition>
-        <ScrabButton />
-      </BtnPosition>
     </HeaderWrapper>
   );
 };
