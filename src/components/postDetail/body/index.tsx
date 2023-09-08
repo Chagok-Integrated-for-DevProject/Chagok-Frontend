@@ -1,3 +1,4 @@
+import FloatingBox from "components/postDetail/floatingBox";
 import { sanitize } from "isomorphic-dompurify";
 import type { TSkill } from "lib/constants/skills";
 import { SKILLS } from "lib/constants/skills";
@@ -5,11 +6,11 @@ import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import type { FC } from "react";
 
-import FloatingBox from "./FloatingBox";
 import {
   BodyWrapper,
   Content,
   ContentWrapper,
+  DesktopWrapper,
   H2,
   MainContentWrapper,
   SkillItem,
@@ -55,7 +56,9 @@ const Body: FC<IBodyProps> = ({ skills, content }) => {
           <Content dangerouslySetInnerHTML={{ __html: replacedContent }} />
         </ContentWrapper>
       </MainContentWrapper>
-      <FloatingBox />
+      <DesktopWrapper>
+        <FloatingBox />
+      </DesktopWrapper>
     </BodyWrapper>
   );
 };
