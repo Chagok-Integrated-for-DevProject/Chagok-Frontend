@@ -6,9 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const MainBannerWrawpper = styled.div`
   position: relative;
   width: 100%;
-
-  background-color: ${palette.bgWhite};
-  border: 0.5px solid ${palette.bdMainOrange};
 `;
 
 export const CustomSwiper = styled(Swiper)`
@@ -29,6 +26,18 @@ export const CustomSwiper = styled(Swiper)`
 
   .swiper-pagination-bullet-active {
     background-color: ${palette.bgMainOrange};
+  }
+
+  .swiper-slide:nth-child(1) {
+    background-color: #ffffef;
+  }
+
+  .swiper-slide:nth-child(2) {
+    background-color: #f4fff2;
+  }
+
+  .swiper-slide:nth-child(3) {
+    background-color: #e9fbff;
   }
 
   @media ${breakPoints.md} {
