@@ -5,6 +5,7 @@ import MainBanner from "components/common/mainBanner";
 import Hackathons from "components/home/hackathons";
 import Projects from "components/home/projects";
 import Recommendation from "components/home/recommendation";
+import { getContests } from "lib/apis/contests";
 import { getProjectList } from "lib/apis/projects";
 import { getStudyList } from "lib/apis/studies";
 import type { NextPage } from "next";
@@ -26,6 +27,13 @@ export async function getServerSideProps() {
   );
   await queryClient.prefetchQuery(["studies", 0, 3, "createdTime"], () =>
     getStudyList(0, 3, "createdTime", []),
+  );
+  await queryClient.prefetchQuery(["contests", 0, 3, "endDate", "asc"], () =>
+    getContests(0, 3, "endDate", "asc"),
+  );
+
+  await queryClient.prefetchQuery(["contests", 0, 3, "startDate", "desc"], () =>
+    getContests(0, 3, "startDate", "desc"),
   );
 
   return {
