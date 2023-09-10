@@ -14,7 +14,7 @@ const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
   return (
     <CustomSwiper
       spaceBetween={30}
-      slidesPerView={0.95}
+      slidesPerView={0.965}
       breakpoints={{
         768: {
           slidesPerView: 2,

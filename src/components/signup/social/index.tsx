@@ -71,6 +71,7 @@ const Social: FC<ISocialProps> = ({
             height={60}
             src="/social-google.png"
             alt="구글 소셜 로그인"
+            priority
           />
         </S.Google>
         <S.Kakao onClick={onSelectKakao}>
@@ -79,6 +80,7 @@ const Social: FC<ISocialProps> = ({
             height={60}
             src="/social-kakao.png"
             alt="카카오 소셜 로그인"
+            priority
           />
         </S.Kakao>
       </S.SocialSelecBox>
