@@ -1,10 +1,12 @@
 import SignupModal from "components/signup";
 import useModal from "lib/hooks/useModal";
 import Image from "next/image";
+import Link from "next/link";
 
 import logo from "/public/logo.svg";
 import dot from "/public/utils/dot.svg";
 
+import Hamburger from "./Hamburger";
 import {
   HeaderInnerWrapper,
   HeaderOuterWrapper,
@@ -20,7 +22,10 @@ const Header = () => {
     <>
       <HeaderOuterWrapper>
         <HeaderInnerWrapper>
-          <Image src={logo} alt="chagok logo" />
+          <Link href="/">
+            <Image src={logo} alt="chagok logo" />
+          </Link>
+
           <Navigation>
             <ul>
               <li>
@@ -39,8 +44,11 @@ const Header = () => {
             </ul>
           </Navigation>
           <LoginBtn type="button" onClick={openModal}>
+            {/** @desktop */}
             로그인
           </LoginBtn>
+          {/** @desktop */}
+          <Hamburger />
         </HeaderInnerWrapper>
       </HeaderOuterWrapper>
       <SignupModal

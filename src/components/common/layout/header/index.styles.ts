@@ -23,13 +23,10 @@ export const HeaderInnerWrapper = styled.div`
   margin: 0 auto;
 
   font-size: 1rem;
-`;
 
-export const Logo = styled.div`
-  width: 89px;
-  height: 33px;
-
-  font-size: 1.5rem;
+  @media ${breakPoints.xs} {
+    padding: 1rem 1.5rem;
+  }
 `;
 
 export const Navigation = styled.nav`
@@ -59,6 +56,10 @@ export const LoginBtn = styled.button`
   border: 0;
 
   color: ${palette.white};
+
+  @media ${breakPoints.sm} {
+    display: none;
+  }
 `;
 
 export const LogoutUI = styled.div`
