@@ -63,7 +63,7 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
               <ScrapCnt>{content.scrapCount}</ScrapCnt>
               <ScrabButton onClick={onClickScrabButton} width={35} />
             </Scrab>
-            <DDay>D - {1}</DDay>
+            <DDay>D - {getDDay(content.endDate)}</DDay>
           </RightWrapper>
         </DeskTopWrapper>
         {/** @Mobile */}
@@ -78,7 +78,7 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
                 <EndAt>~{new Date(content.endDate).toLocaleDateString()}</EndAt>
               </StartToEndDate>
             </HackathonDateBox>
-            <DDay>D - {1}</DDay>
+            <DDay>D - {getDDay(content.endDate)}</DDay>
           </RightWrapper>
         </MobileWrapper>
       </LayoutWrapper>
@@ -88,14 +88,27 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
 
 export default HackathonCard;
 
+const getDDay = (endDate: string) => {
+  const end = new Date(endDate);
+  const today = new Date();
+
+  const dday = Math.ceil(
+    (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+  );
+  return dday === 0 ? "day" : dday;
+};
+
 const StyledWrapper = styled(Link)`
   display: block;
-  //FIXME: 회의 필요, 적용 또는 삭제
-  /* box-shadow: 0px 1px 50px 0px #0000001a; */
+
   border-radius: 10px;
   padding: 2.5rem;
   margin: 0 auto;
   max-width: 537px;
+
+  @media ${breakPoints.sm} {
+    padding: 2rem;
+  }
 `;
 
 const LayoutWrapper = styled.div`
@@ -136,7 +149,6 @@ const MiddleWrapper = styled.div`
   flex-direction: column;
 
   height: 100%;
-  // margin-right: 2rem;
 
   @media ${breakPoints.sm} {
     flex-direction: row;
@@ -256,8 +268,11 @@ const DDay = styled.div`
   margin-top: auto;
 
   @media ${breakPoints.sm} {
-    font-size: 1.15rem;
     margin-left: auto;
+  }
+
+  @media ${breakPoints.xs} {
+    font-size: 1rem;
   }
 `;
 
