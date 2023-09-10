@@ -15,7 +15,7 @@ const Projects = () => {
           프로젝트 <Br />/ 스터디
         </H2>
         <P>나와 맞는 프로젝트와 스터디에 대한 모집글을 찾아보세요!</P>
-        <ShowMore href="projects">
+        <ShowMore href="projects?purpose=project">
           <span>더 보기</span>
           <ArrowSVG width={35} color={`${palette.fontGray300}`} />
         </ShowMore>

@@ -1,10 +1,10 @@
+import { H3 } from "components/home/index.styles";
 import { useComponentMount } from "lib/hooks/useComponentMount";
 import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
 import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import type { TPostPreview } from "lib/types/post";
 
 import ProjectCarousel from "./Carousel";
-import { H3 } from "./index.styles";
 import { pickHottestThree } from "./utils/pickHottestThree";
 
 const HottestProjects = () => {

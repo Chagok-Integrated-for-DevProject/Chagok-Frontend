@@ -26,6 +26,12 @@ export const H2 = styled.h2`
   }
 `;
 
+export const H3 = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 5rem 0 1rem;
+`;
+
 export const Br = styled.br`
   display: none;
 

@@ -13,13 +13,9 @@ import {
   ClassificationTagWrapper,
   Description,
   Hr,
-  InfoWrapper,
   PostsInfo,
-  PostsInfoWrapper,
   SkillTagWrapper,
   Title,
-  UserInfoWrapper,
-  UserNickname,
 } from "./index.styles";
 
 interface IProjectCardProps {
@@ -37,6 +33,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
 
   return (
     <Link
+      title={contents.title}
       href={`/projects/${contents.id}?purpose=${purposeParam}`}
       data-testid="projectCard"
     >
@@ -63,16 +60,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
               <Image key={i} src={e} alt={`${contents.skills[i]}`} />
             ))}
       </SkillTagWrapper>
-      <InfoWrapper>
-        <PostsInfoWrapper>
-          {/**보류: <PostsInfo>댓글 5개</PostsInfo>*/}
-          <PostsInfo>조회수 {contents.viewCount}회</PostsInfo>
-        </PostsInfoWrapper>
-        <UserInfoWrapper>
-          {/**보류: <Image src={profileImg} alt="user Profile" />*/}
-          <UserNickname>작성자: {contents.nickName}</UserNickname>
-        </UserInfoWrapper>
-      </InfoWrapper>
+      <PostsInfo>조회수 {contents.viewCount}회</PostsInfo>
     </Link>
   );
 };

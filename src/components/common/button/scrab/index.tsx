@@ -5,15 +5,22 @@ import { StyledScrabButton } from "./index.styles";
 interface ScrabButtonProps {
   isScrabbed?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  width?: number;
+  height?: number;
 }
 
-const ScrabButton: FC<ScrabButtonProps> = ({ isScrabbed, onClick }) => {
+const ScrabButton: FC<ScrabButtonProps> = ({
+  isScrabbed,
+  onClick,
+  width,
+  height,
+}) => {
   return (
     <StyledScrabButton onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="49"
-        height="50"
+        width={width || 49}
+        height={height || 50}
         viewBox="0 0 49 50"
         fill="none"
       >
