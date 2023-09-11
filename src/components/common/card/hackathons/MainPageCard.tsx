@@ -15,6 +15,8 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+  const dday = getDDay(content.endDate);
+
   return (
     <StyledWrapper href="/hackathons/1" title={content.title}>
       <LayoutWrapper>
@@ -63,7 +65,9 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
               <ScrapCnt>{content.scrapCount}</ScrapCnt>
               <ScrabButton onClick={onClickScrabButton} width={35} />
             </Scrab>
-            <DDay>D - {getDDay(content.endDate)}</DDay>
+            {dday === 0 && <DDay>D - Day</DDay>}
+            {dday < 0 && <DDay>마감</DDay>}
+            {dday > 0 && <DDay>D - {dday}</DDay>}
           </RightWrapper>
         </DeskTopWrapper>
         {/** @Mobile */}
@@ -78,7 +82,9 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
                 <EndAt>~{new Date(content.endDate).toLocaleDateString()}</EndAt>
               </StartToEndDate>
             </HackathonDateBox>
-            <DDay>D - {getDDay(content.endDate)}</DDay>
+            {dday === 0 && <DDay>D - Day</DDay>}
+            {dday < 0 && <DDay>마감</DDay>}
+            {dday > 0 && <DDay>D - {dday}</DDay>}
           </RightWrapper>
         </MobileWrapper>
       </LayoutWrapper>
@@ -95,7 +101,8 @@ const getDDay = (endDate: string) => {
   const dday = Math.ceil(
     (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
   );
-  return dday === 0 ? "day" : dday;
+
+  return dday;
 };
 
 const StyledWrapper = styled(Link)`
@@ -229,6 +236,7 @@ const RightWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+  width: 100%;
   height: 100%;
 
   @media ${breakPoints.sm} {
@@ -286,7 +294,7 @@ const ScrapCnt = styled.span`
 
 /** @ResponsiveVisible */
 const DeskTopWrapper = styled.div`
-  margin-right: auto;
+  margin-left: auto;
 
   @media ${breakPoints.sm} {
     display: none;
