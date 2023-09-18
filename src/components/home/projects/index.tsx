@@ -1,6 +1,7 @@
 import ArrowSVG from "components/common/arrow";
 import Loading from "components/common/loading";
 import { Br, H2, P, Section, ShowMore } from "components/home/index.styles";
+import { useComponentMount } from "lib/hooks/useComponentMount";
 import { Suspense } from "react";
 import { palette } from "styles/palette";
 
@@ -8,6 +9,8 @@ import HottestProjects from "./Hottest";
 import LatestProjects from "./Latest";
 
 const Projects = () => {
+  const [mount] = useComponentMount();
+
   return (
     <Section>
       <div>
@@ -20,12 +23,16 @@ const Projects = () => {
           <ArrowSVG width={35} color={`${palette.fontGray300}`} />
         </ShowMore>
       </div>
-      <Suspense fallback={<Loading />}>
-        <LatestProjects />
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        <HottestProjects />
-      </Suspense>
+      {mount && (
+        <>
+          <Suspense fallback={<Loading />}>
+            <LatestProjects />
+          </Suspense>
+          <Suspense fallback={<Loading />}>
+            <HottestProjects />
+          </Suspense>
+        </>
+      )}
     </Section>
   );
 };

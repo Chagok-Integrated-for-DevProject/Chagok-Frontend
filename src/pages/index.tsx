@@ -23,7 +23,7 @@ export async function getServerSideProps() {
     getStudyList(0, 3, "hotCount", []),
   );
   await queryClient.prefetchQuery(["projects", 0, 3, "createdTime"], () =>
-    getStudyList(0, 3, "createdTime", []),
+    getProjectList(0, 3, "createdTime", []),
   );
   await queryClient.prefetchQuery(["studies", 0, 3, "createdTime"], () =>
     getStudyList(0, 3, "createdTime", []),
