@@ -22,8 +22,10 @@ export const useStudiesQuery = (
     queryKey = [...queryKey, ...skillIds];
   }
 
-  const { data } = useQuery(queryKey, () =>
-    getStudyList(pageNumber, pageSize, sort, skillIds, searchKeyword),
+  const { data } = useQuery(
+    queryKey,
+    () => getStudyList(pageNumber, pageSize, sort, skillIds, searchKeyword),
+    { retry: 1 },
   );
 
   return { data };
