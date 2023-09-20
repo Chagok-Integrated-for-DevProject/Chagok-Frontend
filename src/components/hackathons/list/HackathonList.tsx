@@ -19,9 +19,11 @@ const HackathonListSection: FC<IHackathonListSectionProps> = ({ filter }) => {
   const { sort, direction } = filter;
   const [pageNumber, setPageNumber] = useState<number>(1);
   const { data } = useContestsQuery(pageNumber - 1, 12, sort, direction);
+
+  const pageCnt = 6;
   const handleClickNextArrow = () => {
     setPageNumber(
-      getNumberNextBtnClicked(pageNumber, Number(data?.totalPages)),
+      getNumberNextBtnClicked(pageNumber, Number(data?.totalPages), pageCnt),
     );
   };
   const handleClickNextDblArrow = () => {
@@ -31,7 +33,7 @@ const HackathonListSection: FC<IHackathonListSectionProps> = ({ filter }) => {
     setPageNumber(targetPage);
   };
   const handleClickPrevArrow = () => {
-    setPageNumber(getNumberPrevBtnClicked(pageNumber));
+    setPageNumber(getNumberPrevBtnClicked(pageNumber, pageCnt));
   };
   const handleClickPrevDblArrow = () => {
     setPageNumber(1);
@@ -47,6 +49,7 @@ const HackathonListSection: FC<IHackathonListSectionProps> = ({ filter }) => {
       </ListBox>
       <PaginationBox>
         <PaginationButtons
+          pageCnt={6}
           handleClickNextArrow={handleClickNextArrow}
           handleClickNextDblArrow={handleClickNextDblArrow}
           handleClickPageNumber={handleClickPageNumber}
