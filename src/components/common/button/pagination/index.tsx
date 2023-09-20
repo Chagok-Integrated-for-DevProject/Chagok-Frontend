@@ -6,6 +6,7 @@ import { palette } from "styles/palette";
 
 import {
   Blank,
+  DesktopWrapper,
   NextArrowBtn,
   NextDblArrowBtn,
   PageNumberBtn,
@@ -17,6 +18,7 @@ import {
 interface IPaginationButtonsProps {
   totalPages: number;
   currentPage: number;
+  pageCnt: number;
   handleClickPageNumber: (targetPage: number) => void;
   handleClickPrevArrow: () => void;
   handleClickNextArrow: () => void;
@@ -27,6 +29,7 @@ interface IPaginationButtonsProps {
 const PaginationButtons: FC<IPaginationButtonsProps> = ({
   totalPages,
   currentPage,
+  pageCnt,
   handleClickPageNumber,
   handleClickNextArrow,
   handleClickPrevArrow,
@@ -35,30 +38,37 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 }) => {
   totalPages = totalPages === 0 ? 1 : totalPages;
 
-  const pageNumberList = createPageNumberRenderingList(currentPage, totalPages);
-  const activePrevArrow = currentPage > 6;
-  const activeNextArrow = currentPage < Math.floor(totalPages / 6) * 6 + 1;
+  const pageNumberList = createPageNumberRenderingList(
+    currentPage,
+    totalPages,
+    pageCnt,
+  );
+  const activePrevArrow = currentPage > pageCnt;
+  const activeNextArrow =
+    currentPage < Math.floor(totalPages / pageCnt) * pageCnt + 1;
 
   return (
     <PaginationWrapper>
-      {activePrevArrow ? (
-        <PrevDblArrowBtn
-          type="button"
-          onClick={handleClickPrevDblArrow}
-          data-testid="dbl-prev"
-        >
-          <DblArrowSVG />
-        </PrevDblArrowBtn>
-      ) : (
-        <Blank aria-hidden="true" />
-      )}
+      <DesktopWrapper>
+        {activePrevArrow ? (
+          <PrevDblArrowBtn
+            type="button"
+            onClick={handleClickPrevDblArrow}
+            data-testid="dbl-prev"
+          >
+            <DblArrowSVG />
+          </PrevDblArrowBtn>
+        ) : (
+          <Blank aria-hidden="true" />
+        )}
+      </DesktopWrapper>
       {activePrevArrow ? (
         <PrevArrowBtn
           type="button"
           onClick={handleClickPrevArrow}
           data-testid="prev"
         >
-          <ArrowSVG width={36} color={`${palette.fontGray100}`} />
+          <ArrowSVG width={30} color={`${palette.fontGray100}`} />
         </PrevArrowBtn>
       ) : (
         <Blank aria-hidden="true" />
@@ -80,22 +90,24 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
           onClick={handleClickNextArrow}
           data-testid="next"
         >
-          <ArrowSVG width={36} color={`${palette.fontGray100}`} />
+          <ArrowSVG width={30} color={`${palette.fontGray100}`} />
         </NextArrowBtn>
       ) : (
         <Blank aria-hidden="true" />
       )}
-      {activeNextArrow ? (
-        <NextDblArrowBtn
-          type="button"
-          onClick={handleClickNextDblArrow}
-          data-testid="dbl-next"
-        >
-          <DblArrowSVG />
-        </NextDblArrowBtn>
-      ) : (
-        <Blank aria-hidden="true" />
-      )}
+      <DesktopWrapper>
+        {activeNextArrow ? (
+          <NextDblArrowBtn
+            type="button"
+            onClick={handleClickNextDblArrow}
+            data-testid="dbl-next"
+          >
+            <DblArrowSVG />
+          </NextDblArrowBtn>
+        ) : (
+          <Blank aria-hidden="true" />
+        )}
+      </DesktopWrapper>
     </PaginationWrapper>
   );
 };

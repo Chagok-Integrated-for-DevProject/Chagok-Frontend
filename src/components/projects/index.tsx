@@ -1,11 +1,12 @@
 import Hr from "components/common/hr";
+import { useComponentMount } from "lib/hooks/useComponentMount";
 import { useDebounce } from "lib/hooks/useDebounce";
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import { useRouter } from "next/router";
 import { Suspense, useState } from "react";
 
-import { SearchForm } from "./index.styles";
-import { H2, SkillFilterAndSearchInputWrapper } from "./index.styles";
+import { FilterAndInputInnerWrapper, SearchForm } from "./index.styles";
+import { FilterAndInputWrapper, H2 } from "./index.styles";
 import Loading from "./Loading";
 import ProjectList from "./projectList";
 import PurposeFilter from "./purposeFilter";
@@ -19,6 +20,7 @@ const SearchProjects = () => {
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [keyword, handleKeyword] = useInputChangeEvent();
   const [debounceKeyword] = useDebounce(keyword, 500);
+  const [mount] = useComponentMount();
 
   const handlePurpose = (purpose: string) => {
     router.push({
@@ -43,20 +45,24 @@ const SearchProjects = () => {
   return (
     <SearchForm onSubmit={handleSubmit}>
       <PurposeFilter handlePurpose={handlePurpose} />
-      <SkillFilterAndSearchInputWrapper>
+      <FilterAndInputWrapper>
         <H2>나의 기술 스택</H2>
-        <SkillFilter
-          handleSelectedSkills={handleSelectedSkills}
-          selectedSkills={selectedSkills}
-        />
-        <SearchInput handleKeyword={handleKeyword} keyword={keyword} />
-      </SkillFilterAndSearchInputWrapper>
+        <FilterAndInputInnerWrapper>
+          <SkillFilter
+            handleSelectedSkills={handleSelectedSkills}
+            selectedSkills={selectedSkills}
+          />
+          <SearchInput handleKeyword={handleKeyword} keyword={keyword} />
+        </FilterAndInputInnerWrapper>
+      </FilterAndInputWrapper>
       <Hr />
       <Suspense fallback={<Loading />}>
-        <ProjectList
-          searchKeyword={debounceKeyword}
-          selectedSkills={selectedSkills}
-        />
+        {mount && (
+          <ProjectList
+            searchKeyword={debounceKeyword}
+            selectedSkills={selectedSkills}
+          />
+        )}
       </Suspense>
     </SearchForm>
   );

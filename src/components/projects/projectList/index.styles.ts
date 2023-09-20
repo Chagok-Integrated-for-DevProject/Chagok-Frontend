@@ -1,13 +1,21 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const ProjectListGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 23.4375rem);
-  // grid-template-rows: repeat(3, 25.9375rem);
+  grid-template-columns: repeat(3, calc(33% - 0.8rem));
   gap: 2.375rem;
 
   margin: 6.4375rem 0;
+
+  @media ${breakPoints.md} {
+    grid-template-columns: repeat(2, calc(50% - 0.8rem));
+  }
+
+  @media ${breakPoints.sm} {
+    grid-template-columns: repeat(1, 100%);
+  }
 `;
 
 export const GridItem = styled.div`

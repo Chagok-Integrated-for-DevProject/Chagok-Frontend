@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const PaginationWrapper = styled.div`
@@ -21,7 +22,7 @@ export const PageNumberBtn = styled("button", {
     isCurrentPage ? `${palette.bgMainOrange}` : "transparent"};
   color: ${({ isCurrentPage }) =>
     isCurrentPage ? `${palette.white}` : `${palette.black}`};
-  font-size: ${({ isCurrentPage }) => (isCurrentPage ? "700" : "400")};
+  font-weight: ${({ isCurrentPage }) => (isCurrentPage ? "700" : "400")};
 
   border-radius: 100%;
   border: 0;
@@ -30,6 +31,7 @@ export const PageNumberBtn = styled("button", {
 `;
 
 export const PrevArrowBtn = styled.button`
+  padding: 0;
   border: 0;
 
   svg {
@@ -38,6 +40,7 @@ export const PrevArrowBtn = styled.button`
 `;
 
 export const NextArrowBtn = styled.button`
+  padding: 0;
   border: 0;
   svg {
     transform: rotate(270deg);
@@ -55,6 +58,12 @@ export const NextDblArrowBtn = styled.button`
 `;
 
 export const Blank = styled.div`
-  width: 3rem;
+  width: 2rem;
   height: 2.5625rem;
+`;
+
+export const DesktopWrapper = styled.div`
+  @media ${breakPoints.sm} {
+    display: none;
+  }
 `;

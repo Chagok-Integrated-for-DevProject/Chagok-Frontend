@@ -3,6 +3,7 @@ import { palette } from "styles/palette";
 
 export const SkillWrapper = styled.div`
   flex-basis: calc(100% / 3);
+  min-width: 150px;
   margin-bottom: 1.4375rem;
 
   display: flex;

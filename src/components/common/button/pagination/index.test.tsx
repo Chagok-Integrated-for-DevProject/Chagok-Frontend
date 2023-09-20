@@ -24,6 +24,7 @@ describe("pagination button 기능 test", () => {
       <PaginationButtons
         totalPages={16}
         currentPage={1}
+        pageCnt={6}
         handleClickPageNumber={mockHandleClickPageNumber}
         handleClickNextArrow={mockHandleClickNextArrow}
         handleClickPrevArrow={mockHandleClickPrevArrow}
@@ -56,6 +57,7 @@ describe("pagination button 기능 test", () => {
       <PaginationButtons
         totalPages={16}
         currentPage={16}
+        pageCnt={6}
         handleClickPageNumber={mockHandleClickPageNumber}
         handleClickNextArrow={mockHandleClickNextArrow}
         handleClickPrevArrow={mockHandleClickPrevArrow}
@@ -76,6 +78,7 @@ describe("pagination button 기능 test", () => {
       <PaginationButtons
         totalPages={0}
         currentPage={1}
+        pageCnt={6}
         handleClickPageNumber={mockHandleClickPageNumber}
         handleClickNextArrow={mockHandleClickNextArrow}
         handleClickPrevArrow={mockHandleClickPrevArrow}
@@ -93,6 +96,7 @@ describe("pagination button 기능 test", () => {
       <PaginationButtons
         totalPages={10}
         currentPage={3}
+        pageCnt={6}
         handleClickPageNumber={mockHandleClickPageNumber}
         handleClickNextArrow={mockHandleClickNextArrow}
         handleClickPrevArrow={mockHandleClickPrevArrow}
@@ -112,6 +116,7 @@ describe("pagination button 기능 test", () => {
       <PaginationButtons
         totalPages={10}
         currentPage={3}
+        pageCnt={6}
         handleClickPageNumber={mockHandleClickPageNumber}
         handleClickNextArrow={mockHandleClickNextArrow}
         handleClickPrevArrow={mockHandleClickPrevArrow}
