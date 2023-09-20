@@ -17,7 +17,7 @@ export const Input = styled.input`
   max-height: 60px;
   background-color: transparent;
 
-  padding: 1.25rem 1.5625rem;
+  padding: 1.25rem;
   border: 0;
 
   font-size: 0.875rem;
@@ -26,6 +26,7 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   position: absolute;
+
   top: 1.2rem;
   left: 1.5rem;
 

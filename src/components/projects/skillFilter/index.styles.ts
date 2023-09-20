@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 type TIsOpen = {
@@ -9,22 +10,31 @@ export const SkillFilterWrapper = styled("div", {
   shouldForwardProp: (prop) => prop !== "isOpen",
 })<TIsOpen>`
   position: relative;
-  z-index: 1;
+  z-index: 2;
   flex-grow: 1;
+
   margin-left: auto;
 
   background-color: ${palette.bgGray300};
   border-radius: 0.625rem ${({ isOpen }) => isOpen && "0.625rem 0 0"};
+  ${({ isOpen }) => isOpen && "box-shadow: 1px 3px 3px 0px #0000003a"};
+
+  @media ${breakPoints.sm} {
+    width: 100%;
+  }
 `;
 
 export const SelectedSkillListWrapper = styled.div`
+  position: relative;
+  z-index: 3;
+
   display: flex;
   align-items: center;
 
   width: 100%;
 
   max-height: 60px;
-  padding: 1.25rem 1.75rem;
+  padding: 1.25rem;
   cursor: pointer;
 `;
 
@@ -91,9 +101,13 @@ export const SelectedSkillList = styled.div`
 `;
 
 export const Hr = styled.hr`
-  width: calc(100% - 5rem);
+  position: sticky;
+  top: 0;
+
+  width: 100%;
   height: 0.5px;
   background-color: ${palette.bdGray300};
+
   margin: 0 0 1.1875rem;
 `;
 
@@ -104,14 +118,37 @@ export const Arrow = styled("div", {
   margin-left: auto;
 `;
 
-export const SKillOptionsWrapper = styled.div`
+export const SKillOptionsOuterWrapper = styled.div`
   position: absolute;
+  background-color: ${palette.bgGray300};
+  box-shadow: 1px 3px 3px 0px #0000003a;
+
+  padding: 0 1.5625rem 1.1875rem;
+  border-radius: 0 0 0.625rem 0.625rem;
+
   width: 100%;
+`;
+
+export const SKillOptionsInnerWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 
-  background-color: ${palette.bgGray300};
-  padding-left: 1.5625rem;
+  max-height: 550px;
+  overflow-y: auto;
 
-  border-radius: 0 0 0.625rem 0.625rem;
+  ::-webkit-scrollbar {
+    width: 5px;
+    background-color: #bcbcbc;
+    border-radius: 1rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #606060;
+    border-radius: 1rem;
+  }
+
+  @media ${breakPoints.sm} {
+    max-height: 310px;
+  }
 `;

@@ -1,6 +1,5 @@
 import PaginationButtons from "components/common/button/pagination";
 import ProjectCard from "components/common/card/projects";
-import { useComponentMount } from "lib/hooks/useComponentMount";
 import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
 import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import {
@@ -21,7 +20,6 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const PAGE_SIZE = 12;
   const searchParams = useSearchParams();
 
-  const [mount] = useComponentMount();
   const [pageNumber, setPageNumber] = useState(1);
 
   const { data: projects } = useProjectsQuery(
@@ -42,21 +40,26 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const purpose = searchParams.get("purpose");
   const isProject = purpose === "project" && projects;
   const isStudies = purpose === "study" && studies;
+  const pageCnt = 6;
 
   const handleClickPageNumber = (targetPage: number) => {
     setPageNumber(targetPage);
   };
 
   const handleClickPrevArrow = () => {
-    setPageNumber(getNumberPrevBtnClicked(pageNumber));
+    setPageNumber(getNumberPrevBtnClicked(pageNumber, pageCnt));
   };
   const handleClickNextArrow = () => {
     if (isProject) {
-      setPageNumber(getNumberNextBtnClicked(pageNumber, projects.totalPages));
+      setPageNumber(
+        getNumberNextBtnClicked(pageNumber, projects.totalPages, pageCnt),
+      );
     }
 
     if (isStudies) {
-      setPageNumber(getNumberNextBtnClicked(pageNumber, studies.totalPages));
+      setPageNumber(
+        getNumberNextBtnClicked(pageNumber, studies.totalPages, pageCnt),
+      );
     }
   };
 
@@ -92,7 +95,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
 
   return (
     <>
-      {mount && isProject && (
+      {isProject && (
         <>
           {projects.content.length > 0 ? (
             <ProjectListGrid>
@@ -108,6 +111,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
 
           <PaginationButtons
             totalPages={projects.totalPages}
+            pageCnt={pageCnt}
             currentPage={pageNumber}
             handleClickPageNumber={handleClickPageNumber}
             handleClickPrevArrow={handleClickPrevArrow}
@@ -117,7 +121,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
           />
         </>
       )}
-      {mount && isStudies && (
+      {isStudies && (
         <>
           {studies.content.length > 0 ? (
             <ProjectListGrid>
@@ -133,6 +137,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
           <PaginationButtons
             totalPages={studies.totalPages}
             currentPage={pageNumber}
+            pageCnt={pageCnt}
             handleClickPageNumber={handleClickPageNumber}
             handleClickPrevArrow={handleClickPrevArrow}
             handleClickNextArrow={handleClickNextArrow}

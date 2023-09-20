@@ -14,7 +14,8 @@ import {
   Skill,
   SkillCnt,
   SkillFilterWrapper,
-  SKillOptionsWrapper,
+  SKillOptionsInnerWrapper,
+  SKillOptionsOuterWrapper,
   ThreeDots,
 } from "./index.styles";
 
@@ -83,10 +84,12 @@ const SkillFilter: FC<ISkillFilterProps> = ({
         </Arrow>
       </SelectedSkillListWrapper>
       {selectorOpen && (
-        <SKillOptionsWrapper data-testid="skillList">
+        <SKillOptionsOuterWrapper data-testid="skillList">
           <Hr />
-          <SkillButtons />
-        </SKillOptionsWrapper>
+          <SKillOptionsInnerWrapper>
+            <SkillButtons />
+          </SKillOptionsInnerWrapper>
+        </SKillOptionsOuterWrapper>
       )}
     </SkillFilterWrapper>
   );
