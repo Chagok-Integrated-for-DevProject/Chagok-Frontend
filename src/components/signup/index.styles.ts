@@ -31,4 +31,8 @@ export const Button = styled.button`
   border: 1px solid #000;
   background: #fff;
   padding: 0.5rem 3rem;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;

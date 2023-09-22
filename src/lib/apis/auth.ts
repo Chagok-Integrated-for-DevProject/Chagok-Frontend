@@ -1,22 +1,7 @@
 import axios from "axios";
+import type { TSignInResponse, TSignUpResponse } from "lib/types/auth";
 
 import { AxiosClient } from "./axiosClient";
-
-export const getChagokAccessToken = async (
-  accessToken: string,
-  socialType: "Google" | "Kakao",
-) => {
-  try {
-    const response = await AxiosClient.post("/auth/signIn", {
-      accessToken: accessToken,
-      socialType: socialType,
-    });
-
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const getKakaoJWT = async (authCode: string) => {
   const kakaoAuth = axios.create({
@@ -40,6 +25,40 @@ export const getKakaoJWT = async (authCode: string) => {
     });
 
     return (await response).data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postSignIn = async (
+  accessToken: string,
+  socialType: "Google" | "Kakao",
+): Promise<TSignInResponse> => {
+  try {
+    const response = await AxiosClient.post("/auth/signIn", {
+      accessToken,
+      socialType,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postSignUp = async (
+  accessToken: string,
+  nickName: string,
+  skills: string[],
+  socialType: "Google" | "Kakao",
+): Promise<TSignUpResponse> => {
+  try {
+    const response = await AxiosClient.post("/auth/signUp", {
+      accessToken,
+      nickName,
+      skills,
+      socialType,
+    });
+    return response.data;
   } catch (error) {
     throw error;
   }

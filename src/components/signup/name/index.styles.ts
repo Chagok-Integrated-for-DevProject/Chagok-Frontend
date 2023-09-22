@@ -57,6 +57,10 @@ export const DuplicationCheck = styled.button`
   transform: translateY(-50%);
   border: none;
   color: ${palette.fontBlue100};
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export const Notification = styled.p`

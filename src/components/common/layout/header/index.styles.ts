@@ -66,9 +66,14 @@ export const LogoutUI = styled.div`
   display: flex;
   margin-left: auto;
   gap: 2.0625rem;
+
+  @media ${breakPoints.sm} {
+    display: none;
+  }
 `;
 
 export const LogoutBtn = styled.button`
+  color: ${palette.white};
   border: 0;
 `;
 

@@ -1,11 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import { getChagokAccessToken, getKakaoJWT } from "lib/apis/auth";
+import { getKakaoJWT, postSignIn, postSignUp } from "lib/apis/auth";
 import type {
-  TChagokAccessTokenMutation,
   TKakaoAccessTokenResponse,
-  TUseChagokAccessTokenParams,
+  TSignInParams,
+  TSignInResponse,
+  TSignUpParams,
+  TSignUpResponse,
 } from "lib/types/auth";
+import { toast } from "react-toastify";
 
 type TUseKakaoAccessTokenParams = {
   onSuccess?: (data?: TKakaoAccessTokenResponse) => void;
@@ -22,7 +25,7 @@ export const useKakaoAccessToken = ({
       onSuccess && onSuccess(data);
     },
     onError: (error) => {
-      console.log((error as AxiosError).message);
+      toast.error((error as AxiosError).message);
       onFailed && onFailed();
     },
   });
@@ -30,19 +33,51 @@ export const useKakaoAccessToken = ({
   return { mutate, error };
 };
 
-export const useChagokAccessToken = ({
+type TUseChagokSignInParams = {
+  onSuccess?: (data?: TSignInResponse) => void;
+  onFailed?: () => void;
+};
+
+export const useChagokSignIn = ({
   onSuccess,
   onFailed,
-}: TUseChagokAccessTokenParams) => {
+}: TUseChagokSignInParams) => {
   const { mutate, error } = useMutation({
-    mutationFn: ({ accessToken, socialType }: TChagokAccessTokenMutation) =>
-      getChagokAccessToken(accessToken, socialType),
+    mutationFn: ({ accessToken, socialType }: TSignInParams) =>
+      postSignIn(accessToken, socialType),
     onSuccess: (data) => {
       onSuccess && onSuccess(data);
     },
     onError: (error) => {
-      console.log((error as AxiosError).message);
-      onFailed && onFailed(error as AxiosError);
+      toast.error((error as AxiosError).message);
+      onFailed && onFailed();
+    },
+  });
+  return { mutate, error };
+};
+
+type TUseChagokSignUpParams = {
+  onSuccess?: (data?: TSignUpResponse) => void;
+  onFailed?: () => void;
+};
+
+export const useChagokSignUp = ({
+  onSuccess,
+  onFailed,
+}: TUseChagokSignUpParams) => {
+  const { mutate, error } = useMutation({
+    mutationFn: ({
+      accessToken,
+      nickName,
+      skills,
+      socialType,
+    }: TSignUpParams) => postSignUp(accessToken, nickName, skills, socialType),
+    onSuccess: (data) => {
+      onSuccess && onSuccess(data);
+    },
+    onError: (error) => {
+      toast.error((error as AxiosError).message);
+      onFailed && onFailed();
     },
   });
 

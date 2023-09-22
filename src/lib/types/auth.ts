@@ -1,5 +1,3 @@
-import type { AxiosError } from "axios";
-
 export type TKakaoAccessTokenResponse = {
   access_token: string;
   expires_in: string;
@@ -9,17 +7,26 @@ export type TKakaoAccessTokenResponse = {
   token_type: string;
 };
 
-export type TChagokAccessTokenResponse = {
-  isSignUp: boolean;
-  jwtToken: null | string;
+export type TSignInParams = {
+  socialType: "Google" | "Kakao";
+  accessToken: string;
 };
 
-export type TChagokAccessTokenMutation = {
+export type TSignInResponse = {
+  isSignUp: boolean;
+  jwtToken?: string | null;
+  signUp: boolean;
+};
+
+export type TSignUpParams = {
   accessToken: string;
+  nickName: string;
+  skills: string[];
   socialType: "Google" | "Kakao";
 };
 
-export type TUseChagokAccessTokenParams = {
-  onSuccess?: (data?: TChagokAccessTokenResponse) => void;
-  onFailed?: (error?: AxiosError) => void;
+export type TSignUpResponse = {
+  isSignUp: boolean;
+  jwtToken: string;
+  signUp: boolean;
 };

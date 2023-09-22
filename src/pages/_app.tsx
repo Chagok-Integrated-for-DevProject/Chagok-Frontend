@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import "react-toastify/dist/ReactToastify.css";
+
 import { Global } from "@emotion/react";
 import {
   Hydrate,
@@ -11,6 +13,7 @@ import Layout from "components/common/layout";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { resetStyles } from "styles/resetStyles";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
@@ -56,6 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </ErrorBoundary>
       </Hydrate>
+      <ToastContainer />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
