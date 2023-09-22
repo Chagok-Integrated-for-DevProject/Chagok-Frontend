@@ -1,17 +1,14 @@
 import { SKILLS } from "lib/constants/skills";
 import Image from "next/image";
-import type { ChangeEvent } from "react";
 
 import { Option, OptionWrapper, SelectBox } from "./index.styles";
 
 interface SkillContainerProps {
   isEditMode: boolean;
+  handleSkills: (skill: string) => void;
 }
 
-const SkillContainer = ({ isEditMode }: SkillContainerProps) => {
-  const onClickSkill = (e: ChangeEvent<HTMLInputElement>) => {
-    process.env.NODE_ENV === "development" && console.log(e.target.id);
-  };
+const SkillContainer = ({ isEditMode, handleSkills }: SkillContainerProps) => {
   return (
     <SelectBox isEdit={isEditMode}>
       {SKILLS.map((el) => (
@@ -21,7 +18,7 @@ const SkillContainer = ({ isEditMode }: SkillContainerProps) => {
             id={el.id}
             disabled={!isEditMode}
             type="checkbox"
-            onChange={onClickSkill}
+            onChange={() => handleSkills(el.id)}
           />
         </OptionWrapper>
       ))}

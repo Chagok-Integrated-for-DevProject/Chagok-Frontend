@@ -1,11 +1,12 @@
 import Modal from "components/common/modal";
 import {
-  useChagokAccessToken,
+  useChagokSignIn,
+  useChagokSignUp,
   useKakaoAccessToken,
 } from "lib/hooks/useAccessToken";
 import type {
-  TChagokAccessTokenResponse,
   TKakaoAccessTokenResponse,
+  TSignInResponse,
 } from "lib/types/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FC } from "react";
@@ -24,17 +25,6 @@ interface ISignupProps {
   closeModal: () => void;
 }
 
-/**
- * @DONE
- * 1. 구글, 카카오 회원인지 확인
- * 2. 구글, 카카오 회원이면 로그인
- *
- * @TODO
- * 회원이 아닌 경우
- * 1. 닉네임 입력
- * 2. 기술스택 추가
- * 3. 회원가입 요청
- */
 const SignupModal: FC<ISignupProps> = ({
   isModalOpen,
   openModal,
@@ -42,57 +32,89 @@ const SignupModal: FC<ISignupProps> = ({
 }) => {
   const [step, setStep] = useState<TStep>("가입방식");
   const [clearParams, setClearParams] = useState(false);
-  // INFO: oAuthToken => 회원가입 시에 사용
-  const [, setOAuthToken] = useState<{
+  const [nickname, setNickName] = useState("");
+  const [skills, setSkills] = useState<string[]>([]);
+
+  const [oauthToken, setOAuthToken] = useState<{
     platform: "Google" | "Kakao";
     jwt: string;
   }>();
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const closeModalClearingParams = () => {
     setClearParams(true);
     setStep("가입방식");
+    setOAuthToken(undefined);
+    setNickName("");
+    setSkills([]);
     closeModal();
   };
 
-  const handleChagokMutateSuccess = (data?: TChagokAccessTokenResponse) => {
-    if (data?.isSignUp && data?.jwtToken) {
-      window.localStorage.setItem("jwt", data.jwtToken);
-      closeModalClearingParams();
-    }
+  const { mutate: signInMutate } = useChagokSignIn({
+    onSuccess: (data?: TSignInResponse) => {
+      if (data?.isSignUp && data?.jwtToken) {
+        window.localStorage.setItem("jwt", data.jwtToken);
+        closeModalClearingParams();
+      }
 
-    if (data?.isSignUp === false) {
-      setStep("이름설정");
+      if (data?.isSignUp === false) {
+        setStep("이름설정");
+      }
+    },
+    onFailed: () => {},
+  });
+
+  const { mutate: signUpMutate } = useChagokSignUp({
+    onSuccess: () => {
+      setStep("가입완료");
+    },
+    onFailed: () => {},
+  });
+
+  const signUp = () => {
+    if (oauthToken) {
+      signUpMutate({
+        accessToken: oauthToken?.jwt,
+        nickName: nickname,
+        skills,
+        socialType: oauthToken?.platform,
+      });
     }
   };
-
-  const { mutate: chagokMutateWithKakao } = useChagokAccessToken({
-    onSuccess: (data?: TChagokAccessTokenResponse) =>
-      handleChagokMutateSuccess(data),
-  });
-
-  const { mutate: chagokMutateWithGoogle } = useChagokAccessToken({
-    onSuccess: (data?: TChagokAccessTokenResponse) => {
-      handleChagokMutateSuccess(data);
-    },
-  });
 
   const { mutate: kakaoMutate } = useKakaoAccessToken({
     onSuccess: (data?: TKakaoAccessTokenResponse) => {
       openModal();
       if (data) {
         setOAuthToken({ platform: "Kakao", jwt: data.access_token });
-        chagokMutateWithKakao({
-          accessToken: data.access_token,
-          socialType: "Kakao",
-        });
+        signInMutate({ accessToken: data.access_token, socialType: "Kakao" });
       }
     },
   });
 
+  const handleNickName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickName(e.target.value);
+  };
+
+  const emptyNickName = () => {
+    setNickName("");
+  };
+
+  const handleSkills = (skill: string) => {
+    if (skills.includes(skill)) {
+      setSkills(skills.filter((e) => e !== skill));
+    } else {
+      setSkills([...skills, skill]);
+    }
+  };
+  const emptySkills = () => {
+    setSkills([]);
+  };
+
   useEffect(() => {
     if (clearParams) {
-      router.replace("/");
+      router.replace(`${window.location.pathname}`);
       setClearParams(false);
     }
   }, [clearParams, router]);
@@ -109,17 +131,29 @@ const SignupModal: FC<ISignupProps> = ({
       <div>
         <Step is={step === "가입방식"}>
           <Social
-            chagokMutateWithGoogle={chagokMutateWithGoogle}
+            signInMutate={signInMutate}
             saveGoogleToken={(token: string) => {
               setOAuthToken({ platform: "Google", jwt: token });
             }}
           />
         </Step>
         <Step is={step === "이름설정"}>
-          <Name onNext={() => setStep("기술설정")} />
+          <Name
+            onNext={() => {
+              nickname.length > 0 && setStep("기술설정");
+            }}
+            nickName={nickname}
+            handleNickName={handleNickName}
+            emptyNickName={emptyNickName}
+          />
         </Step>
         <Step is={step === "기술설정"}>
-          <Skill onNext={() => setStep("가입완료")} />
+          <Skill
+            onNext={signUp}
+            nickName={nickname}
+            handleSkills={handleSkills}
+            emptySkills={emptySkills}
+          />
         </Step>
         <Step is={step === "가입완료"}>
           <Done onNext={closeModalClearingParams} />

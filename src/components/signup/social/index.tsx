@@ -2,10 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import type { UseMutateFunction } from "@tanstack/react-query";
 import LogoSVG from "components/common/logo";
 import { H1 } from "components/signup/index.styles";
-import type {
-  TChagokAccessTokenMutation,
-  TChagokAccessTokenResponse,
-} from "lib/types/auth";
+import type { TSignInParams, TSignInResponse } from "lib/types/auth";
 import Image from "next/image";
 import { type FC } from "react";
 import { palette } from "styles/palette";
@@ -13,28 +10,22 @@ import { palette } from "styles/palette";
 import * as S from "./index.styles";
 
 interface ISocialProps {
-  chagokMutateWithGoogle: UseMutateFunction<
-    TChagokAccessTokenResponse,
+  signInMutate: UseMutateFunction<
+    TSignInResponse,
     unknown,
-    TChagokAccessTokenMutation,
+    TSignInParams,
     unknown
   >;
   saveGoogleToken: (token: string) => void;
 }
 
-const Social: FC<ISocialProps> = ({
-  chagokMutateWithGoogle,
-  saveGoogleToken,
-}) => {
+const Social: FC<ISocialProps> = ({ signInMutate, saveGoogleToken }) => {
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       if (tokenResponse) {
         const { access_token } = tokenResponse;
         saveGoogleToken(access_token);
-        chagokMutateWithGoogle({
-          accessToken: access_token,
-          socialType: "Google",
-        });
+        signInMutate({ accessToken: access_token, socialType: "Google" });
       }
     },
   });
