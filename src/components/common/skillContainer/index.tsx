@@ -6,9 +6,14 @@ import { Option, OptionWrapper, SelectBox } from "./index.styles";
 interface SkillContainerProps {
   isEditMode: boolean;
   handleSkills: (skill: string) => void;
+  defaultCheckedSkills?: string[];
 }
 
-const SkillContainer = ({ isEditMode, handleSkills }: SkillContainerProps) => {
+const SkillContainer = ({
+  isEditMode,
+  handleSkills,
+  defaultCheckedSkills,
+}: SkillContainerProps) => {
   return (
     <SelectBox isEdit={isEditMode}>
       {SKILLS.map((el) => (
@@ -16,6 +21,11 @@ const SkillContainer = ({ isEditMode, handleSkills }: SkillContainerProps) => {
           <Image width={24} height={24} src={el.img} alt={el.skill} />
           <Option
             id={el.id}
+            checked={
+              defaultCheckedSkills
+                ? defaultCheckedSkills.includes(el.id)
+                : false
+            }
             disabled={!isEditMode}
             type="checkbox"
             onChange={() => handleSkills(el.id)}

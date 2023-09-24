@@ -10,7 +10,7 @@ export const ProfileWrapper = styled.section`
   }
 `;
 
-export const ImageController = styled.div`
+export const ImageController = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;

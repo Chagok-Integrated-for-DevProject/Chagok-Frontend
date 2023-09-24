@@ -1,20 +1,20 @@
-import Hr from "components/common/hr";
+import Loading from "components/common/loading";
+import { useComponentMount } from "lib/hooks/useComponentMount";
+import React from "react";
 
 import { Wrapper } from "./index.styles";
-import Profile from "./profile";
-import Scrab from "./scrab";
-import Skills from "./skills";
+import UserInfo from "./UserInfo";
 
-const UserInfo = () => {
+const UserInfoContainer = () => {
+  const [mount] = useComponentMount();
+
   return (
     <Wrapper>
-      <Profile />
-      <Hr />
-      <Skills />
-      <Hr />
-      <Scrab />
+      <React.Suspense fallback={<Loading />}>
+        {mount && <UserInfo />}
+      </React.Suspense>
     </Wrapper>
   );
 };
 
-export default UserInfo;
+export default UserInfoContainer;
