@@ -35,7 +35,7 @@ jobs:
           NEXT_PUBLIC_KAKAO_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_KAKAO_CLIENT_ID }}
           NEXT_PUBLIC_KAKAO_REST_API_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_REST_API_KEY }}
           NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-
+          NEXT_PUBLIC_IMAGE_BASE_URL: ${{secrets.NEXT_PUBLIC_IMAGE_BASE_URL}}
       - name: Make zip file
         run: zip -qq -r ./chagok.zip . -x "node_modules/*"
       #  -x "node_modules/*"

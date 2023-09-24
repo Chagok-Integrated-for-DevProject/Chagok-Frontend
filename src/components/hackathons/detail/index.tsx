@@ -9,6 +9,7 @@ import Summary from "./summary";
 
 const HackathonDetail = () => {
   const router = useRouter();
+
   const contestId = Number(router.query.id);
   const { data: contestData } = useContestQuery(contestId);
   const { data: commentData } = useCommentsQuery(contestId);

@@ -1,13 +1,25 @@
 import SkillContainer from "components/common/skillContainer";
 import { Button, H2 } from "components/userInfo/index.styles";
+import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useUpdateSkillsMutation } from "lib/hooks/useMyInfoMutation";
 import { useState } from "react";
 import { palette } from "styles/palette";
 
 import * as S from "./index.styles";
 
-const Skills = () => {
+interface ISkillsProp {
+  skills: string[];
+}
+
+const Skills = ({ skills: skillsData }: ISkillsProp) => {
+  const jwtToken = useJwtToken();
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skills, setSkills] = useState<string[]>(skillsData ?? []);
+
+  const { mutate: updateSkills } = useUpdateSkillsMutation(() => {
+    setIsEdit(false);
+  });
+
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
   };
@@ -19,13 +31,24 @@ const Skills = () => {
       setSkills([...skills, skill]);
     }
   };
+  console.log(skills);
+  const onUpdateSkills = () => {
+    updateSkills({ skills, jwtToken });
+  };
 
   return (
     <S.SkillsWrapper>
       <H2>나의 관심 스택</H2>
-      <SkillContainer isEditMode={isEdit} handleSkills={handleSkills} />
+      <SkillContainer
+        defaultCheckedSkills={skills}
+        isEditMode={isEdit}
+        handleSkills={handleSkills}
+      />
       <S.SkillController>
-        <Button backgroundColor={palette.black} onClick={onClickEdit}>
+        <Button
+          backgroundColor={palette.black}
+          onClick={isEdit ? onUpdateSkills : onClickEdit}
+        >
           수정하기
         </Button>
         {isEdit && (
