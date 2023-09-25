@@ -99,8 +99,8 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
         <>
           {projects.content.length > 0 ? (
             <ProjectListGrid>
-              {projects.content.map((e) => (
-                <GridItem key={e.id} data-testid="projectData">
+              {projects.content.map((e, i) => (
+                <GridItem key={`${e.id}${i}`} data-testid="projectData">
                   <ProjectCard contents={e} />
                 </GridItem>
               ))}
@@ -108,7 +108,6 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
           ) : (
             <NoResultH1>검색 결과가 없습니다</NoResultH1>
           )}
-
           <PaginationButtons
             totalPages={projects.totalPages}
             pageCnt={pageCnt}
@@ -125,8 +124,8 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
         <>
           {studies.content.length > 0 ? (
             <ProjectListGrid>
-              {studies.content.map((e) => (
-                <GridItem key={e.id} data-testid="studyData">
+              {studies.content.map((e, i) => (
+                <GridItem key={`${e.id}${i}`} data-testid="studyData">
                   <ProjectCard contents={e} />
                 </GridItem>
               ))}

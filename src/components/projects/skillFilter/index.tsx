@@ -73,7 +73,7 @@ const SkillFilter: FC<ISkillFilterProps> = ({
             <Placeholder>원하는 태그를 선택해보세요.</Placeholder>
           )}
         </SelectedSkillList>
-        {selectedSkills.length > 2 && (
+        {selectedSkills.length > 0 && (
           <>
             <ThreeDots>...</ThreeDots>
             <SkillCnt>{selectedSkills.length}</SkillCnt>
