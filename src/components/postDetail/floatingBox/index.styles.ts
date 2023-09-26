@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
@@ -59,4 +60,12 @@ export const Ul = styled.ul`
       font-size: 0.875rem;
     }
   }
+`;
+
+export const RecommendLink = styled(Link)`
+  display: block;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

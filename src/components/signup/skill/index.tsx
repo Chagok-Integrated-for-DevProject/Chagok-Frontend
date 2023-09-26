@@ -7,6 +7,7 @@ import * as S from "./index.styles";
 interface ISkillProps {
   onNext: () => void;
   nickName: string;
+  skills: string[];
   handleSkills: (skill: string) => void;
   emptySkills: () => void;
 }
@@ -14,6 +15,7 @@ interface ISkillProps {
 const Skill: FC<ISkillProps> = ({
   onNext,
   nickName,
+  skills,
   handleSkills,
   emptySkills,
 }) => {
@@ -21,7 +23,11 @@ const Skill: FC<ISkillProps> = ({
     <S.SkillWrapper>
       <H1>{nickName}님의 관심 기술을 알려주세요!</H1>
       <S.P>언제든 기술 스택을 변경할 수 있어요.</S.P>
-      <SkillContainer isEditMode={true} handleSkills={handleSkills} />
+      <SkillContainer
+        isEditMode={true}
+        handleSkills={handleSkills}
+        defaultCheckedSkills={skills}
+      />
       <Footer>
         <Button onClick={emptySkills}>초기화</Button>
         <Button onClick={onNext}>설정완료</Button>

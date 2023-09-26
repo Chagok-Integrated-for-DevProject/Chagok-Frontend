@@ -119,6 +119,12 @@
 - 비동기 api 에러 처리: queryClient의 onError props에 toast연결.
 - 서버사이드 에러: 500, 404 커스텀
 
+### :passport_control: 인증/인가 방식
+
+- 카카오, 구글 소셜 로그인
+- refresh token은 httpOnly쿠키에 저장 (CSRF, XSS에 대응)
+- access token은 만료 시간을 짧게 하여 localStorage에 저장
+
 <br><br>
 
 ## :building_construction: 폴더 구조
@@ -127,22 +133,98 @@
 src
 ├─components
 │  ├─common
-│  │  └─layout
-│  │      ├─body
-│  │      ├─footer
-│  │      └─header
-│  ├─contest
-│  ├─project
+│  │  ├─arrow
+│  │  ├─button
+│  │  │  ├─pagination
+│  │  │  ├─scrab
+│  │  │  └─topScroll
+│  │  ├─card
+│  │  │  ├─hackathons
+│  │  │  ├─mainBanner
+│  │  │  └─projects
+│  │  ├─dblArrow
+│  │  ├─error
+│  │  ├─hr
+│  │  ├─layout
+│  │  │  ├─body
+│  │  │  ├─footer
+│  │  │  └─header
+│  │  ├─link
+│  │  ├─loading
+│  │  ├─logo
+│  │  ├─mainBanner
+│  │  ├─modal
+│  │  └─skillContainer
+│  ├─hackathons
+│  │  ├─detail
+│  │  │  ├─comment
+│  │  │  │  ├─item
+│  │  │  │  └─register
+│  │  │  ├─original
+│  │  │  │  └─test
+│  │  │  └─summary
+│  │  ├─list
+│  │  └─recommendation
+│  ├─home
+│  │  ├─hackathons
+│  │  ├─projects
+│  │  │  └─utils
+│  │  └─recommendation
+│  ├─postDetail
+│  │  ├─body
+│  │  ├─floatingBox
+│  │  └─header
+│  ├─projects
+│  │  ├─Loading
+│  │  ├─projectList
+│  │  ├─purposeFilter
+│  │  ├─searchInput
+│  │  ├─skillButton
+│  │  └─skillFilter
+│  ├─signup
+│  │  ├─done
+│  │  ├─name
+│  │  ├─skill
+│  │  └─social
 │  └─userInfo
+│      ├─profile
+│      ├─scrab
+│      └─skills
 ├─lib
 │  ├─apis
 │  ├─constants
 │  ├─hooks
+│  │  ├─useAccessToken
+│  │  ├─useCheckNickNameMutation
+│  │  ├─useCommentMutation
+│  │  ├─useCommentsQuery
+│  │  ├─useComponentMount
+│  │  ├─useContestQuery
+│  │  ├─useContestsQuery
+│  │  ├─useDebounce
+│  │  ├─useGetMyInfoQuery
+│  │  ├─useInputHooks
+│  │  ├─useJwtToken
+│  │  ├─useModal
+│  │  ├─useMyInfoMutation
+│  │  ├─useProjectDetailQuery
+│  │  ├─useProjectsQuery
+│  │  ├─useStudiesQuery
+│  │  └─useStudyDetailQuery
+│  ├─mocks
+│  │  └─data
+│  ├─test-utils
 │  ├─types
 │  └─utils
+│      ├─caculateDDay
+│      ├─converToSkillId
+│      ├─converToSkillIdParams
+│      ├─convertToSkillSVG
+│      ├─pagination
+│      └─removeCRLF
 ├─pages
 │  ├─api
-│  ├─contests
+│  ├─hackathons
 │  │  └─[id]
 │  ├─projects
 │  │  └─[id]

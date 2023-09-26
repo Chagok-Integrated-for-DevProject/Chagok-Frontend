@@ -1,14 +1,30 @@
 import { render, screen } from "@testing-library/react";
 import UserEvent from "@testing-library/user-event";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import { postDetail } from "lib/mocks/data/postDetail";
+import { render as customRender } from "lib/test-utils";
 import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
 import Header from ".";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
+}));
+
+jest.mock("lib/hooks/useJwtToken", () => ({
+  useJwtToken: jest.fn().mockImplementation(() => ({
+    token: "",
+    logout: jest.fn(),
+  })),
+}));
+
+jest.mock("react-toastify", () => ({
+  toast: {
+    warn: jest.fn(),
+  },
 }));
 
 afterAll(() => {
@@ -71,13 +87,36 @@ describe("Header 기능 테스트", () => {
     jest.restoreAllMocks();
   });
 
-  it("추천 버튼을 누르면 텍스트가 Close로 변경된다.", async () => {
+  it("로그인 되어 있지 않고 추천 버튼을 누르면 toast.warn이 호출된다.", async () => {
+    (useJwtToken as jest.Mock).mockImplementation(() => ({
+      token: "",
+      logout: () => {},
+    }));
+
     const user = UserEvent.setup();
     render(<Header data={postDetail} />);
     const recommendBtn = screen.getByTestId(/recommend/i);
     await user.click(recommendBtn);
 
-    const text = screen.getByText("Close");
+    const text = screen.getByText(/추천/);
     expect(text).toBeInTheDocument();
+    expect(toast.warn).toHaveBeenCalled();
+  });
+
+  it("로그인 되어 있고, 추천 버튼을 누르면 추천프로젝트가 Close로 바뀐다. 한번 더 누르면 원상복구", async () => {
+    (useJwtToken as jest.Mock).mockImplementation(() => ({
+      token: "aaaa",
+      logout: () => {},
+    }));
+
+    const user = UserEvent.setup();
+    customRender(<Header data={postDetail} />);
+    const recommendBtn = screen.getByTestId(/recommend/i);
+    await user.click(recommendBtn);
+
+    const text = screen.getByText(/Close/);
+    expect(text).toBeInTheDocument();
+
+    await user.click(recommendBtn);
   });
 });

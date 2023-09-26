@@ -12,7 +12,7 @@ interface ISkillsProp {
 }
 
 const Skills = ({ skills: skillsData }: ISkillsProp) => {
-  const jwtToken = useJwtToken();
+  const { token: jwtToken } = useJwtToken();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [skills, setSkills] = useState<string[]>(skillsData ?? []);
 

@@ -65,8 +65,8 @@ describe("SkillFilter 기능 테스트", () => {
 
     expect(handleSelectedSkills).toHaveBeenCalledTimes(4);
   });
-  it("selectedSkills의 길이가 2이면 말줄임표와 선택된 스킬 갯수가 렌더링 되지 않는다.", () => {
-    selectedSkills = ["react", "node"];
+  it("selectedSkills의 길이가 0이면 말줄임표와 선택된 스킬 갯수가 렌더링 되지 않는다.", () => {
+    selectedSkills = [];
 
     render(
       <SkillFilter
@@ -78,13 +78,12 @@ describe("SkillFilter 기능 테스트", () => {
     const threedots = screen.queryByText("...");
     expect(threedots).not.toBeInTheDocument();
 
-    expect(selectedSkills.length).toBe(2);
-    const skillCnt = screen.queryByText("2");
+    expect(selectedSkills.length).toBe(0);
+    const skillCnt = screen.queryByText("0");
     expect(skillCnt).not.toBeInTheDocument();
   });
   it("selectedSkills의 길이가 3이면 말줄임표와 선택된 스킬 갯수 3이 렌더링 된다.", () => {
-    selectedSkills.push("jest");
-
+    selectedSkills = ["node", "react", "jest"];
     render(
       <SkillFilter
         handleSelectedSkills={handleSelectedSkills}

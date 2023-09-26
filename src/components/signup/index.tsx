@@ -4,6 +4,7 @@ import {
   useChagokSignUp,
   useKakaoAccessToken,
 } from "lib/hooks/useAccessToken";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import type {
   TKakaoAccessTokenResponse,
   TSignInResponse,
@@ -40,6 +41,8 @@ const SignupModal: FC<ISignupProps> = ({
     jwt: string;
   }>();
 
+  const { token: accessToken } = useJwtToken();
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const closeModalClearingParams = () => {
@@ -56,6 +59,7 @@ const SignupModal: FC<ISignupProps> = ({
       if (data?.isSignUp && data?.jwtToken) {
         window.localStorage.setItem("jwt", data.jwtToken);
         closeModalClearingParams();
+        router.push("/");
       }
 
       if (data?.isSignUp === false) {
@@ -121,10 +125,11 @@ const SignupModal: FC<ISignupProps> = ({
 
   useEffect(() => {
     const authCode = searchParams.get("code");
-    if (authCode) {
+
+    if (authCode && accessToken === "" && !window.localStorage.getItem("jwt")) {
       kakaoMutate(authCode);
     }
-  }, [searchParams, kakaoMutate]);
+  }, [searchParams, kakaoMutate, accessToken]);
 
   return (
     <Modal isOpen={isModalOpen} onCloseModal={closeModalClearingParams}>
@@ -153,6 +158,7 @@ const SignupModal: FC<ISignupProps> = ({
             nickName={nickname}
             handleSkills={handleSkills}
             emptySkills={emptySkills}
+            skills={skills}
           />
         </Step>
         <Step is={step === "가입완료"}>

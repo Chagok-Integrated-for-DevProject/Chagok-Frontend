@@ -1,8 +1,16 @@
 import styled from "@emotion/styled";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import Link from "next/link";
+import type { FC } from "react";
 import { palette } from "styles/palette";
 
-const MobileNav = () => {
+interface IMobileNavProps {
+  openModal: () => void;
+}
+
+const MobileNav: FC<IMobileNavProps> = ({ openModal }) => {
+  const { token: accessToken, logout } = useJwtToken();
+
   return (
     <Wrapper>
       <ul>
@@ -15,7 +23,18 @@ const MobileNav = () => {
         <Li>
           <NavLink href="/projects?purpose=project">스터디 / 프로젝트</NavLink>
         </Li>
-        <Li>로그인</Li>
+        <Li>
+          {accessToken === "" && (
+            <LoginBtn type="button" onClick={openModal}>
+              로그인
+            </LoginBtn>
+          )}
+          {accessToken !== "" && (
+            <LoginBtn type="button" onClick={logout}>
+              로그아웃
+            </LoginBtn>
+          )}
+        </Li>
       </ul>
     </Wrapper>
   );
@@ -52,4 +71,13 @@ const Li = styled.li`
 
 const NavLink = styled(Link)`
   color: inherit;
+`;
+
+const LoginBtn = styled.button`
+  width: 100%;
+  height: 100%;
+
+  font-size: 1rem;
+  line-height: 50px;
+  border: 0;
 `;

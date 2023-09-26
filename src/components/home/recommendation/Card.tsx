@@ -1,19 +1,21 @@
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import type { FC } from "react";
 
 import { CardStyles } from "./Card.styles";
 
-const RecommendationCard = () => {
-  const searchParams = useSearchParams();
-  const purpose = searchParams.get("purpose") || "study";
+interface IRecommendationCardProps {
+  title: string;
+  id: string;
+}
 
+const RecommendationCard: FC<IRecommendationCardProps> = ({ title, id }) => {
   return (
-    <Link href={`/projects/1?purpose=${purpose}`} css={CardStyles}>
+    <Link href={`/projects/${id}?purpose=project`} css={CardStyles}>
       <div className="classificationWrapper">
-        <span className="classificationTag">Hola</span>
+        {/**보류: <span className="classificationTag">Hola</span>*/}
         <span className="classificationTag">사이드 프로젝트</span>
       </div>
-      <h2 className="title">사이드 프로젝트 돛단배에서 팀원을 구합니다.</h2>
+      <h2 className="title">{title}</h2>
       <button type="button" className="detailBtn">
         자세히 보기
       </button>

@@ -1,18 +1,9 @@
-import { useRouter } from "next/router";
-
 import fisrtBanner from "/public/banner/banner.png";
 import blur from "/public/banner/blur/banner.png";
 
-import { LoginBtn } from "./First.styles";
 import { CardWrapper, CustomImg, Em, H2, TextWrapper } from "./index.styles";
 
 export const FirstCard = () => {
-  const router = useRouter();
-
-  const handleLoginBtn = () => {
-    router.push("/userInfo");
-  };
-
   return (
     <CardWrapper className="cardwrapper">
       <TextWrapper className="textwrapper">
@@ -23,9 +14,9 @@ export const FirstCard = () => {
           <br />
           추천 받아 보세요!
         </H2>
-        <LoginBtn type="button" onClick={handleLoginBtn}>
+        {/**보류: <LoginBtn type="button" onClick={handleLoginBtn}>
           로그인 하기
-        </LoginBtn>
+        </LoginBtn>*/}
       </TextWrapper>
       <CustomImg
         src={fisrtBanner}

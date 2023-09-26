@@ -1,8 +1,8 @@
 import SignupModal from "components/signup";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import useModal from "lib/hooks/useModal";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import logo from "/public/logo.svg";
 import dot from "/public/utils/dot.svg";
@@ -20,19 +20,8 @@ import NavLink from "./NavLink";
 
 const Header = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
-  const [accessToken, setAccessToken] = useState("");
 
-  const logout = () => {
-    window.localStorage.removeItem("jwt");
-    setAccessToken("");
-  };
-
-  useEffect(() => {
-    const jwt = window.localStorage.getItem("jwt");
-    if (!isModalOpen && accessToken === "" && jwt) {
-      setAccessToken(jwt);
-    }
-  }, [accessToken, isModalOpen]);
+  const { token: accessToken, logout } = useJwtToken();
 
   return (
     <>
@@ -70,7 +59,7 @@ const Header = () => {
               <LogoutBtn onClick={logout}>로그아웃</LogoutBtn>
             </LogoutUI>
           )}
-          <Hamburger />
+          <Hamburger openModal={openModal} />
         </HeaderInnerWrapper>
       </HeaderOuterWrapper>
       {/** @desktop */}
