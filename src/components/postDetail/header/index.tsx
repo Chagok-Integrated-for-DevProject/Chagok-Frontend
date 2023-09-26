@@ -1,11 +1,14 @@
 import ArrowSVG from "components/common/arrow";
 import ScrabButton from "components/common/button/scrab";
+import Loading from "components/common/loading";
 import FloatingBox from "components/postDetail/floatingBox";
 import { POST_TAGS } from "lib/constants/postTag";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import type { TPostDetail } from "lib/types/post";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { type FC, useState } from "react";
+import { type FC, Suspense, useState } from "react";
+import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
 import backArrow from "/public/utils/back_arrow.svg";
@@ -42,9 +45,23 @@ const Header: FC<IHeaderProps> = ({ data }) => {
   const date = new Date(data.createdTime);
 
   const [floatingBox, setFloatingBox] = useState(false);
+  const { token: accessToken } = useJwtToken();
 
   const handleFloatingBox = () => {
-    setFloatingBox(!floatingBox);
+    if (floatingBox) {
+      setFloatingBox(false);
+      return;
+    }
+
+    if (!floatingBox && accessToken === "") {
+      toast.warn("로그인해주세요");
+      return;
+    }
+
+    if (!floatingBox && accessToken.length > 0) {
+      setFloatingBox(true);
+      return;
+    }
   };
 
   return (
@@ -79,7 +96,11 @@ const Header: FC<IHeaderProps> = ({ data }) => {
               </>
             )}
           </RecommendationBtn>
-          <FloatingBox mobileVisible={floatingBox} />
+          {accessToken?.length > 0 && (
+            <Suspense fallback={<Loading />}>
+              <FloatingBox mobileVisible={floatingBox} jwt={accessToken} />
+            </Suspense>
+          )}
         </BtnPostion>
       </MobileWrapper>
       <PostInfoWrapper>

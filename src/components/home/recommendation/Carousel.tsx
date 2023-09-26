@@ -1,21 +1,19 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import type { EmotionJSX } from "@emotion/react/types/jsx-namespace";
+import { useRecommendationQuery } from "lib/hooks/useRecommendationQuery";
+import type { FC } from "react";
 import { Pagination } from "swiper";
 
 import RecommendationCard from "./Card";
 import { CustomSwiper, CustomSwiperSlide } from "./Carousel.styles";
 
-const RecommendationCarousel = () => {
-  const slides: (() => EmotionJSX.Element)[] = [
-    RecommendationCard,
-    RecommendationCard,
-    RecommendationCard,
-    RecommendationCard,
-    RecommendationCard,
-    RecommendationCard,
-  ];
+interface IRecommendationCarouselProps {
+  jwt: string;
+}
+
+const RecommendationCarousel: FC<IRecommendationCarouselProps> = ({ jwt }) => {
+  const { data: recommendations } = useRecommendationQuery(jwt);
 
   return (
     <CustomSwiper
@@ -32,9 +30,9 @@ const RecommendationCarousel = () => {
         },
       }}
     >
-      {slides.map((e, i) => (
+      {recommendations?.map((e, i) => (
         <CustomSwiperSlide key={i}>
-          <RecommendationCard />
+          <RecommendationCard title={e.title} id={e.id} />
         </CustomSwiperSlide>
       ))}
     </CustomSwiper>

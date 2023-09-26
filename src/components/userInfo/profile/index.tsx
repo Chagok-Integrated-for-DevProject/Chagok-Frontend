@@ -21,7 +21,7 @@ interface IProfileProps {
 }
 
 const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
-  const jwtToken = useJwtToken();
+  const { token: jwtToken } = useJwtToken();
   const inputRef = useRef<HTMLInputElement>(null);
   const [state, setState] = useState({
     nickName,

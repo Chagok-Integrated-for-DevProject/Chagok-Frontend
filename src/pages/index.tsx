@@ -1,6 +1,7 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import TopScrollBtn from "components/common/button/topScroll";
 import Hr from "components/common/hr";
+import Loading from "components/common/loading";
 import MainBanner from "components/common/mainBanner";
 import Hackathons from "components/home/hackathons";
 import Projects from "components/home/projects";
@@ -8,7 +9,9 @@ import Recommendation from "components/home/recommendation";
 import { getContests } from "lib/apis/contests";
 import { getProjectList } from "lib/apis/projects";
 import { getStudyList } from "lib/apis/studies";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import type { NextPage } from "next";
+import { Suspense } from "react";
 
 export async function getServerSideProps() {
   // hotCount => 인기순
@@ -44,11 +47,17 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = () => {
+  const { token: accessToken } = useJwtToken();
+
   return (
     <>
       <MainBanner />
-      <Recommendation />
-      <Hr />
+      {accessToken && (
+        <Suspense fallback={<Loading />}>
+          <Recommendation jwt={accessToken} />
+        </Suspense>
+      )}
+      {accessToken && <Hr />}
       <Hackathons />
       <Hr />
       <Projects />

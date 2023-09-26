@@ -19,9 +19,9 @@ describe("Recommendation Card Rendering Test", () => {
   it("mouseOverEvent 발생 시, CardLink의 Style이 변한다.", async () => {
     const user = userEvent.setup();
 
-    render(<RecommendationCard />);
+    render(<RecommendationCard title="test title" id="test" />);
     const cardLink = screen.getByRole("link", {
-      name: /hola 사이드 프로젝트/i,
+      name: /test title/i,
     });
     await user.hover(cardLink);
 

@@ -23,11 +23,19 @@ export const CardStyles = css`
     font-size: 1.25rem;
     line-height: 1.875rem;
 
-    padding: 2rem 0;
+    height: 3.75rem;
+    padding: 0;
+    margin: 2rem 0;
 
     word-break: keep-all;
 
     transition: 0.2s;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 
     @media ${breakPoints.xs} {
       font-size: 1.2rem;

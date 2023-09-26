@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
+import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
 import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 import MobileNav from "./MobileNav";
 
-const Hamburger = () => {
+interface IHamburgerProps {
+  openModal: () => void;
+}
+
+const Hamburger: FC<IHamburgerProps> = ({ openModal }) => {
   const [mobileNav, setMobileNav] = useState(false);
   const hamburgerRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +38,7 @@ const Hamburger = () => {
         <HamburgerLine />
         <HamburgerLine />
       </HamburgerBtn>
-      {mobileNav && <MobileNav />}
+      {mobileNav && <MobileNav openModal={openModal} />}
     </Wrapper>
   );
 };

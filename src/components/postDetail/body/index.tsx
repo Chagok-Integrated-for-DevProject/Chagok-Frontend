@@ -1,10 +1,12 @@
+import Loading from "components/common/loading";
 import FloatingBox from "components/postDetail/floatingBox";
 import { sanitize } from "isomorphic-dompurify";
 import type { TSkill } from "lib/constants/skills";
 import { SKILLS } from "lib/constants/skills";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
-import type { FC } from "react";
+import { type FC, Suspense } from "react";
 
 import {
   BodyWrapper,
@@ -34,6 +36,7 @@ const Body: FC<IBodyProps> = ({ skills, content }) => {
     }
   });
 
+  const { token: accessToken } = useJwtToken();
   const replacedContent = sanitize(removeCRLF(content));
 
   return (
@@ -57,7 +60,11 @@ const Body: FC<IBodyProps> = ({ skills, content }) => {
         </ContentWrapper>
       </MainContentWrapper>
       <DesktopWrapper>
-        <FloatingBox />
+        {accessToken?.length > 0 && (
+          <Suspense fallback={<Loading />}>
+            <FloatingBox jwt={accessToken} />
+          </Suspense>
+        )}
       </DesktopWrapper>
     </BodyWrapper>
   );
