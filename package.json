@@ -11,7 +11,7 @@
     "lint:fix": "next lint --fix --dir \"./src\"",
     "format": "prettier --cache --write \"./src/**/*.{ts,tsx,js,jsx}\"",
     "prepare": "husky install",
-    "test": "jest --coverage --transformIgnorePatterns \"node_modules/(?!(swiper|axios)/)\"",
+    "test": "jest --transformIgnorePatterns \"node_modules/(?!(swiper|axios)/)\"",
     "test:watch": "jest --watch --coverage --transformIgnorePatterns \"node_modules/(?!(swiper|axios)/)\""
   },
   "dependencies": {

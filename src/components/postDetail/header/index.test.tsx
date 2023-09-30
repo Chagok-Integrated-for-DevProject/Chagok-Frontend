@@ -1,7 +1,12 @@
 import { screen } from "@testing-library/react";
 import UserEvent from "@testing-library/user-event";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
 import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useRecommendationQuery } from "lib/hooks/useRecommendationQuery";
+import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import { postDetail } from "lib/mocks/data/postDetail";
+import { mockRecommendations } from "lib/mocks/data/recommendations";
+import { mockUserInfo } from "lib/mocks/data/userInfo";
 import { render } from "lib/test-utils";
 import { useRouter } from "next/router";
 import React from "react";
@@ -21,11 +26,35 @@ jest.mock("lib/hooks/useJwtToken", () => ({
   })),
 }));
 
+jest.mock("lib/hooks/useGetMyInfoQuery", () => ({
+  useGetMyInfoQuery: jest.fn().mockImplementation(() => ({
+    data: mockUserInfo,
+  })),
+}));
+
+jest.mock("lib/hooks/useScrapMutations", () => ({
+  useScrapMutation: jest.fn().mockReturnValue({ mutate: jest.fn() }),
+}));
+
+jest.mock("lib/hooks/useRecommendationQuery");
+
 jest.mock("react-toastify", () => ({
   toast: {
     warn: jest.fn(),
   },
 }));
+
+beforeEach(() => {
+  (useGetMyInfoQuery as jest.Mock).mockImplementation(() => ({
+    data: mockUserInfo,
+  }));
+
+  (useScrapMutation as jest.Mock).mockImplementation(() => ({
+    data: mockUserInfo,
+  }));
+
+  (useRecommendationQuery as jest.Mock).mockReturnValue(mockRecommendations);
+});
 
 afterAll(() => {
   jest.restoreAllMocks();
@@ -35,6 +64,9 @@ describe("Header 기능 테스트", () => {
   it("뒤로 가기 버튼을 누르면 router.back이 호출된다.", async () => {
     const mockRouter = {
       back: jest.fn(),
+      query: {
+        purpose: "project",
+      },
     };
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
 
@@ -50,6 +82,9 @@ describe("Header 기능 테스트", () => {
   it("hola, inflearn, okky에 맞는 색이 태그의 배경색이 된다.", () => {
     const mockRouter = {
       back: jest.fn(),
+      query: {
+        purpose: "project",
+      },
     };
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
     postDetail.siteType = "HOLA";
@@ -74,6 +109,12 @@ describe("Header 기능 테스트", () => {
   });
 
   it("추천 프로젝트 버튼을 누르면 handleFloatingBox 호출된다.", async () => {
+    (useRouter as jest.Mock).mockReturnValue({
+      query: {
+        purpose: "project",
+      },
+    });
+
     const setFloatingBox = jest.fn();
 
     jest.spyOn(React, "useState").mockReturnValue([false, setFloatingBox]);
@@ -93,6 +134,12 @@ describe("Header 기능 테스트", () => {
       logout: () => {},
     }));
 
+    (useRouter as jest.Mock).mockReturnValue({
+      query: {
+        purpose: "project",
+      },
+    });
+
     const user = UserEvent.setup();
     render(<Header data={postDetail} id={postDetail.id} />);
     const recommendBtn = screen.getByTestId(/recommend/i);
@@ -108,6 +155,24 @@ describe("Header 기능 테스트", () => {
       token: "aaaa",
       logout: () => {},
     }));
+
+    /*(useGetMyInfoQuery as jest.Mock).mockImplementation(() => ({
+      data: mockUserInfo,
+    }));
+
+    (useScrapMutation as jest.Mock).mockImplementation(() => ({
+      data: mockUserInfo,
+    }));*/
+
+    (useRouter as jest.Mock).mockReturnValue({
+      query: {
+        purpose: "project",
+      },
+    });
+
+    // (useRecommendationQuery as jest.Mock).mockReturnValue(mockRecommendations);
+
+    jest.spyOn(React, "useState").mockReturnValue([true, () => {}]);
 
     const user = UserEvent.setup();
     render(<Header data={postDetail} id={postDetail.id} />);
