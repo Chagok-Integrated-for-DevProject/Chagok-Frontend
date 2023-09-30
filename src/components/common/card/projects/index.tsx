@@ -8,7 +8,7 @@ import { convertToSkillSVG } from "lib/utils/convertToSkillSVG";
 import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useLayoutEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 // 보류: import profileImg from "/public/mocks/user_profile.svg";
@@ -40,7 +40,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents, jwt, userInfo }) => {
   const skillSVGList = convertToSkillSVG(contents.skills);
 
   const [scrapCnt, setScrapCnt] = useState(contents.scrapCount);
-  useEffect(() => {
+  useLayoutEffect(() => {
     setScrapCnt(contents.scrapCount);
   }, [contents.scrapCount]);
 

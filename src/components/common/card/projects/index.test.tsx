@@ -34,33 +34,33 @@ afterEach(() => {
 
 describe("ProjectCard 렌더링 테스트", () => {
   it("사이트 이름에 따른 태그 색상 테스트", () => {
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const hola = screen.getByText(/hola/i);
     expect(hola).toHaveStyle(`background: ${palette.hola}`);
 
     mockContents.siteType = "INFLEARN";
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const inflearn = screen.getByText(/inflearn/i);
     expect(inflearn).toHaveStyle(`background: ${palette.inflearn}`);
 
     mockContents.siteType = "OKKY";
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const okky = screen.getByText(/okky/i);
     expect(okky).toHaveStyle(`background: ${palette.okky}`);
   });
   it("postType에 따른 색상 테스트", () => {
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const project = screen.getByText("프로젝트");
     expect(project).toHaveStyle(`background: ${palette.bgMainOrange}`);
 
     mockContents.postType = "STUDY";
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const study = screen.getByText("스터디");
     expect(study).toHaveStyle(`background: ${palette.bgMainOrange}`);
   });
   it("postType이 PROJECT면 link의 purpose는 project이다.", () => {
     mockContents.postType = "PROJECT";
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const projectLink = screen.getByRole("link");
     expect(projectLink.getAttribute("href")).toBe(
       `/projects/50208?purpose=project`,
@@ -68,7 +68,7 @@ describe("ProjectCard 렌더링 테스트", () => {
   });
   it("postType이 STUDY면 link의 purpose는 study이다.", () => {
     mockContents.postType = "STUDY";
-    render(<ProjectCard contents={mockContents} />);
+    render(<ProjectCard contents={mockContents} jwt="sampleJWT" />);
     const studyLink = screen.getByRole("link");
     expect(studyLink.getAttribute("href")).toBe(
       `/projects/50208?purpose=study`,
