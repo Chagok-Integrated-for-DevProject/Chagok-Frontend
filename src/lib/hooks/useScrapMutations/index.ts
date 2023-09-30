@@ -40,11 +40,13 @@ const contestPreviewSample: TContest = {
 };
 
 export const useScrapMutation = (
-  scrapCnt: number,
-  setScrapCount: Dispatch<SetStateAction<number>>,
+  token: string,
+  scrapCnt?: number,
+  setScrapCount?: Dispatch<SetStateAction<number>>,
 ) => {
   const queryClient = useQueryClient();
-  const userInfoKey = ["member", "info"];
+  const isLoggedIn = token === "" ? { login: false } : { login: true };
+  const userInfoKey = ["member", "info", isLoggedIn];
 
   const { mutate } = useMutation({
     mutationFn: async ({
@@ -70,21 +72,23 @@ export const useScrapMutation = (
               postPreviewSample.id = contentId;
               old.projectScraps = !isScrapped
                 ? [...old.projectScraps, postPreviewSample]
-                : old.projectScraps.filter((e) => e.id !== contentId);
+                : old.projectScraps.filter((e) => e.id != contentId);
             } else if (category === "study") {
               postPreviewSample.id = contentId;
               old.studyScraps = !isScrapped
                 ? [...old.studyScraps, postPreviewSample]
-                : old.studyScraps.filter((e) => e.id !== contentId);
+                : old.studyScraps.filter((e) => e.id != contentId);
             } else if (category === "contest") {
               contestPreviewSample.id = Number(contentId);
               old.contestScraps = !isScrapped
                 ? [...old.contestScraps, contestPreviewSample]
                 : old.contestScraps.filter((e) => e.id !== +contentId);
             }
-            !isScrapped
-              ? setScrapCount(scrapCnt + 1)
-              : setScrapCount(scrapCnt - 1);
+            if (typeof scrapCnt === "number" && !!setScrapCount) {
+              !isScrapped
+                ? setScrapCount(scrapCnt + 1)
+                : setScrapCount(scrapCnt - 1);
+            }
           }
           return old;
         },
@@ -98,9 +102,12 @@ export const useScrapMutation = (
       }
 
       queryClient.setQueryData(userInfoKey, context?.prevUserInfo);
-      !context?.isScrapped
-        ? setScrapCount(scrapCnt - 1)
-        : setScrapCount(scrapCnt + 1);
+
+      if (typeof scrapCnt === "number" && !!setScrapCount) {
+        !context?.isScrapped
+          ? setScrapCount(scrapCnt - 1)
+          : setScrapCount(scrapCnt + 1);
+      }
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: userInfoKey });

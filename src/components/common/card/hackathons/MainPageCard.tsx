@@ -24,7 +24,11 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
     ? true
     : false;
 
-  const { mutate: scrapMutate } = useScrapMutation(scrapCnt, setScrapCnt);
+  const { mutate: scrapMutate } = useScrapMutation(
+    token,
+    scrapCnt,
+    setScrapCnt,
+  );
 
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

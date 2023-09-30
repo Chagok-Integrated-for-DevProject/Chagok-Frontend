@@ -1,8 +1,9 @@
 import Body from "components/postDetail/body";
-import Header from "components/postDetail/header";
 import { Hr } from "components/postDetail/index.styles";
 import { useProjectDetailQuery } from "lib/hooks/useProjectDetailQuery";
 import type { FC } from "react";
+
+import Header from "./header";
 
 interface IProjectDetailProps {
   id: string;
@@ -15,7 +16,7 @@ const ProjectDetail: FC<IProjectDetailProps> = ({ id }) => {
     <>
       {data && (
         <>
-          <Header data={data} />
+          <Header data={data} id={id} />
           <Hr />
           <Body skills={data.skills} content={data.content} />
         </>

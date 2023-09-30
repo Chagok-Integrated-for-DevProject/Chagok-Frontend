@@ -2,7 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getMyInfo } from "lib/apis/userInfo";
 
 export const useGetMyInfoQuery = (token: string) => {
-  const { data } = useQuery(["member", "info"], () =>
+  const isLoggedIn = token === "" ? { login: false } : { login: true };
+  const myInfoQueryKey = ["member", "info", isLoggedIn];
+
+  const { data } = useQuery(myInfoQueryKey, () =>
     token.length > 0 ? getMyInfo(token) : Promise.resolve(null),
   );
 

@@ -1,6 +1,8 @@
 import "swiper/css";
 
 import ProjectCard from "components/common/card/projects";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import type { TPostPreview } from "lib/types/post";
 import type { FC } from "react";
 
@@ -11,6 +13,9 @@ interface IProjectCarouselProps {
 }
 
 const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
+
   return (
     <CustomSwiper
       spaceBetween={30}
@@ -26,7 +31,7 @@ const ProjectCarousel: FC<IProjectCarouselProps> = ({ contents }) => {
     >
       {contents.map((e, i) => (
         <CustomSwiperSlide key={i}>
-          <ProjectCard contents={e} />
+          <ProjectCard contents={e} jwt={token} userInfo={userInfo} />
         </CustomSwiperSlide>
       ))}
     </CustomSwiper>

@@ -3,8 +3,11 @@ import ScrabButton from "components/common/button/scrab";
 import Loading from "components/common/loading";
 import FloatingBox from "components/postDetail/floatingBox";
 import { POST_TAGS } from "lib/constants/postTag";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
 import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TPostDetail } from "lib/types/post";
+import type { TCategory } from "lib/types/scrap";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { type FC, Suspense, useState } from "react";
@@ -32,9 +35,10 @@ import {
 
 interface IHeaderProps {
   data: TPostDetail;
+  id: string;
 }
 
-const Header: FC<IHeaderProps> = ({ data }) => {
+const Header: FC<IHeaderProps> = ({ data, id }) => {
   const router = useRouter();
   const handleGoBackBtn = () => {
     router.back();
@@ -46,6 +50,32 @@ const Header: FC<IHeaderProps> = ({ data }) => {
 
   const [floatingBox, setFloatingBox] = useState(false);
   const { token: accessToken } = useJwtToken();
+
+  const { data: userInfo } = useGetMyInfoQuery(accessToken);
+  const isProjectScrapped = !!userInfo?.projectScraps.find((e) => e.id == id);
+
+  const isStudyScrapped = !!userInfo?.studyScraps.find((e) => e.id == id);
+
+  const isScrapped =
+    router.query.purpose === "project" ? isProjectScrapped : isStudyScrapped;
+
+  const { mutate: scrapMutate } = useScrapMutation(accessToken);
+
+  const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    if (accessToken === "") {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+
+    scrapMutate({
+      contentId: id,
+      category: router.query.purpose as TCategory,
+      jwtToken: accessToken,
+      isScrapped,
+    });
+  };
 
   const handleFloatingBox = () => {
     if (floatingBox) {
@@ -76,7 +106,7 @@ const Header: FC<IHeaderProps> = ({ data }) => {
       <Title>{data.title}</Title>
       <DesktopWrapper>
         <BtnPostion>
-          <ScrabButton />
+          <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
         </BtnPostion>
       </DesktopWrapper>
       <MobileWrapper>
@@ -105,7 +135,7 @@ const Header: FC<IHeaderProps> = ({ data }) => {
       </MobileWrapper>
       <PostInfoWrapper>
         <MobileWrapper>
-          <ScrabButton />
+          <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
           <ScrapCnt>{data.scrapCount}</ScrapCnt>
           <ViewCnt>조회수 {data.viewCount}</ViewCnt>
         </MobileWrapper>

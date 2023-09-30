@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import UserEvent from "@testing-library/user-event";
 import { useJwtToken } from "lib/hooks/useJwtToken";
 import { postDetail } from "lib/mocks/data/postDetail";
-import { render as customRender } from "lib/test-utils";
+import { render } from "lib/test-utils";
 import { useRouter } from "next/router";
 import React from "react";
 import { toast } from "react-toastify";
@@ -40,7 +40,7 @@ describe("Header 기능 테스트", () => {
 
     const user = UserEvent.setup();
 
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
 
     const backBtn = screen.getByAltText("뒤로 가기");
     await user.click(backBtn);
@@ -53,19 +53,19 @@ describe("Header 기능 테스트", () => {
     };
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
     postDetail.siteType = "HOLA";
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
 
     const holaTag = screen.getByText("HOLA");
     expect(holaTag).toHaveStyle({ backgroundColor: `${palette.hola}` });
 
     postDetail.siteType = "INFLEARN";
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
 
     const inflearnTag = screen.getByText("INFLEARN");
     expect(inflearnTag).toHaveStyle({ backgroundColor: `${palette.inflearn}` });
 
     postDetail.siteType = "OKKY";
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
 
     const okkyTag = screen.getByText("OKKY");
     expect(okkyTag).toHaveStyle({
@@ -79,7 +79,7 @@ describe("Header 기능 테스트", () => {
     jest.spyOn(React, "useState").mockReturnValue([false, setFloatingBox]);
 
     const user = UserEvent.setup();
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
     const recommendBtn = screen.getByTestId(/recommend/i);
     await user.click(recommendBtn);
     expect(setFloatingBox).toHaveBeenCalled();
@@ -94,7 +94,7 @@ describe("Header 기능 테스트", () => {
     }));
 
     const user = UserEvent.setup();
-    render(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
     const recommendBtn = screen.getByTestId(/recommend/i);
     await user.click(recommendBtn);
 
@@ -110,7 +110,7 @@ describe("Header 기능 테스트", () => {
     }));
 
     const user = UserEvent.setup();
-    customRender(<Header data={postDetail} />);
+    render(<Header data={postDetail} id={postDetail.id} />);
     const recommendBtn = screen.getByTestId(/recommend/i);
     await user.click(recommendBtn);
 
