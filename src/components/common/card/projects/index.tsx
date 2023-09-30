@@ -1,11 +1,16 @@
+import ScrabButton from "components/common/button/scrab";
 import { sanitize } from "isomorphic-dompurify";
 import { POST_TAGS } from "lib/constants/postTag";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
+import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TPostPreview } from "lib/types/post";
 import { convertToSkillSVG } from "lib/utils/convertToSkillSVG";
 import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
+import { type FC, useState } from "react";
+import { toast } from "react-toastify";
 
 // 보류: import profileImg from "/public/mocks/user_profile.svg";
 import {
@@ -14,6 +19,8 @@ import {
   Description,
   Hr,
   PostsInfo,
+  Scrab,
+  ScrapCnt,
   SkillTagWrapper,
   Title,
 } from "./index.styles";
@@ -31,12 +38,55 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
   const purposeText = contents.postType === "PROJECT" ? "프로젝트" : "스터디";
   const skillSVGList = convertToSkillSVG(contents.skills);
 
+  const [scrapCnt, setScrapCnt] = useState(contents.scrapCount);
+
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
+  const isProjectScrapped = userInfo?.projectScraps.find(
+    (e) => e.id == contents.id,
+  )
+    ? true
+    : false;
+  const isStudyScrapped = userInfo?.studyScraps.find((e) => e.id == contents.id)
+    ? true
+    : false;
+
+  const isScrapped =
+    contents.postType === "PROJECT" ? isProjectScrapped : isStudyScrapped;
+
+  const { mutate: scrapMutate } = useScrapMutation(scrapCnt, setScrapCnt);
+
+  const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    if (token === "") {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+
+    scrapMutate({
+      contentId: `${contents.id}`,
+      category: purposeParam,
+      jwtToken: token,
+      isScrapped,
+    });
+  };
+
   return (
     <Link
       title={contents.title}
       href={`/projects/${contents.id}?purpose=${purposeParam}`}
       data-testid="projectCard"
+      style={{ position: "relative", display: "block" }}
     >
+      <Scrab>
+        <ScrapCnt>{scrapCnt}</ScrapCnt>
+        <ScrabButton
+          onClick={onClickScrabButton}
+          width={30}
+          isScrabbed={isScrapped}
+        />
+      </Scrab>
       <ClassificationTagWrapper>
         <ClassificationTag bgColor={siteNameBgColor}>
           {contents.siteType}

@@ -59,7 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </ErrorBoundary>
       </Hydrate>
-      <ToastContainer />
+      <ToastContainer position="top-center" />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

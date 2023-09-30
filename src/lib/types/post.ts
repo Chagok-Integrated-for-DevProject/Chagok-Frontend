@@ -6,7 +6,7 @@ export type TPostPreview = {
   scrapCount: number;
   viewCount: number;
   siteType: "HOLA" | "OKKY" | "INFLEARN";
-  id: null | string;
+  id: string;
   skills: string[];
   createdTime: string;
   preview: string;
@@ -22,7 +22,7 @@ export type TPostDetail = {
   scrapCount: number;
   viewCount: number;
   siteType: "HOLA" | "OKKY" | "INFLEARN";
-  id: null | string;
+  id: string;
   skills: string[];
 };
 

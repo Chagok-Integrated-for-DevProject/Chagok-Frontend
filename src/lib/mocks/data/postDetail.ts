@@ -10,6 +10,6 @@ export const postDetail: TPostDetail = {
   scrapCount: 3,
   viewCount: 4,
   siteType: "HOLA",
-  id: null,
+  id: "",
   skills: ["js", "ts", "react", "java", "spring", "vue", "kotlin", "docker"],
 };

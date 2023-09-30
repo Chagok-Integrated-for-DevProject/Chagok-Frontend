@@ -140,3 +140,37 @@ export const Hr = styled.hr`
   border: 1px solid ${palette.bdGray200};
   margin: 1rem 0;
 `;
+
+export const Scrab = styled.div`
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 40px;
+  text-align: right;
+
+  button {
+    width: 100%;
+    margin-right: -0.2rem;
+    padding: 0;
+  }
+
+  @media ${breakPoints.sm} {
+    margin-left: 1rem;
+
+    button {
+      margin-right: -0.1rem;
+    }
+  }
+`;
+
+export const ScrapCnt = styled.span`
+  width: 100%;
+
+  font-weight: 700;
+  line-height: 1.5rem;
+  text-align: center;
+`;

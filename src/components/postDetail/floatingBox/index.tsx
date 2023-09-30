@@ -21,7 +21,7 @@ const FloatingBox: FC<IFLoatingBoxProps> = ({ mobileVisible, jwt }) => {
       <Ul>
         {recommendations?.map((e, i) => (
           <li key={i} data-testid="recommends">
-            <RecommendLink href={`/projects/${e.id}?purpose=purpose`}>
+            <RecommendLink href={`/projects/${e.id}?purpose=project`}>
               {e.title}
             </RecommendLink>
           </li>
