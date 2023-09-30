@@ -1,6 +1,7 @@
 import HackathonPageCard from "components/common/card/hackathons/HackathonPageCard";
 import ProjectCard from "components/common/card/projects";
 import { H2 } from "components/userInfo/index.styles";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import type { TContest } from "lib/types/contest";
 import type { TPostPreview } from "lib/types/post";
 import type { ChangeEvent } from "react";
@@ -18,6 +19,7 @@ interface IScrapProp {
 
 const Scrab = ({ contestScraps, projectScraps, studyScraps }: IScrapProp) => {
   const [navItem, setNavItem] = useState<TNavItem>("hackathon");
+  const { token } = useJwtToken();
 
   const onClickNavItem = (e: ChangeEvent<HTMLInputElement>) => {
     setNavItem(e.target.id as TNavItem);
@@ -75,7 +77,7 @@ const Scrab = ({ contestScraps, projectScraps, studyScraps }: IScrapProp) => {
           projectScraps && projectScraps.length > 0 ? (
             projectScraps.map((project) => (
               <S.ProjectStudyWrapper key={project.id}>
-                <ProjectCard contents={project} />
+                <ProjectCard contents={project} jwt={token} />
               </S.ProjectStudyWrapper>
             ))
           ) : (
@@ -89,7 +91,7 @@ const Scrab = ({ contestScraps, projectScraps, studyScraps }: IScrapProp) => {
           studyScraps && studyScraps.length > 0 ? (
             studyScraps.map((study) => (
               <S.ProjectStudyWrapper key={study.id}>
-                <ProjectCard contents={study} />
+                <ProjectCard contents={study} jwt={token} />
               </S.ProjectStudyWrapper>
             ))
           ) : (

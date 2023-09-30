@@ -1,5 +1,7 @@
 import PaginationButtons from "components/common/button/pagination";
 import ProjectCard from "components/common/card/projects";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
+import { useJwtToken } from "lib/hooks/useJwtToken";
 import { useProjectsQuery } from "lib/hooks/useProjectsQuery";
 import { useStudiesQuery } from "lib/hooks/useStudiesQuery";
 import {
@@ -21,6 +23,9 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
   const searchParams = useSearchParams();
 
   const [pageNumber, setPageNumber] = useState(1);
+
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
 
   const { data: projects } = useProjectsQuery(
     pageNumber - 1,
@@ -101,7 +106,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
             <ProjectListGrid>
               {projects.content.map((e, i) => (
                 <GridItem key={`${e.id}${i}`} data-testid="projectData">
-                  <ProjectCard contents={e} />
+                  <ProjectCard contents={e} jwt={token} userInfo={userInfo} />
                 </GridItem>
               ))}
             </ProjectListGrid>
@@ -126,7 +131,7 @@ const ProjectList: FC<IProjectList> = ({ searchKeyword, selectedSkills }) => {
             <ProjectListGrid>
               {studies.content.map((e, i) => (
                 <GridItem key={`${e.id}${i}`} data-testid="studyData">
-                  <ProjectCard contents={e} />
+                  <ProjectCard contents={e} jwt={token} userInfo={userInfo} />
                 </GridItem>
               ))}
             </ProjectListGrid>

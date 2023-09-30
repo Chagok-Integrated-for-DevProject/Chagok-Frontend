@@ -1,15 +1,14 @@
 import ScrabButton from "components/common/button/scrab";
 import { sanitize } from "isomorphic-dompurify";
 import { POST_TAGS } from "lib/constants/postTag";
-import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
-import { useJwtToken } from "lib/hooks/useJwtToken";
 import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TPostPreview } from "lib/types/post";
+import type { TUserInfoReturnType } from "lib/types/userInfo";
 import { convertToSkillSVG } from "lib/utils/convertToSkillSVG";
 import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 // 보류: import profileImg from "/public/mocks/user_profile.svg";
@@ -27,9 +26,11 @@ import {
 
 interface IProjectCardProps {
   contents: TPostPreview;
+  jwt: string;
+  userInfo?: TUserInfoReturnType | null;
 }
 
-const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
+const ProjectCard: FC<IProjectCardProps> = ({ contents, jwt, userInfo }) => {
   const siteNameBgColor = POST_TAGS.find((e) => e.tagName === contents.siteType)
     ?.color;
   const purposeBgColor = POST_TAGS.find((e) => e.tagName === contents.postType)
@@ -39,27 +40,27 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
   const skillSVGList = convertToSkillSVG(contents.skills);
 
   const [scrapCnt, setScrapCnt] = useState(contents.scrapCount);
+  useEffect(() => {
+    setScrapCnt(contents.scrapCount);
+  }, [contents.scrapCount]);
 
-  const { token } = useJwtToken();
-  const { data: userInfo } = useGetMyInfoQuery(token);
-  const isProjectScrapped = userInfo?.projectScraps.find(
+  const isProjectScrapped = !!userInfo?.projectScraps.find(
     (e) => e.id == contents.id,
-  )
-    ? true
-    : false;
-  const isStudyScrapped = userInfo?.studyScraps.find((e) => e.id == contents.id)
-    ? true
-    : false;
+  );
+
+  const isStudyScrapped = !!userInfo?.studyScraps.find(
+    (e) => e.id == contents.id,
+  );
 
   const isScrapped =
-    contents.postType === "PROJECT" ? isProjectScrapped : isStudyScrapped;
+    purposeParam === "project" ? isProjectScrapped : isStudyScrapped;
 
-  const { mutate: scrapMutate } = useScrapMutation(scrapCnt, setScrapCnt);
+  const { mutate: scrapMutate } = useScrapMutation(jwt, scrapCnt, setScrapCnt);
 
   const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    if (token === "") {
+    if (jwt === "") {
       toast.warn("로그인이 필요합니다.");
       return;
     }
@@ -67,7 +68,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents }) => {
     scrapMutate({
       contentId: `${contents.id}`,
       category: purposeParam,
-      jwtToken: token,
+      jwtToken: jwt,
       isScrapped,
     });
   };

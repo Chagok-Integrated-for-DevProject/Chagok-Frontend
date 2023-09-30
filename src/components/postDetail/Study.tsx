@@ -1,8 +1,9 @@
 import Body from "components/postDetail/body";
-import Header from "components/postDetail/header";
 import { Hr } from "components/postDetail/index.styles";
 import { useStudyDetailQuery } from "lib/hooks/useStudyDetailQuery";
 import type { FC } from "react";
+
+import Header from "./header";
 
 interface IStudyDetailProps {
   id: string;
@@ -15,7 +16,7 @@ const StudyDetail: FC<IStudyDetailProps> = ({ id }) => {
     <>
       {data && (
         <>
-          <Header data={data} />
+          <Header data={data} id={id} />
           <Hr />
           <Body skills={data.skills} content={data.content} />
         </>
