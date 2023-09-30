@@ -60,7 +60,6 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-
   white-space: pre-wrap;
   img {
     max-width: 100%;
@@ -68,6 +67,8 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Content = styled.div`
+  margin-right: auto;
+
   h1 {
     font-size: 1.5rem;
     font-weight: 700;

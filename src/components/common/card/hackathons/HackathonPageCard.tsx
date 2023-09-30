@@ -1,18 +1,44 @@
 import styled from "@emotion/styled";
 import ScrabButton from "components/common/button/scrab";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
+import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TContest } from "lib/types/contest";
 import { caculateDDay } from "lib/utils/caculateDDay";
 import Image from "next/image";
 import Link from "next/link";
-import type { FC, MouseEvent } from "react";
+import { type FC, type MouseEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 interface IHackathonPageCardProps {
   content: TContest | undefined;
 }
 
 const HackathonPageCard: FC<IHackathonPageCardProps> = ({ content }) => {
+  const [scrapCnt, setScrapCnt] = useState(content?.scrapCount || 0);
+
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
+  const isScrapped = userInfo?.contestScraps.find((e) => e.id === content?.id)
+    ? true
+    : false;
+
+  const { mutate: scrapMutate } = useScrapMutation(scrapCnt || 0, setScrapCnt);
+
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+
+    if (token === "") {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+
+    scrapMutate({
+      contentId: `${content?.id}`,
+      category: "contest",
+      jwtToken: token,
+      isScrapped,
+    });
   };
 
   if (!content) return <></>;
@@ -31,7 +57,7 @@ const HackathonPageCard: FC<IHackathonPageCardProps> = ({ content }) => {
           <span>포스터 이미지가 없습니다.</span>
         )}
       </ImageBox>
-      <ScrabButton onClick={onClickScrabButton} />
+      <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
       <Description>
         <MainInfoBox>
           <DDay>{caculateDDay(content.endDate)}</DDay>

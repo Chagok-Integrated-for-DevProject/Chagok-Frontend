@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { render } from "lib/test-utils";
 import type { TPostPreview } from "lib/types/post";
 import { palette } from "styles/palette";
 

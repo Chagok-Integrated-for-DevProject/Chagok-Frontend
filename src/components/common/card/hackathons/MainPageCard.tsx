@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
 import ScrabButton from "components/common/button/scrab";
+import { useGetMyInfoQuery } from "lib/hooks/useGetMyInfoQuery";
+import { useJwtToken } from "lib/hooks/useJwtToken";
+import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TContest } from "lib/types/contest";
 import Image from "next/image";
 import Link from "next/link";
-import type { FC, MouseEvent } from "react";
+import { type FC, type MouseEvent, useState } from "react";
+import { toast } from "react-toastify";
 import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
@@ -12,13 +16,35 @@ interface IHackahtonCardProps {
 }
 
 const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
+  const [scrapCnt, setScrapCnt] = useState(content.scrapCount);
+
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
+  const isScrapped = userInfo?.contestScraps.find((e) => e.id === content.id)
+    ? true
+    : false;
+
+  const { mutate: scrapMutate } = useScrapMutation(scrapCnt, setScrapCnt);
+
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+
+    if (token === "") {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+
+    scrapMutate({
+      contentId: `${content.id}`,
+      category: "contest",
+      jwtToken: token,
+      isScrapped,
+    });
   };
   const dday = getDDay(content.endDate);
 
   return (
-    <StyledWrapper href="/hackathons/1" title={content.title}>
+    <StyledWrapper href={`/hackathons/${content.id}`} title={content.title}>
       <LayoutWrapper>
         {/* 왼쪽 */}
         <ImageBox>
@@ -51,7 +77,7 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
           <MiddleWrapper>
             <HackathonTitle>{content.title}</HackathonTitle>
             <Scrab>
-              <ScrapCnt>{content.scrapCount}</ScrapCnt>
+              <ScrapCnt>{scrapCnt}</ScrapCnt>
               <ScrabButton onClick={onClickScrabButton} width={30} />
             </Scrab>
           </MiddleWrapper>
@@ -62,8 +88,12 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
         <DeskTopWrapper>
           <RightWrapper>
             <Scrab>
-              <ScrapCnt>{content.scrapCount}</ScrapCnt>
-              <ScrabButton onClick={onClickScrabButton} width={35} />
+              <ScrapCnt>{scrapCnt}</ScrapCnt>
+              <ScrabButton
+                onClick={onClickScrabButton}
+                width={35}
+                isScrabbed={isScrapped}
+              />
             </Scrab>
             {dday === 0 && <DDay>D - Day</DDay>}
             {dday < 0 && <DDay>마감</DDay>}
