@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "components/common/error/ErrorBoundary";
 import Layout from "components/common/layout";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import Script from "next/script";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -45,6 +46,25 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Head>
+        <title>차곡 - 프로젝트, 해커톤 모집글 통합 플랫폼</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="사이드 프로젝트, 해커톤 모집글을 한 곳에서 확인하세요"
+        />
+        <meta httpEquiv="content-language" content="ko" />
+        <meta
+          property="og:title"
+          content="차곡 - 프로젝트, 해커톤 모집글 통합 플랫폼"
+        />
+        <meta
+          property="og:description"
+          content="사이드 프로젝트, 해커톤 모집글을 한 곳에서 확인하세요"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ko_KR" />
+      </Head>
       <Hydrate state={pageProps.dehydratedState}>
         <Global styles={resetStyles} />
         <ErrorBoundary>

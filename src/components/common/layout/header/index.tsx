@@ -28,9 +28,11 @@ const Header = () => {
       <HeaderOuterWrapper>
         <HeaderInnerWrapper>
           <Link href="/">
-            <Image src={logo} alt="chagok logo" />
+            <Image
+              src={logo}
+              alt="차곡 - 사이드 프로젝트, 해커톤 모집 사이트"
+            />
           </Link>
-
           <Navigation>
             <ul>
               <li>
