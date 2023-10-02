@@ -10,7 +10,7 @@ interface IFLoatingBoxProps {
 }
 
 const FloatingBox: FC<IFLoatingBoxProps> = ({ mobileVisible, jwt }) => {
-  const { data: recommendations } = useRecommendationQuery(jwt);
+  const { data: recommendations } = useRecommendationQuery();
   const { data: userInfo } = useGetMyInfoQuery(jwt);
 
   return (

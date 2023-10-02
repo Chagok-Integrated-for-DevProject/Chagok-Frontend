@@ -20,15 +20,15 @@ AxiosClient.interceptors.response.use(
   },
   async (error: AxiosError) => {
     const originalRequest = error.config;
-    console.log(error?.response?.status);
-    console.log(originalRequest?.url);
 
     if (originalRequest && error?.response?.status == 403) {
       if (isRefreshing) {
+        console.log(originalRequest?.url);
         try {
           const token = await new Promise((resolve, reject) => {
             failedQueue.push({ resolve, reject });
           });
+          console.log(token);
           originalRequest.headers.Authorization = `Bearer ${token}`;
           return axios(originalRequest);
         } catch (error) {
@@ -41,13 +41,11 @@ AxiosClient.interceptors.response.use(
         const newAccessToken = await getNewAcceessToken();
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         processQueue(null, newAccessToken);
-        return AxiosClient(originalRequest);
+        return axios(originalRequest);
       } catch (error) {
-        processQueue(error as AxiosError, null);
         throw error;
       } finally {
         isRefreshing = true;
-        window.location.reload();
       }
     }
     throw error;

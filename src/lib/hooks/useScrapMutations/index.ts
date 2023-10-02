@@ -52,12 +52,11 @@ export const useScrapMutation = (
     mutationFn: async ({
       category,
       contentId,
-      jwtToken,
       isScrapped,
     }: TScrapMutateParams) =>
       isScrapped
-        ? deleteScrap(category, contentId, jwtToken)
-        : postScrap(category, contentId, jwtToken),
+        ? deleteScrap(category, contentId)
+        : postScrap(category, contentId),
     onMutate: async ({ category, contentId, isScrapped }) => {
       await queryClient.cancelQueries({ queryKey: userInfoKey });
 
