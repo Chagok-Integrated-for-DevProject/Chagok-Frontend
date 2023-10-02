@@ -13,8 +13,9 @@ export const useJwtToken = () => {
   useEffect(() => {
     const myToken = window.localStorage.getItem("jwt");
 
-    if (!myToken) return;
-    setToken(myToken);
+    if (myToken) {
+      setToken(myToken);
+    }
   });
 
   return { token, logout };

@@ -6,7 +6,7 @@ export const useGetMyInfoQuery = (token: string) => {
   const myInfoQueryKey = ["member", "info", isLoggedIn];
 
   const { data } = useQuery(myInfoQueryKey, () =>
-    token.length > 0 ? getMyInfo(token) : Promise.resolve(null),
+    token.length > 0 ? getMyInfo() : Promise.resolve(null),
   );
 
   return { data };

@@ -16,13 +16,11 @@ export const getNickNameCheck = async (
   }
 };
 
-export const getMyInfo = async (
-  jwtToken: string,
-): Promise<TUserInfoReturnType> => {
+export const getMyInfo = async (): Promise<TUserInfoReturnType> => {
   try {
     const response = await AxiosClient.get("/member/info", {
       headers: {
-        Authorization: `Bearer ${jwtToken}`,
+        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
       },
     });
     return response.data;

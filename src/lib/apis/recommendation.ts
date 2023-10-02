@@ -2,13 +2,11 @@ import type { TRecommendation } from "lib/types/recommendation";
 
 import { AxiosClient } from "./axiosClient";
 
-export const getRecommendation = async (
-  accessToken: string,
-): Promise<TRecommendation[]> => {
+export const getRecommendation = async (): Promise<TRecommendation[]> => {
   try {
     const response = await AxiosClient.get("/projects/recommend", {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
       },
     });
 

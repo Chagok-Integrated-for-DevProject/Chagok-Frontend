@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRecommendation } from "lib/apis/recommendation";
 
-export const useRecommendationQuery = (jwtToken: string) => {
+export const useRecommendationQuery = () => {
   const { data } = useQuery({
     queryKey: ["recommendation"],
-    queryFn: () => getRecommendation(jwtToken),
+    queryFn: () => getRecommendation(),
     retry: 1,
   });
 

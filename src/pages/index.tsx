@@ -9,7 +9,6 @@ import Recommendation from "components/home/recommendation";
 import { getContests } from "lib/apis/contests";
 import { getProjectList } from "lib/apis/projects";
 import { getStudyList } from "lib/apis/studies";
-import { useJwtToken } from "lib/hooks/useJwtToken";
 import type { NextPage } from "next";
 import { Suspense } from "react";
 
@@ -47,17 +46,12 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = () => {
-  const { token: accessToken } = useJwtToken();
-
   return (
     <>
       <MainBanner />
-      {accessToken && (
-        <Suspense fallback={<Loading />}>
-          <Recommendation jwt={accessToken} />
-        </Suspense>
-      )}
-      {accessToken && <Hr />}
+      <Suspense fallback={<Loading />}>
+        <Recommendation />
+      </Suspense>
       <Hackathons />
       <Hr />
       <Projects />

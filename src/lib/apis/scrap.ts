@@ -2,11 +2,7 @@ import type { TCategory } from "lib/types/scrap";
 
 import { AxiosClient } from "./axiosClient";
 
-export const postScrap = async (
-  category: TCategory,
-  contentId: string,
-  accessToken: string,
-) => {
+export const postScrap = async (category: TCategory, contentId: string) => {
   try {
     const response = await AxiosClient.post(
       "/member/update/scrap",
@@ -16,7 +12,7 @@ export const postScrap = async (
       },
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
         },
       },
     );
@@ -27,11 +23,7 @@ export const postScrap = async (
   }
 };
 
-export const deleteScrap = async (
-  category: TCategory,
-  contentId: string,
-  accessToken: string,
-) => {
+export const deleteScrap = async (category: TCategory, contentId: string) => {
   try {
     const response = await AxiosClient.delete("/member/update/scrap", {
       data: {
@@ -39,7 +31,7 @@ export const deleteScrap = async (
         id: contentId,
       },
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
       },
     });
 
