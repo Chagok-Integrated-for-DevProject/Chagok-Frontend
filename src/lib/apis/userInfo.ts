@@ -21,7 +21,9 @@ export const getMyInfo = async (
 ): Promise<TUserInfoReturnType> => {
   try {
     const response = await AxiosClient.get("/member/info", {
-      headers: { Authorization: `Bearer ${jwtToken}` },
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
     });
     return response.data;
   } catch (error) {
@@ -42,7 +44,9 @@ export const updateNickname = async (
       `/member/update/nickname?nickname=${nickname}`,
       {},
       {
-        headers: { Authorization: `Bearer ${jwtToken}` },
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
       },
     );
     return response.data;

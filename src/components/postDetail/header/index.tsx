@@ -10,7 +10,7 @@ import type { TPostDetail } from "lib/types/post";
 import type { TCategory } from "lib/types/scrap";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { type FC, Suspense, useState } from "react";
+import { type FC, Suspense, useLayoutEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
@@ -49,6 +49,7 @@ const Header: FC<IHeaderProps> = ({ data, id }) => {
   const date = new Date(data.createdTime);
 
   const [floatingBox, setFloatingBox] = useState(false);
+
   const { token: accessToken } = useJwtToken();
 
   const { data: userInfo } = useGetMyInfoQuery(accessToken);
@@ -59,7 +60,16 @@ const Header: FC<IHeaderProps> = ({ data, id }) => {
   const isScrapped =
     router.query.purpose === "project" ? isProjectScrapped : isStudyScrapped;
 
-  const { mutate: scrapMutate } = useScrapMutation(accessToken);
+  const [scrapCnt, setScrapCnt] = useState(0);
+  useLayoutEffect(() => {
+    setScrapCnt(data.scrapCount);
+  }, [data.scrapCount]);
+
+  const { mutate: scrapMutate } = useScrapMutation(
+    accessToken,
+    scrapCnt,
+    setScrapCnt,
+  );
 
   const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -136,7 +146,7 @@ const Header: FC<IHeaderProps> = ({ data, id }) => {
       <PostInfoWrapper>
         <MobileWrapper>
           <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
-          <ScrapCnt>{data.scrapCount}</ScrapCnt>
+          <ScrapCnt>{scrapCnt}</ScrapCnt>
           <ViewCnt>조회수 {data.viewCount}</ViewCnt>
         </MobileWrapper>
         <Dates>

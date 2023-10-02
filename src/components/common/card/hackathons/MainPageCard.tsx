@@ -82,7 +82,11 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
             <HackathonTitle>{content.title}</HackathonTitle>
             <Scrab>
               <ScrapCnt>{scrapCnt}</ScrapCnt>
-              <ScrabButton onClick={onClickScrabButton} width={30} />
+              <ScrabButton
+                onClick={onClickScrabButton}
+                width={30}
+                isScrabbed={isScrapped}
+              />
             </Scrab>
           </MiddleWrapper>
           <HackathonOrganizer>{content.host}</HackathonOrganizer>

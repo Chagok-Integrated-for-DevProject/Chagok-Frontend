@@ -5,7 +5,7 @@ import { AxiosClient } from "./axiosClient";
 export const postScrap = async (
   category: TCategory,
   contentId: string,
-  jwtToken: string,
+  accessToken: string,
 ) => {
   try {
     const response = await AxiosClient.post(
@@ -16,7 +16,7 @@ export const postScrap = async (
       },
       {
         headers: {
-          Authorization: `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       },
     );
@@ -30,7 +30,7 @@ export const postScrap = async (
 export const deleteScrap = async (
   category: TCategory,
   contentId: string,
-  jwtToken: string,
+  accessToken: string,
 ) => {
   try {
     const response = await AxiosClient.delete("/member/update/scrap", {
@@ -39,7 +39,7 @@ export const deleteScrap = async (
         id: contentId,
       },
       headers: {
-        Authorization: `Bearer ${jwtToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
