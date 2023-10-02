@@ -31,12 +31,12 @@ export const getKakaoJWT = async (authCode: string) => {
 };
 
 export const postSignIn = async (
-  accessToken: string,
+  oAuthToken: string,
   socialType: "Google" | "Kakao",
 ): Promise<TSignInResponse> => {
   try {
     const response = await AxiosClient.post("/auth/signIn", {
-      accessToken,
+      accessToken: oAuthToken,
       socialType,
     });
     return response.data;
@@ -46,18 +46,40 @@ export const postSignIn = async (
 };
 
 export const postSignUp = async (
-  accessToken: string,
+  oAuthToken: string,
   nickName: string,
   skills: string[],
   socialType: "Google" | "Kakao",
 ): Promise<TSignUpResponse> => {
   try {
     const response = await AxiosClient.post("/auth/signUp", {
-      accessToken,
+      accessToken: oAuthToken,
       nickName,
       skills,
       socialType,
     });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postRefreshToken = async () => {
+  try {
+    const jwtToken = window.localStorage.getItem("jwt");
+    const response = await AxiosClient.post(
+      "/auth/refresh",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      },
+    );
+
+    window.localStorage.removeItem("jwt");
+    window.localStorage.setItem("jwt", response.data.jwtToken);
+
     return response.data;
   } catch (error) {
     throw error;

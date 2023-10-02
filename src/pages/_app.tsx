@@ -17,10 +17,6 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { resetStyles } from "styles/resetStyles";
 
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  import("../lib/mocks");
-}
-
 declare global {
   interface Window {
     Kakao: any;
@@ -39,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
         defaultOptions: {
           queries: {
             suspense: true,
+            retry: 1,
           },
         },
       }),
@@ -79,7 +76,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </ErrorBoundary>
       </Hydrate>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="bottom-center" />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
