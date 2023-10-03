@@ -26,10 +26,8 @@ const Custom500: NextPage = () => {
   return (
     <BackgroundDiv>
       <H1>
-        현재 개발 진행중이며
-        <br /> 서버 API가 개발되지 않아
-        <br /> 배포 버전에서 에러가 발생합니다. <br />- 500 - Internal Server
-        Error
+        서버에 문제가 발생했습니다.
+        <br /> 잠시후 다시 시도해주세요 <br />- 500 - Internal Server Error
       </H1>
     </BackgroundDiv>
   );
