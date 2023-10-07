@@ -1,7 +1,9 @@
 import ScrabButton from "components/common/button/scrab";
+import { useGetMyInfoQuery, useJwtToken, useScrapMutation } from "lib/hooks";
 import type { TContestDetail } from "lib/types/contest";
 import Image from "next/image";
 import type { FC } from "react";
+import { toast } from "react-toastify";
 
 import * as S from "./index.styles";
 
@@ -10,14 +12,40 @@ interface ISummaryProps {
 }
 
 const Summary: FC<ISummaryProps> = ({ data }) => {
+  const { token } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(token);
+
+  const { mutate: scrapMutate, localScrapCnt } = useScrapMutation(
+    token,
+    data.scrapCount,
+  );
+
+  const isScrapped = !!userInfo?.contestScraps.find((e) => e.id === data.id);
+
+  const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    if (token === "") {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+
+    scrapMutate({
+      contentId: `${data.id}`,
+      category: "contest",
+      jwtToken: token,
+      isScrapped,
+    });
+  };
+
   return (
     <S.Wrapper>
       <S.Header>
         <S.Title>{data.title}</S.Title>
         <S.ScrabViewBox>
           <S.ScrabCount>
-            <ScrabButton />
-            <span>{data.scrapCount}</span>
+            <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
+            <span>{localScrapCnt}</span>
           </S.ScrabCount>
           <S.ViewCount>조회수 {data.viewCount}</S.ViewCount>
         </S.ScrabViewBox>

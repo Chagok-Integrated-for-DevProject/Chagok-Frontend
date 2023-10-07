@@ -5,7 +5,7 @@ import type { TContest } from "lib/types/contest";
 import type { TPostPreview } from "lib/types/post";
 import type { TCategory } from "lib/types/scrap";
 import type { TUserInfoReturnType } from "lib/types/userInfo";
-import type { Dispatch, SetStateAction } from "react";
+import { useLayoutEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 type TScrapMutateParams = {
@@ -39,14 +39,17 @@ const contestPreviewSample: TContest = {
   title: "",
 };
 
-export const useScrapMutation = (
-  token: string,
-  scrapCnt?: number,
-  setScrapCount?: Dispatch<SetStateAction<number>>,
-) => {
+export const useScrapMutation = (token: string, scrapCnt?: number) => {
   const queryClient = useQueryClient();
   const isLoggedIn = token === "" ? { login: false } : { login: true };
   const userInfoKey = ["member", "info", isLoggedIn];
+  const [localScrapCnt, setLocalScrapCnt] = useState(scrapCnt || 0);
+
+  useLayoutEffect(() => {
+    if (scrapCnt) {
+      setLocalScrapCnt(scrapCnt);
+    }
+  }, [scrapCnt]);
 
   const { mutate } = useMutation({
     mutationFn: async ({
@@ -83,10 +86,10 @@ export const useScrapMutation = (
                 ? [...old.contestScraps, contestPreviewSample]
                 : old.contestScraps.filter((e) => e.id !== +contentId);
             }
-            if (typeof scrapCnt === "number" && !!setScrapCount) {
+            if (typeof scrapCnt === "number" && !!setLocalScrapCnt) {
               !isScrapped
-                ? setScrapCount(scrapCnt + 1)
-                : setScrapCount(scrapCnt - 1);
+                ? setLocalScrapCnt(localScrapCnt + 1)
+                : setLocalScrapCnt(localScrapCnt - 1);
             }
           }
           return old;
@@ -102,10 +105,10 @@ export const useScrapMutation = (
 
       queryClient.setQueryData(userInfoKey, context?.prevUserInfo);
 
-      if (typeof scrapCnt === "number" && !!setScrapCount) {
+      if (typeof scrapCnt === "number" && !!setLocalScrapCnt) {
         !context?.isScrapped
-          ? setScrapCount(scrapCnt - 1)
-          : setScrapCount(scrapCnt + 1);
+          ? setLocalScrapCnt(localScrapCnt - 1)
+          : setLocalScrapCnt(localScrapCnt + 1);
       }
     },
     onSettled: () => {
@@ -113,5 +116,5 @@ export const useScrapMutation = (
     },
   });
 
-  return { mutate };
+  return { mutate, localScrapCnt };
 };

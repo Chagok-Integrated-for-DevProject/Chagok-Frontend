@@ -7,7 +7,7 @@ import type { TContest } from "lib/types/contest";
 import { caculateDDay } from "lib/utils/caculateDDay";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, type MouseEvent, useState } from "react";
+import { type FC, type MouseEvent } from "react";
 import { toast } from "react-toastify";
 
 interface IHackathonPageCardProps {
@@ -15,19 +15,13 @@ interface IHackathonPageCardProps {
 }
 
 const HackathonPageCard: FC<IHackathonPageCardProps> = ({ content }) => {
-  const [scrapCnt, setScrapCnt] = useState(content?.scrapCount || 0);
-
   const { token } = useJwtToken();
   const { data: userInfo } = useGetMyInfoQuery(token);
   const isScrapped = userInfo?.contestScraps.find((e) => e.id === content?.id)
     ? true
     : false;
 
-  const { mutate: scrapMutate } = useScrapMutation(
-    token,
-    scrapCnt || 0,
-    setScrapCnt,
-  );
+  const { mutate: scrapMutate } = useScrapMutation(token, content?.scrapCount);
 
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

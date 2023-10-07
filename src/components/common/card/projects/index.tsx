@@ -8,7 +8,7 @@ import { convertToSkillSVG } from "lib/utils/convertToSkillSVG";
 import { removeCRLF } from "lib/utils/removeCRLF";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, useLayoutEffect, useState } from "react";
+import { type FC } from "react";
 import { toast } from "react-toastify";
 
 // 보류: import profileImg from "/public/mocks/user_profile.svg";
@@ -39,11 +39,6 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents, jwt, userInfo }) => {
   const purposeText = contents.postType === "PROJECT" ? "프로젝트" : "스터디";
   const skillSVGList = convertToSkillSVG(contents.skills);
 
-  const [scrapCnt, setScrapCnt] = useState(contents.scrapCount);
-  useLayoutEffect(() => {
-    setScrapCnt(contents.scrapCount);
-  }, [contents.scrapCount]);
-
   const isProjectScrapped = !!userInfo?.projectScraps.find(
     (e) => e.id == contents.id,
   );
@@ -55,7 +50,10 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents, jwt, userInfo }) => {
   const isScrapped =
     purposeParam === "project" ? isProjectScrapped : isStudyScrapped;
 
-  const { mutate: scrapMutate } = useScrapMutation(jwt, scrapCnt, setScrapCnt);
+  const { mutate: scrapMutate, localScrapCnt } = useScrapMutation(
+    jwt,
+    contents.scrapCount,
+  );
 
   const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -81,7 +79,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ contents, jwt, userInfo }) => {
       style={{ position: "relative", display: "block" }}
     >
       <Scrab>
-        <ScrapCnt>{scrapCnt}</ScrapCnt>
+        <ScrapCnt>{localScrapCnt}</ScrapCnt>
         <ScrabButton
           onClick={onClickScrabButton}
           width={30}
