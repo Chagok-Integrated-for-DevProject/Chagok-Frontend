@@ -1,29 +1,23 @@
 import Hr from "components/common/hr";
-import { useCommentsQuery } from "lib/hooks/useCommentsQuery";
-import { useContestQuery } from "lib/hooks/useContestQuery";
-import { useRouter } from "next/router";
+import Loading from "components/common/loading";
+import { useComponentMount } from "lib/hooks";
+import React from "react";
 
 import Comment from "./comment";
-import Original from "./original";
-import Summary from "./summary";
+import Content from "./HackathonContent";
 
 const HackathonDetail = () => {
-  const router = useRouter();
-
-  const contestId = Number(router.query.id);
-  const { data: contestData } = useContestQuery(contestId);
-  const { data: commentData } = useCommentsQuery(contestId);
-  if (!contestData || !commentData) return <></>;
-  const summary = { ...contestData };
-  const detail = contestData.content;
+  const [mount] = useComponentMount();
 
   return (
     <>
-      <Summary data={summary} />
+      <React.Suspense fallback={<Loading />}>
+        {mount && <Content />}
+      </React.Suspense>
       <Hr />
-      <Original data={detail} />
-      <Hr />
-      <Comment data={commentData} />
+      <React.Suspense fallback={<Loading />}>
+        {mount && <Comment />}
+      </React.Suspense>
     </>
   );
 };

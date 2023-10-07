@@ -97,3 +97,18 @@ export const MyPageLink = styled(Link)`
 
   background-color: ${palette.white};
 `;
+
+export const SmallNavBox = styled.div``;
+
+export const MyPageButton = styled.button`
+  width: 5rem;
+  height: 3rem;
+  background-color: #fff;
+  border-radius: 1.875rem;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+`;

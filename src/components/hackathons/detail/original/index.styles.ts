@@ -4,7 +4,9 @@ interface IArrowStyle {
   isOpen: boolean;
 }
 
-export const Details = styled.details``;
+export const Details = styled.details`
+  padding: 0 2.5rem;
+`;
 
 export const Summary = styled.summary`
   max-width: 8rem;

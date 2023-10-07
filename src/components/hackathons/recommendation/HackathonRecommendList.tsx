@@ -31,6 +31,10 @@ const CardWrapper = styled(Swiper)`
     padding-bottom: 4rem;
   }
 
+  .swiper-slide {
+    min-width: 18.75rem;
+  }
+
   .swiper-pagination {
     > * {
       transition: all 0.2s ease-in-out;

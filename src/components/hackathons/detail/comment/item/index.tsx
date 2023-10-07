@@ -1,5 +1,5 @@
-import type { AxiosError } from "axios";
 import LinkSVG from "components/common/link";
+import { useJwtToken } from "lib/hooks";
 import {
   useDeleteCommentMutation,
   useUpdateCommentMutation,
@@ -7,8 +7,10 @@ import {
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import type { TComment } from "lib/types/contest";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
 import UserProfileSVG from "/public/mocks/user_profile.svg";
@@ -20,27 +22,24 @@ interface CommentItemProps {
 }
 
 const CommentItem: FC<CommentItemProps> = ({ comment }) => {
-  const {
-    mutate: deleteCommentMutate,
-    error: deleteCommentError,
-    isError: isDeleteError,
-  } = useDeleteCommentMutation();
-  const {
-    mutate: updateCommentMutate,
-    error: updateCommentError,
-    isError: isUpdateError,
-  } = useUpdateCommentMutation();
+  const { token } = useJwtToken();
+  const router = useRouter();
+  const { mutate: deleteCommentMutate } = useDeleteCommentMutation(
+    Number(router.query.id),
+  );
+  const { mutate: updateCommentMutate } = useUpdateCommentMutation();
   const [isEdit, setIsEdit] = useState(false);
 
-  const [content, setContent, resetContent] = useInputChangeEvent();
-  const [method, setMethod, resetMethod] = useInputChangeEvent();
+  const [content, setContent, resetContent] = useInputChangeEvent(
+    comment.content,
+  );
+  const [method, setMethod, resetMethod] = useInputChangeEvent(
+    comment.kakaoRef,
+  );
 
   const onEditComment = () => {
-    if (isUpdateError) {
-      if ((updateCommentError as AxiosError).response?.status === 401) {
-        alert("로그인이 필요한 서비스입니다.");
-        onCancelWithoutSubmit();
-      }
+    if (!token) {
+      toast.warn("로그인이 필요합니다.");
       return;
     }
 
@@ -48,16 +47,17 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
       commentId: comment.commentId,
       content,
       kakaoRef: method,
+      jwtToken: token,
     });
+    setIsEdit(false);
   };
   const onDeleteComment = () => {
-    if (isDeleteError) {
-      if ((deleteCommentError as AxiosError).response?.status === 400) {
-        alert("로그인이 필요한 서비스입니다.");
-      }
+    if (!token) {
+      toast.warn("로그인이 필요합니다.");
       return;
     }
-    deleteCommentMutate(comment.commentId);
+
+    deleteCommentMutate({ commentId: comment.commentId, jwtToken: token });
   };
 
   const onCancelWithoutSubmit = () => {
@@ -84,22 +84,15 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
         </S.Profile>
         <S.Divider />
         <S.ContentBox isEdit={isEdit}>
-          <S.Content
-            disabled={!isEdit}
-            value={content || comment.content}
-            onChange={setContent}
-          />
+          <S.Content disabled={!isEdit} value={content} onChange={setContent} />
           <S.MethodBox>
             <LinkSVG color={palette.bdBlue100} />
             <span>모집 수단 :</span>
             {isEdit ? (
-              <S.Method
-                value={method || comment.kakaoRef}
-                onChange={setMethod}
-              />
+              <S.Method value={method} onChange={setMethod} />
             ) : (
-              <S.MethodLink href={comment.kakaoRef} target="_blank">
-                {comment.kakaoRef}
+              <S.MethodLink href={method} target="_blank">
+                {method}
               </S.MethodLink>
             )}
           </S.MethodBox>

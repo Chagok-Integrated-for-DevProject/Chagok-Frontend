@@ -27,7 +27,7 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
     nickName,
     profileImg,
   });
-  console.log(state.profileImg);
+
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
