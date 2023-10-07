@@ -6,7 +6,7 @@ import { useScrapMutation } from "lib/hooks/useScrapMutations";
 import type { TContest } from "lib/types/contest";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, type MouseEvent, useState } from "react";
+import { type FC, type MouseEvent } from "react";
 import { toast } from "react-toastify";
 import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
@@ -16,18 +16,15 @@ interface IHackahtonCardProps {
 }
 
 const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
-  const [scrapCnt, setScrapCnt] = useState(content.scrapCount);
-
   const { token } = useJwtToken();
   const { data: userInfo } = useGetMyInfoQuery(token);
   const isScrapped = userInfo?.contestScraps.find((e) => e.id === content.id)
     ? true
     : false;
 
-  const { mutate: scrapMutate } = useScrapMutation(
+  const { mutate: scrapMutate, localScrapCnt } = useScrapMutation(
     token,
-    scrapCnt,
-    setScrapCnt,
+    content.scrapCount,
   );
 
   const onClickScrabButton = (event: MouseEvent<HTMLButtonElement>) => {
@@ -81,7 +78,7 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
           <MiddleWrapper>
             <HackathonTitle>{content.title}</HackathonTitle>
             <Scrab>
-              <ScrapCnt>{scrapCnt}</ScrapCnt>
+              <ScrapCnt>{localScrapCnt}</ScrapCnt>
               <ScrabButton
                 onClick={onClickScrabButton}
                 width={30}
@@ -96,7 +93,7 @@ const HackathonCard: FC<IHackahtonCardProps> = ({ content }) => {
         <DeskTopWrapper>
           <RightWrapper>
             <Scrab>
-              <ScrapCnt>{scrapCnt}</ScrapCnt>
+              <ScrapCnt>{localScrapCnt}</ScrapCnt>
               <ScrabButton
                 onClick={onClickScrabButton}
                 width={35}

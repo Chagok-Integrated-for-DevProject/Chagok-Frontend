@@ -119,11 +119,16 @@
 - 비동기 api 에러 처리: queryClient의 onError props에 toast연결.
 - 서버사이드 에러: 500, 404 커스텀
 
-### :passport_control: 인증/인가 방식
+### :passport_control: 인증/인가 방식 (CSRF, XSS에 대응)
 
 - 카카오, 구글 소셜 로그인
-- refresh token은 httpOnly쿠키에 저장 (CSRF, XSS에 대응)
+- refresh token은 httpOnly쿠키에 저장
 - access token은 만료 시간을 짧게 하여 localStorage에 저장
+
+### :white_check_mak: 테스팅
+
+- 현재까지 60개의 테스트 케이스 작성<br /><br />
+  ![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/20a6a601-bb7c-4843-8852-e6d5b88721fb)
 
 <br><br>
 
@@ -235,3 +240,13 @@ src
 <br><br>
 
 ## :technologist: 기능 설명
+
+### 1. 랜딩 페이지
+
+### 2. 프로젝트 추천
+
+### 3. 해커톤 공고 모집글
+
+### 4. 프로젝트 / 스터디 모집글
+
+### 5.

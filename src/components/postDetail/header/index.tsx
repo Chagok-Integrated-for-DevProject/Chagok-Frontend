@@ -10,7 +10,7 @@ import type { TPostDetail } from "lib/types/post";
 import type { TCategory } from "lib/types/scrap";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { type FC, Suspense, useLayoutEffect, useState } from "react";
+import { type FC, Suspense, useState } from "react";
 import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
@@ -60,15 +60,9 @@ const Header: FC<IHeaderProps> = ({ data, id }) => {
   const isScrapped =
     router.query.purpose === "project" ? isProjectScrapped : isStudyScrapped;
 
-  const [scrapCnt, setScrapCnt] = useState(0);
-  useLayoutEffect(() => {
-    setScrapCnt(data.scrapCount);
-  }, [data.scrapCount]);
-
-  const { mutate: scrapMutate } = useScrapMutation(
+  const { mutate: scrapMutate, localScrapCnt } = useScrapMutation(
     accessToken,
-    scrapCnt,
-    setScrapCnt,
+    data.scrapCount,
   );
 
   const onClickScrabButton = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -146,7 +140,7 @@ const Header: FC<IHeaderProps> = ({ data, id }) => {
       <PostInfoWrapper>
         <MobileWrapper>
           <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
-          <ScrapCnt>{scrapCnt}</ScrapCnt>
+          <ScrapCnt>{localScrapCnt}</ScrapCnt>
           <ViewCnt>조회수 {data.viewCount}</ViewCnt>
         </MobileWrapper>
         <Dates>

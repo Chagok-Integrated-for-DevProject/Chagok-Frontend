@@ -14,9 +14,13 @@ const Content = () => {
   const detail = contestData.content;
   return (
     <>
-      <Summary data={summary} />
-      <Hr />
-      <Original data={detail} />
+      {contestData && (
+        <>
+          <Summary data={summary} />
+          <Hr />
+          <Original data={detail} />
+        </>
+      )}
     </>
   );
 };
