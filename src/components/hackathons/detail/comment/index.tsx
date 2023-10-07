@@ -1,6 +1,7 @@
-import type { TComment } from "lib/types/contest";
+import { Section } from "components/hackathons/index.styles";
+import { useCommentsQuery } from "lib/hooks";
 import Image from "next/image";
-import type { FC } from "react";
+import { useRouter } from "next/router";
 
 import ChatSVG from "/public/utils/chat.svg";
 
@@ -8,25 +9,34 @@ import * as S from "./index.styles";
 import CommentItem from "./item";
 import NewComment from "./register";
 
-interface ICommentProps {
-  data: TComment[];
-}
+const Comment = () => {
+  const router = useRouter();
+  const contestId = Number(router.query.id);
+  const { data } = useCommentsQuery(contestId);
+  if (!data) return <></>;
 
-const Comment: FC<ICommentProps> = ({ data }) => {
   return (
-    <section>
+    <Section>
       <S.CommentCount>
         <Image width={24} height={24} src={ChatSVG} alt="말풍선" />
         <span>모집글 {data.length}개</span>
       </S.CommentCount>
       <NewComment />
-      <S.CommentListBox>
-        {data.map((comment) => (
-          <CommentItem key={comment.commentId} comment={comment} />
-        ))}
-      </S.CommentListBox>
-    </section>
+      {data.length === 0 ? (
+        <NoCommentNotification />
+      ) : (
+        <S.CommentListBox>
+          {data.map((comment) => (
+            <CommentItem key={comment.commentId} comment={comment} />
+          ))}
+        </S.CommentListBox>
+      )}
+    </Section>
   );
 };
 
 export default Comment;
+
+const NoCommentNotification = () => {
+  return <S.NoComment>첫 댓글을 달아보세요!</S.NoComment>;
+};

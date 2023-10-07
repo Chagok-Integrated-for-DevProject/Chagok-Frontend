@@ -8,7 +8,7 @@ export const useInputChangeEvent = (
     setKeyword(e.target.value);
   };
 
-  const resetKeyword = () => setKeyword("");
+  const resetKeyword = () => setKeyword(defaultKeyword);
   return [keyword, handleKeyword, resetKeyword];
 };
 

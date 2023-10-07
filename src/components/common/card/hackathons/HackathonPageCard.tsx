@@ -58,7 +58,7 @@ const HackathonPageCard: FC<IHackathonPageCardProps> = ({ content }) => {
             alt="해커톤 포스터 이미지"
           />
         ) : (
-          <span>포스터 이미지가 없습니다.</span>
+          <NoImage>포스터 이미지가 없습니다.</NoImage>
         )}
       </ImageBox>
       <ScrabButton onClick={onClickScrabButton} isScrabbed={isScrapped} />
@@ -81,14 +81,15 @@ const StyledWrapper = styled(Link)`
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 380px;
+  max-width: 23.75rem;
   width: 100%;
-
+  aspect-ratio: 3 / 4;
+  font-size: 1em;
   button {
     z-index: 2;
     position: absolute;
-    top: 2rem;
-    right: 1.5rem;
+    top: 2em;
+    right: 1.5em;
   }
 
   :hover {
@@ -103,10 +104,15 @@ const ImageBox = styled.div<{ background: string }>`
   width: 100%;
   height: 100%;
   background: url(${({ background }) => background});
+  background-color: #ddd;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    object-position: center;
+    object-position: center center;
     backdrop-filter: blur(10px);
   }
   span {
@@ -120,7 +126,7 @@ const ImageBox = styled.div<{ background: string }>`
 const Description = styled.div`
   width: 100%;
   height: 17rem;
-  padding: 1.75rem 2.45rem;
+  padding: 1.75em 2.45em;
   position: absolute;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
@@ -130,32 +136,38 @@ const Description = styled.div`
   transition:
     opacity 0.2s ease-in,
     transform 0.2s ease-in;
-
+  font-size: 1em;
   color: #fff;
 `;
 
 const MainInfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.4em;
 `;
 
 const DDay = styled.span`
-  font-size: 1.75rem;
+  font-size: 1.75em;
   font-weight: 700;
   line-height: 2.625rem;
 `;
 const Title = styled.span`
-  font-size: 1.125rem;
+  font-size: 1.125em;
   font-weight: 400;
   line-height: 1.6875rem;
 `;
 const Organizer = styled.span`
   font-weight: 400;
-  font-size: 1.125rem;
+  font-size: 1.125em;
   line-height: 1.6875rem;
 `;
 const Hr = styled.div`
   border-top: 1px solid #fff;
-  margin-block: 1.7rem;
+  margin-block: 1.5em;
+`;
+
+const NoImage = styled.span`
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 `;

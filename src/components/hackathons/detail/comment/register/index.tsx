@@ -1,4 +1,4 @@
-import type { AxiosError } from "axios";
+import { useJwtToken } from "lib/hooks";
 import { useCreateCommentMutation } from "lib/hooks/useCommentMutation";
 import {
   useInputChangeEvent,
@@ -6,15 +6,18 @@ import {
 } from "lib/hooks/useInputHooks";
 import { useRouter } from "next/router";
 import type { MouseEvent } from "react";
+import { toast } from "react-toastify";
 
 import * as S from "./index.styles";
 // FIXME: 새로고침하면 포커스 및 블러 이벤트 오작동
 const NewComment = () => {
-  const {
-    mutate: createCommentMutate,
-    error: createCommentError,
-    isError: isCreateCommentError,
-  } = useCreateCommentMutation();
+  const { token } = useJwtToken();
+  const resetField = () => {
+    resetContent();
+    resetMethod();
+    handleBlurEvent();
+  };
+  const { mutate: createCommentMutate } = useCreateCommentMutation(resetField);
 
   const router = useRouter();
 
@@ -24,22 +27,19 @@ const NewComment = () => {
 
   const onSubmitComment = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (isCreateCommentError) {
-      if ((createCommentError as AxiosError).response?.status === 401)
-        alert("로그인이 필요한 서비스입니다.");
-    } else {
-      const data = {
-        content,
-        contestId: Number(router.query.id),
-        kakaoRef: method,
-      };
-
-      createCommentMutate(data);
+    if (!token) {
+      toast.warn("로그인이 필요합니다.");
+      resetField();
+      return;
     }
+    const data = {
+      content,
+      contestId: Number(router.query.id),
+      kakaoRef: method,
+      jwtToken: token,
+    };
 
-    resetContent();
-    resetMethod();
-    handleBlurEvent();
+    createCommentMutate(data);
   };
   return (
     <S.NewCommentContainer

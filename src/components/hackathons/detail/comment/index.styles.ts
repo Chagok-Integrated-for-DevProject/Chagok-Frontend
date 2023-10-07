@@ -21,3 +21,11 @@ export const CommentListBox = styled.ul`
   flex-direction: column;
   gap: 2.5rem;
 `;
+
+export const NoComment = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: ${palette.fontMainOrange};
+  font-size: 1.25rem;
+`;

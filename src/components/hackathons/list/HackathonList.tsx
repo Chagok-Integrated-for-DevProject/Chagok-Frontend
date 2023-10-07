@@ -67,16 +67,16 @@ export default HackathonListSection;
 
 const ListBox = styled.div`
   display: grid;
-  /* FIXME: 반응형 적용 필요 */
-  grid-template-columns: repeat(auto-fill, 23.75rem);
-  grid-gap: 1.87rem;
-
+  grid-auto-flow: row dense;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-gap: 1.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  justify-items: center;
   margin: 0 auto;
 `;
 const PaginationBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   margin-top: 5rem;
 `;
