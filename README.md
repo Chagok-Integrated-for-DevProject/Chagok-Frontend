@@ -116,8 +116,8 @@
 ### :safety_vest: Error 처리
 
 - 렌더링 관련 에러 처리: [Nextjs Error Boundary - 공식문서](https://nextjs.org/docs/pages/building-your-application/configuring/error-handling)
-- 비동기 api 에러 처리: queryClient의 onError props에 toast연결.
 - 서버사이드 에러: 500, 404 커스텀
+- 그 밖에 에러: 토스트 메세지를 통해 사용자에게 알림
 
 ### :passport_control: 인증/인가 방식 (CSRF, XSS에 대응)
 
@@ -241,12 +241,56 @@ src
 
 ## :technologist: 기능 설명
 
-### 1. 랜딩 페이지
+### 1. 회원가입 / 로그인
 
-### 2. 프로젝트 추천
+![OAuth](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/0e7ccda9-cec7-4b84-a227-86027d734cd7)
 
-### 3. 해커톤 공고 모집글
+<br/><br/>
 
-### 4. 프로젝트 / 스터디 모집글
+### 2. 랜딩페이지
 
-### 5.
+![홈](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/c893ca90-7619-4082-9b48-7b90120a4dc8)
+
+<br/><br/>
+
+### 3. 프로젝트 / 스터디 모집글
+
+![스터디프로젝트](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/6554e94f-9942-4f51-be8f-bf91cc836a38)
+
+<br/><br/>
+
+### 4. 프로젝트 / 스터디 상세 정보
+
+![스터디프로젝트상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/203fd207-d216-4e3b-b76c-e82e57e305cd)
+
+<br/><br/>
+
+### 5. 해커톤 공고글
+
+![해커톤](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/2a0c32f1-89e7-4915-b30b-5168ae9e05b3)
+
+<br/><br/>
+
+### 6. 해커톤 상세 페이지
+
+![해커톤상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/03c2ebcb-7d4c-4f39-bb9a-e6a0b2aa52dc)
+
+<br/><br/>
+
+### 7. 유저 닉네임, 이메일 수정
+
+![유저정보변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/e843475b-af40-4eeb-87ed-c0e9f65ed936)
+
+<br/><br/>
+
+### 8. 유저 기술스택 변경
+
+![기술스택 변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/d1bc7044-afa2-4cfd-add8-c2b066396628)
+
+<br/><br/>
+
+### 9. 유저 스크랩 목록 조회
+
+![스크랩변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/aad7c636-9e16-40ad-a91f-9527a93935cb)
+
+<br/><br/>
