@@ -1,5 +1,5 @@
 import LinkSVG from "components/common/link";
-import { useJwtToken } from "lib/hooks";
+import { useGetMyInfoQuery, useJwtToken } from "lib/hooks";
 import {
   useDeleteCommentMutation,
   useUpdateCommentMutation,
@@ -7,7 +7,6 @@ import {
 import { useInputChangeEvent } from "lib/hooks/useInputHooks";
 import type { TComment } from "lib/types/contest";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -23,12 +22,13 @@ interface CommentItemProps {
 
 const CommentItem: FC<CommentItemProps> = ({ comment }) => {
   const { token } = useJwtToken();
-  const router = useRouter();
-  const { mutate: deleteCommentMutate } = useDeleteCommentMutation(
-    Number(router.query.id),
-  );
+
+  const { data: userInfo } = useGetMyInfoQuery(token);
+
+  const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
   const { mutate: updateCommentMutate } = useUpdateCommentMutation();
   const [isEdit, setIsEdit] = useState(false);
+  const isMyComment = comment.userEmail === userInfo?.email;
 
   const [content, setContent, resetContent] = useInputChangeEvent(
     comment.content,
@@ -38,7 +38,7 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
   );
 
   const onEditComment = () => {
-    if (!token) {
+    if (token === "") {
       toast.warn("로그인이 필요합니다.");
       return;
     }
@@ -52,7 +52,7 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
     setIsEdit(false);
   };
   const onDeleteComment = () => {
-    if (!token) {
+    if (token === "") {
       toast.warn("로그인이 필요합니다.");
       return;
     }
@@ -65,6 +65,11 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
     resetMethod();
     setIsEdit(false);
   };
+
+  if (comment.deleted) {
+    return <S.DeletedCommentItem>댓글이 삭제되었습니다.</S.DeletedCommentItem>;
+  }
+
   return (
     <S.CommentItemContainer>
       <S.Comment>
@@ -98,15 +103,16 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
           </S.MethodBox>
         </S.ContentBox>
         <S.Controller>
-          {isEdit ? (
+          {isMyComment && (
             <>
-              <button onClick={onEditComment}>수정</button>
-              <button onClick={onCancelWithoutSubmit}>취소</button>
-            </>
-          ) : (
-            <>
-              <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
-              <button onClick={onDeleteComment}>삭제</button>
+              <button onClick={isEdit ? onEditComment : () => setIsEdit(true)}>
+                수정
+              </button>
+              <button
+                onClick={isEdit ? onCancelWithoutSubmit : onDeleteComment}
+              >
+                {isEdit ? "취소" : "삭제"}
+              </button>
             </>
           )}
         </S.Controller>

@@ -111,6 +111,11 @@ export const useScrapMutation = (token: string, scrapCnt?: number) => {
           : setLocalScrapCnt(localScrapCnt + 1);
       }
     },
+    onSuccess: (_, vars) => {
+      !vars.isScrapped
+        ? toast.success("북마크에 추가되었습니다.")
+        : toast.success("북마크가 취소되었습니다.");
+    },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: userInfoKey });
     },

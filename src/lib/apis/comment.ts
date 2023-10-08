@@ -49,6 +49,7 @@ export const updateComment = async (targetComment: {
   statusCodeValue: number;
 }> => {
   const { commentId, content, kakaoRef, jwtToken } = targetComment;
+
   const data = { commentId, content, kakaoRef };
   try {
     const response = await AxiosClient.put("contests/comments", data, {
@@ -75,7 +76,10 @@ export const deleteComment = async ({
     const response = await AxiosClient.delete(
       `contests/comments/${commentId}`,
       {
-        headers: { Authorization: `Bearer ${jwtToken}` },
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          "Content-Type": "application/json;charset=UTF-8",
+        },
       },
     );
     return response.data;

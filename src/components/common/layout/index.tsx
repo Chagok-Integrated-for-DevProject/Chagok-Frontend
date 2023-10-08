@@ -2,7 +2,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { FC } from "react";
 
 import Body from "./body";
-import Footer from "./footer";
+// TODO: import Footer from "./footer";
 import Header from "./header";
 
 type LayoutProps = {
@@ -16,7 +16,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     >
       <Header />
       <Body>{children}</Body>
-      <Footer />
+      {/**TODO: <Footer />*/}
     </GoogleOAuthProvider>
   );
 };

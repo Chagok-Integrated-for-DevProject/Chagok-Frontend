@@ -1,4 +1,3 @@
-import { Section } from "components/hackathons/index.styles";
 import { useCommentsQuery } from "lib/hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -16,7 +15,7 @@ const Comment = () => {
   if (!data) return <></>;
 
   return (
-    <Section>
+    <S.CommentSection>
       <S.CommentCount>
         <Image width={24} height={24} src={ChatSVG} alt="말풍선" />
         <span>모집글 {data.length}개</span>
@@ -31,7 +30,7 @@ const Comment = () => {
           ))}
         </S.CommentListBox>
       )}
-    </Section>
+    </S.CommentSection>
   );
 };
 

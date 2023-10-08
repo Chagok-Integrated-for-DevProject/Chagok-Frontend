@@ -8,7 +8,16 @@ export const CommentItemContainer = styled.li`
   width: 100%;
   border-radius: 0.625rem;
   background-color: ${palette.bgSubOrange};
-  padding: 3rem 2.5rem;
+  padding: 2rem 2.5rem;
+`;
+export const DeletedCommentItem = styled.li`
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 0.625rem;
+  background-color: ${palette.bgSubOrange};
+
+  padding: 1rem 2.5rem;
 `;
 
 export const Comment = styled.div`
@@ -26,7 +35,7 @@ export const Profile = styled.div`
 `;
 
 export const UserNameAndDate = styled.div`
-  min-width: 12rem;
+  min-width: 10rem;
   > span {
     display: block;
   }

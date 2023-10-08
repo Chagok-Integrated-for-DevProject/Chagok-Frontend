@@ -23,6 +23,11 @@ const MobileNav: FC<IMobileNavProps> = ({ openModal }) => {
         <Li>
           <NavLink href="/projects?purpose=project">스터디 / 프로젝트</NavLink>
         </Li>
+        {accessToken !== "" && (
+          <Li>
+            <NavLink href="/projects?purpose=project">마이페이지</NavLink>
+          </Li>
+        )}
         <Li>
           {accessToken === "" && (
             <LoginBtn type="button" onClick={openModal}>
@@ -48,7 +53,7 @@ const Wrapper = styled.div`
   right: 0;
 
   width: 200px;
-  height: 200px;
+
   background-color: ${palette.white};
 
   border: 0;

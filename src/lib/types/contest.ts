@@ -60,4 +60,5 @@ export type TComment = {
   linkedComment: TComment[];
   memberNickName: string;
   parentId: number;
+  userEmail: string;
 };
