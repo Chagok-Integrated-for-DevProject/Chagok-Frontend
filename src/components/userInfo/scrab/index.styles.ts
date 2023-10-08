@@ -2,11 +2,7 @@ import styled from "@emotion/styled";
 import { palette } from "styles/palette";
 
 export const ScrabWrapper = styled.section`
-  color: ${palette.fontGray300};
   padding-top: 5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 2.25rem;
 
   h2 {
     margin-bottom: 2.5rem;
@@ -14,6 +10,12 @@ export const ScrabWrapper = styled.section`
 `;
 
 export const Navigation = styled.nav`
+  color: ${palette.fontGray300};
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+
   ul {
     display: flex;
     flex-direction: row;
@@ -40,17 +42,10 @@ export const Input = styled.input`
   position: absolute;
 `;
 
-export const ScrabList = styled.ul`
+export const ScrapList = styled.ul`
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 1rem;
-`;
+  gap: 1.4375rem;
 
-export const ProjectStudyWrapper = styled.div`
-  max-width: 23.75rem;
-  border-radius: 0.625rem;
-  box-shadow: 0px 1px 50px 0px rgba(0, 0, 0, 0.1);
-  padding: 2.3rem;
+  list-style-type: none;
 `;
