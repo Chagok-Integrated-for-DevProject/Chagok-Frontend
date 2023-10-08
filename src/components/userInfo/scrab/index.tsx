@@ -1,25 +1,16 @@
-import HackathonPageCard from "components/common/card/hackathons/HackathonPageCard";
-import ProjectCard from "components/common/card/projects";
 import { H2 } from "components/userInfo/index.styles";
-import { useJwtToken } from "lib/hooks/useJwtToken";
-import type { TContest } from "lib/types/contest";
-import type { TPostPreview } from "lib/types/post";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 
+import ContestScrap from "./Contest";
 import * as S from "./index.styles";
+import ProjectScrap from "./Project";
+import StudyScrap from "./Study";
 
 type TNavItem = "hackathon" | "study" | "project";
 
-interface IScrapProp {
-  contestScraps: TContest[];
-  projectScraps: TPostPreview[];
-  studyScraps: TPostPreview[];
-}
-
-const Scrab = ({ contestScraps, projectScraps, studyScraps }: IScrapProp) => {
+const Scrab = () => {
   const [navItem, setNavItem] = useState<TNavItem>("hackathon");
-  const { token } = useJwtToken();
 
   const onClickNavItem = (e: ChangeEvent<HTMLInputElement>) => {
     setNavItem(e.target.id as TNavItem);
@@ -59,48 +50,11 @@ const Scrab = ({ contestScraps, projectScraps, studyScraps }: IScrapProp) => {
           </li>
         </ul>
       </S.Navigation>
-      <S.ScrabList>
-        {/* contest */}
-        {navItem === "hackathon" ? (
-          contestScraps && contestScraps.length > 0 ? (
-            contestScraps.map((contest) => (
-              <HackathonPageCard key={contest.id} content={contest} />
-            ))
-          ) : (
-            <span>스크랩한 해커톤이 없어요.</span>
-          )
-        ) : (
-          <></>
-        )}
-        {/* project */}
-        {navItem === "project" ? (
-          projectScraps && projectScraps.length > 0 ? (
-            projectScraps.map((project) => (
-              <S.ProjectStudyWrapper key={project.id}>
-                <ProjectCard contents={project} jwt={token} />
-              </S.ProjectStudyWrapper>
-            ))
-          ) : (
-            <span>스크랩한 프로젝트가 없어요.</span>
-          )
-        ) : (
-          <></>
-        )}
-        {/* studies */}
-        {navItem === "study" ? (
-          studyScraps && studyScraps.length > 0 ? (
-            studyScraps.map((study) => (
-              <S.ProjectStudyWrapper key={study.id}>
-                <ProjectCard contents={study} jwt={token} />
-              </S.ProjectStudyWrapper>
-            ))
-          ) : (
-            <span>스크랩한 스터디가 없어요.</span>
-          )
-        ) : (
-          <></>
-        )}
-      </S.ScrabList>
+      <div>
+        {navItem === "hackathon" && <ContestScrap />}
+        {navItem === "project" && <ProjectScrap />}
+        {navItem === "study" && <StudyScrap />}
+      </div>
     </S.ScrabWrapper>
   );
 };

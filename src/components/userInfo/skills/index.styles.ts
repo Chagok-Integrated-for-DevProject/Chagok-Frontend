@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "styles/breakPoints";
 import { palette } from "styles/palette";
 
 export const SkillsWrapper = styled.section`
@@ -18,6 +19,15 @@ export const SelectedSkills = styled.ul`
   overflow-y: auto;
 
   margin-bottom: 5.5rem;
+
+  @media ${breakPoints.sm} {
+    max-height: 18.2rem;
+  }
+
+  @media ${breakPoints.xs} {
+    background-color: #f5f5f5;
+    gap: 0.5rem;
+  }
 `;
 
 export const SelectedSkillItem = styled.li`
@@ -26,14 +36,31 @@ export const SelectedSkillItem = styled.li`
 
   gap: 0.9375rem;
 
+  min-width: 7.9375rem;
   width: 11rem;
   height: 2.8125rem;
-  padding: 0.625rem 1.8125rem;
+  padding: 0.625rem 1.4125rem;
 
   border: 3px solid ${palette.bdGray200};
   border-radius: 1.875rem;
 
   line-height: 1.3125rem;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media ${breakPoints.sm} {
+    justify-content: center;
+    width: calc(90% / 2);
+  }
+
+  @media ${breakPoints.xs} {
+    width: calc(90% / 2);
+    gap: 0.5rem;
+  }
 `;
 
 export const SkillController = styled.div`
