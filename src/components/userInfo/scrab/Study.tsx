@@ -12,7 +12,7 @@ const StudyScrap = () => {
 
   return (
     <C.ScrapList>
-      {userInfo?.projectScraps.map((e, i) => (
+      {userInfo?.studyScraps.map((e, i) => (
         <Li key={`${i}${e.id}`}>
           <ProjectCard contents={e} jwt={token} userInfo={userInfo} />
         </Li>

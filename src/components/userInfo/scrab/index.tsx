@@ -50,11 +50,11 @@ const Scrab = () => {
           </li>
         </ul>
       </S.Navigation>
-      <div>
+      <S.ScrapWrapper>
         {navItem === "hackathon" && <ContestScrap />}
         {navItem === "project" && <ProjectScrap />}
         {navItem === "study" && <StudyScrap />}
-      </div>
+      </S.ScrapWrapper>
     </S.ScrabWrapper>
   );
 };

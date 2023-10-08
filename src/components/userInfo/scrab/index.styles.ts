@@ -49,3 +49,7 @@ export const ScrapList = styled.ul`
 
   list-style-type: none;
 `;
+
+export const ScrapWrapper = styled.div`
+  min-height: 500px;
+`;
