@@ -31,7 +31,7 @@ const Skills = ({ skills: skillsData }: ISkillsProp) => {
       setSkills([...skills, skill]);
     }
   };
-  console.log(skills);
+
   const onUpdateSkills = () => {
     updateSkills({ skills, jwtToken });
   };
