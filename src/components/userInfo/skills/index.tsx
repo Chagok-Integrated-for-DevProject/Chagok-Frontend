@@ -1,20 +1,21 @@
 import SkillContainer from "components/common/skillContainer";
 import { Button, H2 } from "components/userInfo/index.styles";
+import { useGetMyInfoQuery } from "lib/hooks";
 import { useJwtToken } from "lib/hooks/useJwtToken";
 import { useUpdateSkillsMutation } from "lib/hooks/useMyInfoMutation";
+import { getSkillObjs } from "lib/utils/getSkillObjs";
+import Image from "next/image";
 import { useState } from "react";
 import { palette } from "styles/palette";
 
 import * as S from "./index.styles";
 
-interface ISkillsProp {
-  skills: string[];
-}
-
-const Skills = ({ skills: skillsData }: ISkillsProp) => {
+const Skills = () => {
   const { token: jwtToken } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(jwtToken);
+
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [skills, setSkills] = useState<string[]>(skillsData ?? []);
+  const [skills, setSkills] = useState<string[]>([]);
 
   const { mutate: updateSkills } = useUpdateSkillsMutation(() => {
     setIsEdit(false);
@@ -22,6 +23,16 @@ const Skills = ({ skills: skillsData }: ISkillsProp) => {
 
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
+
+    if (!isEdit && userInfo) {
+      setSkills(userInfo.skills);
+      return;
+    }
+
+    if (isEdit) {
+      setSkills([]);
+      return;
+    }
   };
 
   const handleSkills = (skill: string) => {
@@ -39,11 +50,23 @@ const Skills = ({ skills: skillsData }: ISkillsProp) => {
   return (
     <S.SkillsWrapper>
       <H2>나의 관심 스택</H2>
-      <SkillContainer
-        defaultCheckedSkills={skills}
-        isEditMode={isEdit}
-        handleSkills={handleSkills}
-      />
+      {isEdit && (
+        <SkillContainer
+          defaultCheckedSkills={skills}
+          isEditMode={isEdit}
+          handleSkills={handleSkills}
+        />
+      )}
+      {userInfo && !isEdit && (
+        <S.SelectedSkills>
+          {getSkillObjs(userInfo.skills).map((e) => (
+            <S.SelectedSkillItem key={e.id}>
+              <Image src={e.img} alt={e.id} width={21} />
+              <span>{e.skill}</span>
+            </S.SelectedSkillItem>
+          ))}
+        </S.SelectedSkills>
+      )}
       <S.SkillController>
         <Button
           backgroundColor={palette.black}

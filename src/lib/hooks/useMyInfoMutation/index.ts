@@ -103,6 +103,8 @@ export const useDeleteProfileImgMutation = (onSuccessFn?: () => void) => {
 };
 
 export const useUpdateSkillsMutation = (onSuccessFn?: () => void) => {
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: ({
       skills,
@@ -113,6 +115,13 @@ export const useUpdateSkillsMutation = (onSuccessFn?: () => void) => {
     }) => updateSkills(skills, jwtToken),
     onSuccess: () => {
       onSuccessFn && onSuccessFn();
+      toast.success("관심 스택이 변경되었습니다.");
+    },
+    onError: () => {
+      toast.error("서버와의 연결이 원활하지 않습니다.");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: userInfoKey });
     },
   });
   return { mutate };
