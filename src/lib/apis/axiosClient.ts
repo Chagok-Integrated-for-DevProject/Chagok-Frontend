@@ -43,8 +43,6 @@ AxiosClient.interceptors.response.use(
         processQueue(null, newAccessToken);
         return axios(originalRequest);
       } catch (error) {
-        window.localStorage.removeItem("jwt");
-        window.location.reload();
         throw error;
       } finally {
         isRefreshing = true;

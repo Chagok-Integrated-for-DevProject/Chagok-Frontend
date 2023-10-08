@@ -8,7 +8,7 @@ export const CommentItemContainer = styled.li`
   width: 100%;
   border-radius: 0.625rem;
   background-color: ${palette.bgSubOrange};
-  padding: 2rem 2.5rem;
+  padding: 3rem 2.5rem;
 `;
 export const DeletedCommentItem = styled.li`
   display: block;
