@@ -82,6 +82,8 @@ export const postRefreshToken = async () => {
 
     return response.data;
   } catch (error) {
+    window.localStorage.removeItem("jwt");
+    window.location.reload();
     throw error;
   }
 };
