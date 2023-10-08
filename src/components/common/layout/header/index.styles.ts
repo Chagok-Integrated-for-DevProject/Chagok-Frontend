@@ -111,4 +111,8 @@ export const MyPageButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+
+  @media ${breakPoints.sm} {
+    display: none;
+  }
 `;

@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 import { palette } from "styles/palette";
 
+export const CommentSection = styled.section`
+  padding: 0 2.5rem;
+  margin: 6rem 0 3rem;
+`;
+
 export const CommentCount = styled.p`
   margin: 1rem 0;
   margin-top: 4.5rem;
@@ -19,7 +24,7 @@ export const CommentListBox = styled.ul`
 
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.2rem;
 `;
 
 export const NoComment = styled.div`
