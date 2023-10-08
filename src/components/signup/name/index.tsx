@@ -20,7 +20,9 @@ const Name: FC<INameProps> = ({
   handleNickName,
   emptyNickName,
 }) => {
-  const isProperNickName = new RegExp(/^.{2,20}$/).test(nickName);
+  const isProperNickName = new RegExp(/^[a-zA-Z0-9가-힣]{2,20}$/).test(
+    nickName,
+  );
 
   const [isCheckNickName, setCheckNickName] = useState({
     error: false,

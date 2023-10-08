@@ -22,6 +22,9 @@ export const ImageBox = styled.div`
   width: 11.375rem;
   height: 11.375rem;
 
+  border-radius: 100%;
+  overflow: hidden;
+
   > img {
     width: 100%;
     height: 100%;

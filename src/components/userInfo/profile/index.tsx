@@ -1,55 +1,66 @@
 import { Button, H2, Label } from "components/userInfo/index.styles";
+import { useGetMyInfoQuery } from "lib/hooks";
 import { useJwtToken } from "lib/hooks/useJwtToken";
 import {
+  useDeleteProfileImgMutation,
   useUpdateNickNameMutation,
   useUpdateProfileImgMutation,
 } from "lib/hooks/useMyInfoMutation";
 import Image from "next/image";
 import type { ChangeEvent } from "react";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { palette } from "styles/palette";
 
 import userProfileImageSVG from "/public/mocks/user_profile.svg";
 
 import * as S from "./index.styles";
 
-interface IProfileProps {
-  email: string;
-  nickName: string;
-  profileImg: string;
-  social: string;
-}
-
-const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
+const Profile = () => {
   const { token: jwtToken } = useJwtToken();
+  const { data: userInfo } = useGetMyInfoQuery(jwtToken);
+
   const inputRef = useRef<HTMLInputElement>(null);
-  const [state, setState] = useState({
-    nickName,
-    profileImg,
-  });
+  const [nickName, setNickName] = useState(userInfo?.nickName || "");
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
   };
 
-  const onChangeNickname = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setState((prev) => ({ ...prev, nickName: event.target.value }));
-    },
-    [],
-  );
+  const onChangeNickname = (e: ChangeEvent<HTMLInputElement>) => {
+    setNickName(e.target.value);
+  };
 
   const onChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     const imageFile = event.target.files[0];
+    const fileExtension = /\.(jpg|png)$/;
+    const fileSizeLimit = 200000;
 
+    if (imageFile.size >= fileSizeLimit) {
+      toast.warn("파일 크기가 200KB를 초과합니다.");
+      return;
+    }
+
+    const isProperFileExtension = new RegExp(fileExtension).test(
+      imageFile.name,
+    );
+    if (!isProperFileExtension) {
+      toast.warn("파일 확장자는 jpg, png만 가능합니다.");
+      return;
+    }
     updateProfileImage({ imageFile, jwtToken });
   };
 
   const { mutate: updateNickname } = useUpdateNickNameMutation(() => {
     setIsEdit(false);
   });
+
+  const { mutate: deleteProfileImage } = useDeleteProfileImgMutation(() => {
+    setIsEdit(false);
+  });
+
   const { mutate: updateProfileImage } = useUpdateProfileImgMutation(() => {
     setIsEdit(false);
   });
@@ -60,7 +71,16 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
   };
 
   const onUpdateNickname = () => {
-    updateNickname({ nickname: state.nickName, jwtToken });
+    const isProperNickName = new RegExp(/^[a-zA-Z0-9가-힣]{2,20}$/).test(
+      nickName,
+    );
+
+    if (!isProperNickName) {
+      toast.error("2 ~ 20자 내외로 작성해주세요.");
+      return;
+    }
+
+    updateNickname({ nickName, jwtToken });
   };
   return (
     <S.ProfileWrapper>
@@ -71,8 +91,8 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
             width={150}
             height={150}
             src={
-              state.profileImg
-                ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${state.profileImg}`
+              userInfo?.profileImg
+                ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${userInfo?.profileImg}`
                 : userProfileImageSVG
             }
             alt="프로필 이미지"
@@ -87,7 +107,13 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
             >
               이미지 수정
             </Button>
-            <Button backgroundColor={palette.black}>이미지 삭제</Button>
+            <Button
+              backgroundColor={palette.black}
+              type="button"
+              onClick={() => deleteProfileImage(jwtToken)}
+            >
+              이미지 삭제
+            </Button>
           </S.ButtonBox>
         )}
         <input
@@ -101,14 +127,14 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
       <S.NameController>
         <S.Left>
           <Label htmlFor="nickname">닉네임</Label>
-          {!isEdit && <Label>{state.nickName ?? "테스트 닉네임"}</Label>}
+          {!isEdit && <Label>{userInfo?.nickName}</Label>}
           {isEdit && (
             <S.Input
               id="nickname"
               type="text"
-              value={state.nickName}
+              value={nickName}
               onChange={onChangeNickname}
-              placeholder={state.nickName ?? "테스트 닉네임"}
+              placeholder={userInfo?.nickName}
             />
           )}
         </S.Left>
@@ -119,7 +145,7 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
                 <Label>소셜 로그인</Label>
               </td>
               <td>
-                <S.Text>{social ?? ""}</S.Text>
+                <S.Text>{userInfo?.social}</S.Text>
               </td>
             </tr>
             <tr>
@@ -127,7 +153,7 @@ const Profile = ({ email, nickName, profileImg, social }: IProfileProps) => {
                 <Label>이메일</Label>
               </td>
               <td>
-                <S.Text>{email ?? ""}</S.Text>
+                <S.Text>{userInfo?.email}</S.Text>
               </td>
             </tr>
           </tbody>

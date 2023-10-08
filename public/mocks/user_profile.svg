@@ -1,3 +1,14 @@
-<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="11" cy="11" r="11" fill="black"/>
+<svg width="182" height="182" viewBox="0 0 182 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_1210_12730" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="182" height="182">
+<circle cx="91" cy="91" r="91" fill="#DEDEDE"/>
+</mask>
+<g mask="url(#mask0_1210_12730)">
+<rect x="-6" y="-4" width="200" height="200" fill="#D9D9D9"/>
+<path d="M42 75C54.1679 84.9836 60.9763 84.0848 73.1468 75" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M107.852 75C120.019 84.9836 126.828 84.0848 138.998 75" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-24 54C33.6 63.6 78.6667 20 94 -3H-24V54Z" fill="#858585" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M206 54C148.4 63.6 103.333 20 88 -3H206V54Z" fill="#858585" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="93.4453" y1="89.9587" x2="93.4453" y2="107.206" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58.0195 124.835C83.7477 143.258 98.1491 141.997 123.873 124.835" stroke="#858585" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 </svg>

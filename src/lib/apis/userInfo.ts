@@ -56,9 +56,10 @@ export const updateNickname = async (
 export const updateProfileImg = async (imageFile: File, jwtToken: string) => {
   const formData = new FormData();
   formData.append("image", imageFile);
+
   try {
     const response = await AxiosClient.post(
-      "member/update/profile-image",
+      "/member/update/profile-image",
       formData,
       {
         headers: {
@@ -67,7 +68,21 @@ export const updateProfileImg = async (imageFile: File, jwtToken: string) => {
         },
       },
     );
-    return response;
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteProfileImg = async (jwtToken: string) => {
+  try {
+    const response = await AxiosClient.delete("/member/update/profile-image", {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+
+    return response.data;
   } catch (error) {
     throw error;
   }
