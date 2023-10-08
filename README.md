@@ -14,9 +14,8 @@
 2. [커밋 컨벤션](#memo-커밋-컨벤션)
 3. [브랜치 플로우](#sparkles-브랜치-플로우)
 4. [코드 컨벤션](#pencil2-코드-컨벤션)
-5. [폴더 구조](#)
-6. [기능 설명](#)
-7. [문제 해결](#)
+5. [기능 설명](#technologist-기능-설명)
+6. [폴더 구조](#building_construction-폴더-구조)
 
 <br><br>
 
@@ -132,6 +131,62 @@
 
 <br><br>
 
+## :technologist: 기능 설명
+
+### 1. 회원가입 / 로그인
+
+![OAuth](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/0e7ccda9-cec7-4b84-a227-86027d734cd7)
+
+<br/><br/>
+
+### 2. 랜딩페이지
+
+![홈](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/c893ca90-7619-4082-9b48-7b90120a4dc8)
+
+<br/><br/>
+
+### 3. 프로젝트 / 스터디 모집글
+
+![스터디프로젝트](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/6554e94f-9942-4f51-be8f-bf91cc836a38)
+
+<br/><br/>
+
+### 4. 프로젝트 / 스터디 상세 정보
+
+![스터디프로젝트상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/203fd207-d216-4e3b-b76c-e82e57e305cd)
+
+<br/><br/>
+
+### 5. 해커톤 공고글
+
+![해커톤](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/2a0c32f1-89e7-4915-b30b-5168ae9e05b3)
+
+<br/><br/>
+
+### 6. 해커톤 상세 페이지
+
+![해커톤상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/03c2ebcb-7d4c-4f39-bb9a-e6a0b2aa52dc)
+
+<br/><br/>
+
+### 7. 유저 닉네임, 이메일 수정
+
+![유저정보변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/e843475b-af40-4eeb-87ed-c0e9f65ed936)
+
+<br/><br/>
+
+### 8. 유저 기술스택 변경
+
+![기술스택 변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/d1bc7044-afa2-4cfd-add8-c2b066396628)
+
+<br/><br/>
+
+### 9. 유저 스크랩 목록 조회
+
+![스크랩변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/aad7c636-9e16-40ad-a91f-9527a93935cb)
+
+<br/><br/>
+
 ## :building_construction: 폴더 구조
 
 ```
@@ -236,61 +291,3 @@ src
 │  └─userInfo
 └─styles
 ```
-
-<br><br>
-
-## :technologist: 기능 설명
-
-### 1. 회원가입 / 로그인
-
-![OAuth](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/0e7ccda9-cec7-4b84-a227-86027d734cd7)
-
-<br/><br/>
-
-### 2. 랜딩페이지
-
-![홈](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/c893ca90-7619-4082-9b48-7b90120a4dc8)
-
-<br/><br/>
-
-### 3. 프로젝트 / 스터디 모집글
-
-![스터디프로젝트](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/6554e94f-9942-4f51-be8f-bf91cc836a38)
-
-<br/><br/>
-
-### 4. 프로젝트 / 스터디 상세 정보
-
-![스터디프로젝트상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/203fd207-d216-4e3b-b76c-e82e57e305cd)
-
-<br/><br/>
-
-### 5. 해커톤 공고글
-
-![해커톤](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/2a0c32f1-89e7-4915-b30b-5168ae9e05b3)
-
-<br/><br/>
-
-### 6. 해커톤 상세 페이지
-
-![해커톤상세](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/03c2ebcb-7d4c-4f39-bb9a-e6a0b2aa52dc)
-
-<br/><br/>
-
-### 7. 유저 닉네임, 이메일 수정
-
-![유저정보변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/e843475b-af40-4eeb-87ed-c0e9f65ed936)
-
-<br/><br/>
-
-### 8. 유저 기술스택 변경
-
-![기술스택 변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/d1bc7044-afa2-4cfd-add8-c2b066396628)
-
-<br/><br/>
-
-### 9. 유저 스크랩 목록 조회
-
-![스크랩변경](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/aad7c636-9e16-40ad-a91f-9527a93935cb)
-
-<br/><br/>
