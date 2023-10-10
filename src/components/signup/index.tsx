@@ -54,6 +54,13 @@ const SignupModal: FC<ISignupProps> = ({
     closeModal();
   };
 
+  useEffect(() => {
+    if (clearParams && searchParams.get("code")) {
+      router.replace(`${window.location.pathname}`);
+      setClearParams(false);
+    }
+  }, [clearParams, router, searchParams]);
+
   const { mutate: signInMutate } = useChagokSignIn({
     onSuccess: (data?: TSignInResponse) => {
       if (data?.isSignUp && data?.jwtToken) {
@@ -115,13 +122,6 @@ const SignupModal: FC<ISignupProps> = ({
   const emptySkills = () => {
     setSkills([]);
   };
-
-  useEffect(() => {
-    if (clearParams) {
-      router.replace(`${window.location.pathname}`);
-      setClearParams(false);
-    }
-  }, [clearParams, router]);
 
   useEffect(() => {
     const authCode = searchParams.get("code");
