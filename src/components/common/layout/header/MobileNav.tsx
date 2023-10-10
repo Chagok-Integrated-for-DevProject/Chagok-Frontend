@@ -25,7 +25,7 @@ const MobileNav: FC<IMobileNavProps> = ({ openModal }) => {
         </Li>
         {accessToken !== "" && (
           <Li>
-            <NavLink href="/projects?purpose=project">마이페이지</NavLink>
+            <NavLink href="/userInfo">마이페이지</NavLink>
           </Li>
         )}
         <Li>
