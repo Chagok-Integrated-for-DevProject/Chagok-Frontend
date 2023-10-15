@@ -23,12 +23,10 @@ AxiosClient.interceptors.response.use(
 
     if (originalRequest && error?.response?.status == 403) {
       if (isRefreshing) {
-        console.log(originalRequest?.url);
         try {
           const token = await new Promise((resolve, reject) => {
             failedQueue.push({ resolve, reject });
           });
-          console.log(token);
           originalRequest.headers.Authorization = `Bearer ${token}`;
           return axios(originalRequest);
         } catch (error) {

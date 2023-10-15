@@ -4,14 +4,14 @@ export const useJwtToken = () => {
   const [token, setToken] = useState<string>("");
 
   const logout = () => {
-    window.localStorage.removeItem("jwt");
+    window.sessionStorage.removeItem("jwt");
     setToken("");
     window.location.reload();
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const myToken = window.localStorage.getItem("jwt");
+    const myToken = window.sessionStorage.getItem("jwt");
 
     if (myToken) {
       setToken(myToken);

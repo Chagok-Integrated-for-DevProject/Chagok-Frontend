@@ -66,7 +66,7 @@ export const postSignUp = async (
 
 export const postRefreshToken = async () => {
   try {
-    const jwtToken = window.localStorage.getItem("jwt");
+    const jwtToken = window.sessionStorage.getItem("jwt");
     const response = await AxiosClient.post(
       "/auth/refresh",
       {},
@@ -77,12 +77,12 @@ export const postRefreshToken = async () => {
       },
     );
 
-    window.localStorage.removeItem("jwt");
-    window.localStorage.setItem("jwt", response.data.jwtToken);
+    window.sessionStorage.removeItem("jwt");
+    window.sessionStorage.setItem("jwt", response.data.jwtToken);
 
     return response.data;
   } catch (error) {
-    window.localStorage.removeItem("jwt");
+    window.sessionStorage.removeItem("jwt");
     window.location.reload();
     throw error;
   }
