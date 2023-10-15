@@ -1,3 +1,4 @@
+import { type AxiosError, isAxiosError } from "axios";
 import type { ErrorInfo, ReactNode } from "react";
 import React, { Component } from "react";
 
@@ -9,17 +10,35 @@ interface Props {
 
 interface State {
   hasError: boolean;
+  error: string;
 }
+
+type TErrorData = {
+  code: string;
+  state: string;
+  status: number;
+};
 
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
+    error: "",
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public static getDerivedStateFromError(_: Error): State {
+  public static getDerivedStateFromError(error: AxiosError | Error): State {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+    if (isAxiosError(error)) {
+      return {
+        hasError: true,
+        error: (error.response?.data as TErrorData).state,
+      };
+    }
+
+    return {
+      hasError: true,
+      error: "",
+    };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -32,9 +51,16 @@ class ErrorBoundary extends Component<Props, State> {
         <BackgroundDiv role="alert">
           <TextBox>
             <H1>
-              서버와의 연결이
-              <br /> 불안정해 데이터를 <br />
-              가져오는데 실패했습니다.
+              {this.state.error === "" ? (
+                <>
+                  서버와의 연결이
+                  <br /> 불안정해 데이터를
+                  <br />
+                  가져오는데 실패했습니다.
+                </>
+              ) : (
+                this.state.error
+              )}
             </H1>
             <ReloadBtn type="button" onClick={() => window.location.reload()}>
               새로고침
