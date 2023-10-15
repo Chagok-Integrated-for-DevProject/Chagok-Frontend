@@ -6,7 +6,7 @@ export const getRecommendation = async (): Promise<TRecommendation[]> => {
   try {
     const response = await AxiosClient.get("/projects/recommend", {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${window.sessionStorage.getItem("jwt")}`,
       },
     });
 

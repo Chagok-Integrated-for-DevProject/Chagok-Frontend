@@ -12,7 +12,7 @@ export const postScrap = async (category: TCategory, contentId: string) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${window.sessionStorage.getItem("jwt")}`,
         },
       },
     );
@@ -31,7 +31,7 @@ export const deleteScrap = async (category: TCategory, contentId: string) => {
         id: contentId,
       },
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${window.sessionStorage.getItem("jwt")}`,
       },
     });
 

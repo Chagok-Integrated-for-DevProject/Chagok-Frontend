@@ -20,7 +20,7 @@ export const getMyInfo = async (): Promise<TUserInfoReturnType> => {
   try {
     const response = await AxiosClient.get("/member/info", {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${window.sessionStorage.getItem("jwt")}`,
       },
     });
     return response.data;

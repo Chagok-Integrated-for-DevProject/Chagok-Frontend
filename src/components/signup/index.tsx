@@ -64,7 +64,7 @@ const SignupModal: FC<ISignupProps> = ({
   const { mutate: signInMutate } = useChagokSignIn({
     onSuccess: (data?: TSignInResponse) => {
       if (data?.isSignUp && data?.jwtToken) {
-        window.localStorage.setItem("jwt", data.jwtToken);
+        window.sessionStorage.setItem("jwt", data.jwtToken);
         closeModalClearingParams();
         router.push("/");
       }
@@ -126,7 +126,11 @@ const SignupModal: FC<ISignupProps> = ({
   useEffect(() => {
     const authCode = searchParams.get("code");
 
-    if (authCode && accessToken === "" && !window.localStorage.getItem("jwt")) {
+    if (
+      authCode &&
+      accessToken === "" &&
+      !window.sessionStorage.getItem("jwt")
+    ) {
       kakaoMutate(authCode);
     }
   }, [searchParams, kakaoMutate, accessToken]);
