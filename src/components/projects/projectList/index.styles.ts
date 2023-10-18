@@ -30,4 +30,12 @@ export const NoResultH1 = styled.h1`
   position: relative;
   font-size: 4rem;
   white-space: nowrap;
+
+  @media ${breakPoints.sm} {
+    font-size: 2rem;
+  }
+
+  @media ${breakPoints.xs} {
+    font-size: 1.4rem;
+  }
 `;

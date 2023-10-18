@@ -14,8 +14,6 @@ import SearchInput from "./searchInput";
 import SkillFilter from "./skillFilter";
 
 const SearchProjects = () => {
-  // TODO: useProjectsQuery, useStudiesQuery에 SelectedSkills 적용
-
   const router = useRouter();
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [keyword, handleKeyword] = useInputChangeEvent();
