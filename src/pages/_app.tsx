@@ -45,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Head>
         <title>차곡 - 프로젝트, 해커톤 모집글 통합 플랫폼</title>
+        <link rel="icon" href="/favicon.svg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
