@@ -20,6 +20,8 @@ const SkeletonWrapper = styled.div`
 `;
 
 const SkeletonCard = styled.div`
+  height: 413px;
+
   padding: 2.3125rem;
 
   border-radius: 0.625rem;
