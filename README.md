@@ -151,6 +151,7 @@
 - 로그아웃 상태일 경우 => "로그인이 필요합니다" 토스트 메세지
 - 로그인 상태일 경우 => 토스트 메세지를 사용하여 성공, 취소 알림. (`Optimistic Update` 적용)
 
+
 #### B. 해커톤, 스터디/프로젝트 모집글을 서버사이드에서 Prefetch
 
 ![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/473affa1-7ae8-42b1-8558-2fe45b93f968)
@@ -167,7 +168,8 @@
 
 ![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/cbc4258e-fb7f-4282-badf-d5fae1453559)
 
-#### D. `Offset Pagination` 적용
+#### C. `Offset Pagination` 적용
+
 
 <br/><br/>
 
