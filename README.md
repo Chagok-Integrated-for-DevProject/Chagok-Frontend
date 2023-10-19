@@ -138,7 +138,7 @@
 3.  백엔드 서버에서 KaKao or Google Access token으로 유저의 정보를 얻어 DB에 저장.
 4.  백엔드 서버에서 자체 access token, refresh token 생성
 
-#### B. Refresh Token은 httpOnly쿠키, Access Token은 LocalStorage에 저장하고 만료시간을 짧게 하여 XSS와 CSRF에 대응하도록 함.
+#### B. `Refresh Token은 httpOnly쿠키, Access Token은 LocalStorage`에 저장하고 만료시간을 짧게 하여 `XSS와 CSRF`에 대응하도록 함.
 
 <br/><br/>
 
@@ -149,7 +149,7 @@
 #### A. BookMark에 대한 유효성 검사
 
 - 로그아웃 상태일 경우 => "로그인이 필요합니다" 토스트 메세지
-- 로그인 상태일 경우 => 토스트 메세지를 사용하여 성공, 취소 알림. (**Optimistic Update 적용**)
+- 로그인 상태일 경우 => 토스트 메세지를 사용하여 성공, 취소 알림. (`Optimistic Update` 적용)
 
 #### B. 해커톤, 스터디/프로젝트 모집글을 서버사이드에서 Prefetch
 
@@ -161,11 +161,13 @@
 
 ![스터디프로젝트](https://github.com/With-Pet-Project/With-Pet-FE/assets/68717963/e16b7adb-62c5-4fa3-b733-b62f689c2706)
 
-#### A. 로딩 Fallback UI로 Skeleton 적용. (Layout Shift 방지)
+#### A. 로딩 Fallback UI로 `Skeleton` 적용. (`Layout Shift` 방지)
 
-#### B. `기술스택 + 검색어` 조합에 따른 검색결과 표시
+#### B. `기술스택 + 검색어` 조합에 따른 검색결과 표시 (`Debounce` 적용)
 
-#### C. Offset Pagination 적용
+![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/cbc4258e-fb7f-4282-badf-d5fae1453559)
+
+#### D. `Offset Pagination` 적용
 
 <br/><br/>
 
