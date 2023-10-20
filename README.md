@@ -14,8 +14,9 @@
 2. [커밋 컨벤션](#memo-커밋-컨벤션)
 3. [브랜치 플로우](#sparkles-브랜치-플로우)
 4. [코드 컨벤션](#pencil2-코드-컨벤션)
-5. [기능 설명](#technologist-기능-설명)
-6. [폴더 구조](#building_construction-폴더-구조)
+5. [프로젝트 아키텍처](#construction-프로젝트-아키텍처)
+6. [기능 설명](#technologist-기능-설명)
+7. [폴더 구조](#building_construction-폴더-구조)
 
 <br><br>
 
@@ -125,6 +126,12 @@
 
 <br><br>
 
+## :construction: 프로젝트 아키텍처
+
+![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/6885256b-4fb7-4eac-adc7-b0cc506e47e0)
+
+<br><br>
+
 ## :technologist: 기능 설명
 
 ### 1. 회원가입 / 로그인
@@ -132,6 +139,9 @@
 ![OAuth](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/0e7ccda9-cec7-4b84-a227-86027d734cd7)
 
 #### A. OAuth 2.0 (Kakao, Google)
+
+Kakao (`Authorization Code Grant`)<br>
+Google (`Implicit Grant`)
 
 1.  frontend에서 KaKao와 Google Access token을 발급
 2.  발급 받은 KaKao or Google Access token을 백엔드 서버에 전달
