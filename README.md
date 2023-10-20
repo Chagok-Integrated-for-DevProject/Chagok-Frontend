@@ -140,6 +140,9 @@
 
 #### A. OAuth 2.0 (Kakao, Google)
 
+Kakao (`Authorization Code Grant`)<br>
+Google (`Implicit Grant`)
+
 1.  frontend에서 KaKao와 Google Access token을 발급
 2.  발급 받은 KaKao or Google Access token을 백엔드 서버에 전달
 3.  백엔드 서버에서 KaKao or Google Access token으로 유저의 정보를 얻어 DB에 저장.
