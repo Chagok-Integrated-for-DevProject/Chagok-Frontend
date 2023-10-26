@@ -14,6 +14,12 @@ export const AxiosClient = axios.create({
 let failedQueue: { resolve: any; reject: any }[] = [];
 let isRefreshing = false;
 
+type T401Error = {
+  status: number;
+  code: string;
+  state: string;
+};
+
 AxiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
@@ -45,6 +51,13 @@ AxiosClient.interceptors.response.use(
       } finally {
         isRefreshing = true;
       }
+    }
+
+    if (
+      originalRequest &&
+      (error?.response?.data as T401Error).code === "invalid_01"
+    ) {
+      window.sessionStorage.removeItem("jwt");
     }
     throw error;
   },
