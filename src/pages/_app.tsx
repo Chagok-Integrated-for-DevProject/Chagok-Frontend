@@ -10,6 +10,7 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "components/common/error/ErrorBoundary";
 import Layout from "components/common/layout";
+import * as gtag from "lib/utils/gtag";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
@@ -28,6 +29,8 @@ export default function App({ Component, pageProps }: AppProps) {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID as string);
     window.Kakao.isInitialized();
   };
+
+  gtag.useGtag();
 
   const [queryClient] = useState(
     () =>
@@ -62,6 +65,29 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ko_KR" />
+        {process.env.NODE_ENV !== "development" && (
+          <>
+            {/* Global Site Tag (gtag.js) - Google Analytics */}
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+            />
+            <Script
+              id="gtag-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
       </Head>
       <Hydrate state={pageProps.dehydratedState}>
         <Global styles={resetStyles} />
