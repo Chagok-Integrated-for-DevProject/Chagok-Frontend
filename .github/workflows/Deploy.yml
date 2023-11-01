@@ -37,7 +37,7 @@ jobs:
           NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           NEXT_PUBLIC_IMAGE_BASE_URL: ${{secrets.NEXT_PUBLIC_IMAGE_BASE_URL}}
       - name: Make zip file
-        run: zip -qq -r ./chagok.zip .
+        run: zip -qq -r ./chagok.zip . -x "node_modules/*"
       #  -x "node_modules/*"
 
       - name: Configure AWS credentials
