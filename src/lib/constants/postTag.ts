@@ -19,6 +19,10 @@ export const POST_TAGS: TPOST_TAG[] = [
     color: `${palette.okky}`,
   },
   {
+    tagName: "LETSPL",
+    color: `${palette.letspl}`,
+  },
+  {
     tagName: "PROJECT",
     color: `${palette.bgMainOrange}`,
   },

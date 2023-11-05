@@ -27,6 +27,7 @@ type TPalette = {
   hola: "#FFCD00";
   inflearn: "#00C471";
   okky: "#0090F9";
+  letspl: "#EA6560";
 };
 
 export const palette: TPalette = {
@@ -58,4 +59,5 @@ export const palette: TPalette = {
   hola: "#FFCD00",
   inflearn: "#00C471",
   okky: "#0090F9",
+  letspl: "#EA6560",
 };
