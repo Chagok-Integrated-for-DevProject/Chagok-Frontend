@@ -79,7 +79,7 @@ const Summary: FC<ISummaryProps> = ({ data }) => {
             <S.Source>
               <S.Label>출처</S.Label>
               <S.ResourceLink href={data.originalUrl} target="_blank">
-                콘테스트 코리아
+                Contest Korea 바로가기
               </S.ResourceLink>
             </S.Source>
           </S.Summary>
