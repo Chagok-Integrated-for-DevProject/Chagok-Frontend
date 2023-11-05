@@ -98,7 +98,7 @@ export const Content = styled.span`
 `;
 
 export const ResourceLink = styled.a`
-  color: ${palette.black};
+  color: ${palette.fontMainOrange};
 
   :hover {
     text-decoration: underline;

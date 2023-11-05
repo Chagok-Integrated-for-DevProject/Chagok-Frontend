@@ -10,7 +10,7 @@ export const Wrapper = styled("div", {
   top: 10rem;
   z-index: 1;
   width: 314px;
-  height: 400px;
+  min-height: 400px;
 
   transition: top 1s linear;
 
