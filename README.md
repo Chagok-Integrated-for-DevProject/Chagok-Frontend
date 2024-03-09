@@ -1,12 +1,12 @@
-# 차곡(Chagok) - [배포 링크](https://chagok.site/)
+# 차곡(Chagok)
 
 사이드 프로젝트, 해커톤 등을 여러 사이트에서 크롤링하여 한 번에 보고 팀빌딩까지 할 수 있도록 해주는 웹 사이트.
-<br><br>
+<br>
 
 ## :children_crossing: 팀 구성
 
 프론트엔드2, 백엔드2, 디자이너1
-<br><br>
+<br>
 
 ## :page_facing_up: 목차
 
@@ -18,35 +18,17 @@
 6. [기능 설명](#technologist-기능-설명)
 7. [폴더 구조](#building_construction-폴더-구조)
 
-<br><br>
+<br>
 
 ## :rocket: 기술 스택
 
-### Language
-
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
-
-### Framework
-
-<img src="https://img.shields.io/badge/Next.js-232323?style=for-the-badge&logo=Next.js&logoColor=white">
-
-### State Management
-
-<img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white">
-
-### Style
-
-<img src="https://img.shields.io/badge/Emotion-5B0BB5?style=for-the-badge&logoColor=white">
-
-### Testing
-
-<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white"><img src="https://img.shields.io/badge/React Testing Library-E33332?style=for-the-badge&logo=Testing Library&logoColor=white"><img src="https://img.shields.io/badge/Mock Service Worker-FABD14?style=for-the-badge&logoColor=white">
-
-### CI/CD
-
-<img src="https://img.shields.io/badge/AWS EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"><img src="https://img.shields.io/badge/AWS S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"><img src="https://img.shields.io/badge/AWS CodeDeploy-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"><img src="https://img.shields.io/badge/Github Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"><img src="https://img.shields.io/badge/PM2-2B037A?style=for-the-badge&logo=PM2&logoColor=white">
-
-<br><br>
+- TypeScript
+- Nextjs13
+- React-Query V4
+- Emotion
+- Jest, React-Testing-Library, Mock Service Worker
+- EC2, S3, Github Action, PM2
+  <br>
 
 ## :memo: 커밋 컨벤션
 
@@ -66,7 +48,7 @@
 | :truck:            | Rename   | 파일 혹은 몰더명 수정하거나 옮기는 작업만 한 경우     |
 | :fire:             | Remove   | 파일을 삭제하는 작업만 한 경우                        |
 
-<br><br>
+<br>
 
 ## :sparkles: 브랜치 플로우
 
@@ -80,7 +62,7 @@
 5. branches rule: github action으로 testing 및 build가 성공적으로 수행되어야 merge 가능
 6. branch name pattern: `[commit prefix]/[description]`
 
-<br><br>
+<br>
 
 ## :pencil2: 코드 컨벤션
 
@@ -124,13 +106,13 @@
 - 현재까지 60개의 테스트 케이스 작성<br /><br />
   ![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/20a6a601-bb7c-4843-8852-e6d5b88721fb)
 
-<br><br>
+<br>
 
 ## :construction: 프로젝트 아키텍처
 
 ![image](https://github.com/Chagok-Integrated-for-DevProject/Chagok-Frontend/assets/68717963/6885256b-4fb7-4eac-adc7-b0cc506e47e0)
 
-<br><br>
+<br>
 
 ## :technologist: 기능 설명
 
@@ -150,7 +132,7 @@ Google (`Implicit Grant`)
 
 #### B. `Refresh Token은 httpOnly쿠키, Access Token은 LocalStorage`에 저장하고 만료시간을 짧게 하여 `XSS와 CSRF`에 대응하도록 함.
 
-<br/><br/>
+<br/>
 
 ### 2. 랜딩페이지
 
