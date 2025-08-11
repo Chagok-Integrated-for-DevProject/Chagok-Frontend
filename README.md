@@ -130,8 +130,7 @@ Google (`Implicit Grant`)
 3.  백엔드 서버에서 KaKao or Google Access token으로 유저의 정보를 얻어 DB에 저장.
 4.  백엔드 서버에서 자체 access token, refresh token 생성
 
-#### B. `Refresh Token은 httpOnly쿠키, Access Token은 LocalStorage`에 저장하고 만료시간을 짧게 하여 `XSS와 CSRF`에 대응하도록 함.
-
+#### B. `Refresh Token은 httpOnly쿠키, Access Token은 LocalStorage`에 저장하고 만료시간을 짧게 하여 보안 위험 최소화
 <br/>
 
 ### 2. 랜딩페이지
